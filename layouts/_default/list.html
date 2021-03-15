@@ -6,8 +6,9 @@
 
 {{- if not .IsHome | and .Title }}
 <header class="page-header">
-  {{- partial "breadcrumbs.html" . }}
-  <h1>{{ .Title }}</h1>
+  <!-- "Home" Button on Posts -->
+  <!-- {{- partial "breadcrumbs.html" . }} -->
+  <h1><a href="/archives/">{{ .Title }}</a></h1>
   {{- if .Description }}
   <div class="post-description">
     {{ .Description }}
@@ -39,38 +40,6 @@
 {{- else if $term }}
 {{- $class = "post-entry tag-entry" }}
 {{- end }}
-
-
-<ul class="terms-tags">
-  {{- $type := .Type }}
-  {{- range $key, $value := .Data.Terms.Alphabetical }}
-  {{- $name := .Name }}
-  {{- $count := .Count }}
-  {{- with $.Site.GetPage (printf "/%s/%s" $type $name) }}
-  <li>
-      <a href="{{ .Permalink }}">{{ .Name }} <sup><strong><sup>{{ $count }}</sup></strong></sup> </a>
-  </li>
-  {{- end }}
-  {{- end }}
-</ul>
-
-
-<!-- Add Search to main page -->
-<!-- <div class="search">
-  <h2>Search
-    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="11" cy="11" r="8"></circle>
-        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-    </svg>
-  </h2>
-  <div id="searchbox">
-    <input id="searchInput" autofocus placeholder="42 ↵" aria-label="search" type="search">
-    <ul id="searchResults" aria-label="search results"></ul>
-  </div>
-</div> -->
-
-
 
 
 <!-- Articles on Main Page -->
