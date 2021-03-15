@@ -12,9 +12,10 @@ buildExpired: false
 
 # googleAnalytics: UA-123-45
 
-# minify:
-#     disableXML: true
-#     minifyOutput: true
+## Can result in weird JSON parsing errors
+minify:
+    disableXML: true
+    # minifyOutput: true
 
 
 menu:
@@ -51,8 +52,14 @@ menu:
           name: "🔍"
           url: /search/
           weight: 8
-        
-        
+
+# For search
+outputs:
+    home:
+        - HTML
+        - RSS
+        - JSON # is necessary
+       
 params:
     env: production # to enable google analytics, opengraph, twitter-cards and schema.
     title: "@kleinbutsignificant"
@@ -77,8 +84,8 @@ params:
     assets:
         # disableHLJS: true # to disable highlight.js
         # disableFingerprinting: true
-        favicon: "<link / abs url>"
-        favicon16x16: "<link / abs url>"
+        favicon: "favicon16.png"
+        favicon16x16: "favicon16.png"
         favicon32x32: "<link / abs url>"
         apple_touch_icon: "<link / abs url>"
         safari_pinned_tab: "<link / abs url>"
@@ -150,6 +157,12 @@ params:
         threshold: 0.4
         minMatchCharLength: 0
         keys: ["title", "permalink", "summary", "content"]
+
+## ??
+# taxonomies:
+#     category: categories
+#     tag: tags
+#     series: series
 
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 # pygmentsUseClasses: true
