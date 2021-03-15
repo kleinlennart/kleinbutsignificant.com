@@ -12,9 +12,9 @@ buildExpired: false
 
 # googleAnalytics: UA-123-45
 
-minify:
-    disableXML: true
-    minifyOutput: true
+# minify:
+#     disableXML: true
+#     minifyOutput: true
 
 
 menu:
