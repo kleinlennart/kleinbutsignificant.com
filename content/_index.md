@@ -6,5 +6,6 @@ title: " " # can't be empty for some reason
 # summary: "search"
 ---
 
-
 ### Fun Facts About Me
+
+<!-- TODO: Add random fun fact everytime the page is loaded -> higher SEO -->
