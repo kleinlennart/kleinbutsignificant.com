@@ -1,0 +1,16 @@
+{{- define "main" }}  <!-- Define main class to insert in baseof.html -->
+
+<!-- TODO: Have Mainpage on About Tab -->
+
+<br><br> <!-- FIXME: Add proper Padding -->
+
+{{- partial "home_info.html" . }}
+
+<!-- TODO: Add Search -->
+<!-- TODO: Add tags -->
+
+<!-- Content from content/_index.md -->
+{{.Content}}
+
+{{- end }}
+{{/* end main */}}
