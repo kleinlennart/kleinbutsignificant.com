@@ -1,0 +1,18 @@
+---
+title: The PaperMod Theme - Notes
+author: Lennart Klein
+date: '2021-03-15'
+slug: ["papermod-theme-notes"]
+categories:
+  - R
+tags:
+  - meta
+  - blogdown
+  - hugo
+  - resources
+---
+
+## Links & Resources
+- https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-features/
+- https://github.com/adityatelange/hugo-PaperMod (-> branches)
+
