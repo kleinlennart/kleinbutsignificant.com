@@ -1,3 +1,5 @@
+# -> https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs
+
 theme: "hugo-PaperMod"
 baseURL: "/"
 publishDir: "public"
