@@ -6,5 +6,14 @@ Hugo Blog on PaperMod Theme
 <!-- badges: end -->
 
 ## TODOs
-- [ ] Update source repo on GitHub
+- Update source repo on GitHub
+- add Google Analytics
+- start writing
+  - About
+- CV download
+- add email contact
+- add GitHub CI 
+  - run `hugo -v` / `build_site` from source repo and export automatically to pages
+
+
 
