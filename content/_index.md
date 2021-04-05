@@ -2,10 +2,10 @@
 title: " " # can't be empty for some reason
 # layout: "search" # is necessary
 # url: "/about" # ??
-# description: "Description for Search"
+# description: ""
 # summary: "search"
 ---
 
-### Fun Facts About Me
+<!--### Fun Facts About Me -->
 
 <!-- TODO: Add random fun fact everytime the page is loaded -> higher SEO -->

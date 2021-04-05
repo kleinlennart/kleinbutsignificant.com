@@ -62,11 +62,11 @@ outputs:
        
 params:
     env: production # to enable google analytics, opengraph, twitter-cards and schema.
-    title: "@kleinbutsignificant"
+    title: "@kleinbutsignificant" # <meta property="og:site_name" content="<title>"/>
     description: "Blog of Lennart Klein about Data Science, Politics and Productivity"
     author: "Lennart Klein"
     # author: ["Me", "You"] # multiple authors
-    images: ["<link or path of image for opengraph, twitter-cards>"]
+    images: ["<link or path of image for opengraph, twitter-cards>"] # FIXME
 
     defaultTheme: auto # dark, light
     disableThemeToggle: true
@@ -82,7 +82,7 @@ params:
     ShowBreadCrumbs: true 
 
     assets:
-        # disableHLJS: true # to disable highlight.js
+        disableHLJS: false # to disable highlight.js
         # disableFingerprinting: true
         favicon: "favicon16.png"
         favicon16x16: "favicon16.png"
@@ -91,7 +91,7 @@ params:
         safari_pinned_tab: "<link / abs url>"
 
     label:
-        text: "@kleinbutsignificant"
+        text: "@kleinbutsignificant" # Header
         # icon: /apple-touch-icon.png
         iconHeight: 35
 
@@ -120,7 +120,7 @@ params:
         
           - 🧑‍🎓Undergraduate Student of Political Science, Sociology and Psychology
           
-          - at [University of Tübingen](https://uni-tuebingen.de/en/).
+          - at the [University of Tübingen](https://uni-tuebingen.de/en/).
           
           - Research Assistant at [Hector Research Institute](https://uni-tuebingen.de/en/faculties/faculty-of-economics-and-social-sciences/subjects/department-of-social-sciences/education-sciences-and-psychology/institute/).
           
@@ -135,8 +135,10 @@ params:
           url: "https://twitter.com/lennartkl3in"
         - name: github
           url: "https://github.com/kleinlennart"
+        - name: Email
+          url: "mailto:lennart.klein@student.uni-tuebingen.de?subject=New Email"
+            
         
-
 
     analytics:
         google:
@@ -165,6 +167,8 @@ params:
 #     series: series
 
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
+# https://github.com/rstudio/blogdown/issues/360
+
 # pygmentsUseClasses: true
 # markup:
 #     highlight:
