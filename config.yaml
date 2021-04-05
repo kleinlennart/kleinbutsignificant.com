@@ -1,6 +1,6 @@
 theme: "hugo-PaperMod"
 baseURL: "/"
-publishDir: "../kleinlennart.github.io" # Build to other repo
+publishDir: "public"
 languageCode: en-us
 title: "@kleinbutsignificant"
 
