@@ -10,4 +10,4 @@ tags:
 ---
 
 ## Note Taking
-- Evernote
+- Roam Research
