@@ -1,10 +1,15 @@
 # -> https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs
 
 theme: "hugo-PaperMod"
-baseURL: "/"
-publishDir: "public"
+baseURL: "https://www.kleinbutsignificant.com/"
+publishDir: "public" # directory under which to generate the website.
 languageCode: en-us
 title: "@kleinbutsignificant"
+
+enableEmoji: true # use Emojis like :smile: in Markdown
+ignoreFiles: ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "(^|/)renv$", "renv\\.lock$"]
+# [permalinks]
+# uglyURLs
 
 paginate: 5
 enableRobotsTXT: true
@@ -65,7 +70,7 @@ outputs:
 params:
     env: production # to enable google analytics, opengraph, twitter-cards and schema.
     title: "@kleinbutsignificant" # <meta property="og:site_name" content="<title>"/>
-    description: "Blog of Lennart Klein about Data Science, Politics and Productivity"
+    description: "Blog of Lennart Klein about Data Science, Politics, and Productivity"
     author: "Lennart Klein"
     # author: ["Me", "You"] # multiple authors
     images: ["<link or path of image for opengraph, twitter-cards>"] # FIXME
