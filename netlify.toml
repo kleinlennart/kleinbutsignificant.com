@@ -1,3 +1,5 @@
+# https://app.netlify.com/sites/kleinbutsignificant/overview
+
 [build]
 command = "hugo"
 publish = "public"

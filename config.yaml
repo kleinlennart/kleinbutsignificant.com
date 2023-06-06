@@ -1,4 +1,5 @@
 # -> https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs
+# Example: https://github.com/adityatelange/hugo-PaperMod/blob/exampleSite/config.yml
 
 theme: "hugo-PaperMod"
 baseURL: "https://www.kleinbutsignificant.com/"
@@ -23,7 +24,6 @@ buildExpired: false
 minify:
     disableXML: true
     # minifyOutput: true
-
 
 menu:
     main:
@@ -72,7 +72,6 @@ params:
     title: "@kleinbutsignificant" # <meta property="og:site_name" content="<title>"/>
     description: "Blog of Lennart Klein about Data Science, Politics, and Productivity"
     author: "Lennart Klein"
-    # author: ["Me", "You"] # multiple authors
     images: ["<link or path of image for opengraph, twitter-cards>"] # FIXME
 
     defaultTheme: auto # dark, light
