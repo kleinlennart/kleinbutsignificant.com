@@ -43,3 +43,7 @@ body {
   background: var(--code-bg) !important;
 }
 
+.post-meta a {
+  font-size: 12px;
+}
+
