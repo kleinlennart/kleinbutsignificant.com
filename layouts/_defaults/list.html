@@ -1,5 +1,8 @@
 {{- define "main" }}
 
+
+
+<!-- profileMode      -->
 {{- if (and site.Params.profileMode.enabled .IsHome) }}
 {{- partial "index_profile.html" . }}
 {{- else }} {{/* if not profileMode */}}
@@ -47,6 +50,8 @@
 
 {{- $paginator := .Paginate $pages }}
 
+
+<!-- insert homeInfo  ################################  -->
 {{- if and .IsHome site.Params.homeInfoParams (eq $paginator.PageNumber 1) }}
 {{- partial "home_info.html" . }}
 {{- end }}

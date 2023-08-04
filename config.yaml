@@ -88,6 +88,8 @@ params:
     ShowBreadCrumbs: true 
 
     assets:
+        # https://favicon.io/
+        # /static folder
         disableHLJS: false # to disable highlight.js
         # disableFingerprinting: true
         favicon: "favicon16.png"
@@ -102,50 +104,55 @@ params:
         iconHeight: 35
 
     # profile-mode
-    profileMode:
-        enabled: false # needs to be explicitly set
-        title: Lennart Klein
-        subtitle: "Writing about Data Science, Politics and Productivity"
-        imageUrl: "profile.png"
-        imageWidth: 150
-        imageHeight: 150
-        imageTitle: my image
-        buttons:
-            - name: Posts
-              url: posts
-            - name: Tags
-              url: tags
+    # profileMode:
+    #     enabled: false
+    #     title: "Title" # optional default will be site title
+    #     subtitle: "This is subtitle"
+    #     imageUrl: "static/profile_round.png" # optional
+    #     imageTitle: "<title of image as alt>" # optional
+    #     imageWidth: 120 # custom size
+    #     imageHeight: 120 # custom size
+    #     buttons:
+    #         - name: Archive
+    #           url: "/archive"
+    #         - name: Github
+    #           url: "https://github.com/"
 
     # home-info mode
     homeInfoParams:
+        # custom params from profileMode and inserted in home_info.html partial
+        imageUrl: profile_round.png
+        imageWidth: 200
+        imageHeight: 200
+        # default homeInfoParams:
         Title: "Hi, I'm Lennart \U0001F44B"
-        Content: > 
-          - I write about Data Science, Politics and Productivity.
+        Content: >
+          - 👨🏼‍🎓 I'm an **Undergraduate Student** of **Political Science**, **Sociology**, and <br>
+          **Psychology** at the [University of Tübingen](https://uni-tuebingen.de/en/) 
           
-          -
-        
-          - 🧑‍🎓Undergraduate Student of Political Science, Sociology and Psychology
+          - 🧑‍💻 I work as a **Research** and **Teaching Assistant** at the [Hector Research Institute](https://uni-tuebingen.de/en/faculties/faculty-of-economics-and-social-sciences/subjects/department-of-social-sciences/education-sciences-and-psychology/institute/)
           
-          - at the [University of Tübingen](https://uni-tuebingen.de/en/).
-          
-          - Research Assistant at [Hector Research Institute](https://uni-tuebingen.de/en/faculties/faculty-of-economics-and-social-sciences/subjects/department-of-social-sciences/education-sciences-and-psychology/institute/).
-          
-          - 
-          
-          - Big fan of **#rstats**.
+          - 🌱 I'm also a **Research Volunteer** at the [Social Change Lab](https://www.socialchangelab.org/)
 
-    socialIcons:
+
+          - <br> Big fan of [**#rstats**](https://www.r-project.org/).
+    
+# - I write about Data Science, Politics and Productivity.    
+# independent of page mode
+    socialIcons: 
         - name: linkedin
+          title: "LinkedIn"
           url: "https://www.linkedin.com/in/lennart-klein/"
         - name: twitter
-          url: "https://twitter.com/lennartkl3in"
+          title: "Whatever"
+          url: "https://twitter.com/kleinbutfiner"
         - name: github
+          title: "GitHub"
           url: "https://github.com/kleinlennart"
         - name: Email
           url: "mailto:lennart.klein@student.uni-tuebingen.de?subject=New Email"
             
         
-
     analytics:
         google:
             SiteVerificationTag: "XYZabc"
