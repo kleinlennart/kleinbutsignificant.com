@@ -1,0 +1,21 @@
+project:
+  type: hugo
+  render:
+    - "*.qmd"
+    - "!archetypes/"
+
+# greedy matching    
+# https://quarto.org/docs/projects/quarto-projects.html#render-targets
+
+format: 
+  hugo-md:
+    code-fold: false
+    # html-math-method: webtex
+
+  
+execute: 
+  warning: false
+
+# biliography: references.lib
+
+

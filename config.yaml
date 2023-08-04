@@ -8,7 +8,7 @@ languageCode: en-us
 title: "@kleinbutsignificant"
 
 enableEmoji: true # use Emojis like :smile: in Markdown
-ignoreFiles: ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "(^|/)renv$", "renv\\.lock$"]
+ignoreFiles: ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "(^|/)renv$", "renv\\.lock$",  "\\.qmd$", "\\.ipynb$", "\\.py$"]
 # [permalinks]
 # uglyURLs
 
@@ -102,6 +102,11 @@ params:
         text: "@kleinbutsignificant" # Header
         # icon: /apple-touch-icon.png
         iconHeight: 35
+        
+    editPost:
+      URL: "https://github.com/kleinlennart/kleinbutsignificant.com/edit/master/content"
+      Text: "🖊" # edit text
+      appendFilePath: true # to append file path to Edit link    
 
     # profile-mode
     # profileMode:
@@ -191,7 +196,10 @@ params:
 #         lineNos: true
 #         style: monokai
 
+
+# allow raw HTML (as many R and Python packages will produce computational output using raw HTML rather than markdown)
 markup:
   goldmark:
     renderer:
       unsafe: true
+      
