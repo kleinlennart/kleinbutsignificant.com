@@ -4,18 +4,16 @@ project:
     - "*.qmd"
     - "!archetypes/"
 
-# greedy matching    
+# greedy matching
 # https://quarto.org/docs/projects/quarto-projects.html#render-targets
 
-format: 
-  hugo-md:
-    code-fold: false
-    # html-math-method: webtex
+format:
+  hugo-md
+  # code-fold: false
+  # code-copy: hover
+  # html-math-method: webtex
 
-  
-execute: 
+execute:
   warning: false
 
-# biliography: references.lib
-
-
+# biliography: references.bib
