@@ -9,28 +9,48 @@ tags:
   - R
   - data-viz
   - color
+# cover:
+#     linkFullImages: true
+#     image: "https://assets-global.website-files.com/620d42e86cb8ec4d0839e59d/622f95de676fccd3d9f0483b_Color%20Palettes%20Image_0314122.jpg"
+#     alt: "<alt text>" # alt text
+#     caption: "<text>" # display caption under cover
+#     relative: false # when using page bundles set this to true
+#     hidden: false # only hide on current single page
+# bibliography: references.bib
 format: hugo-md
-jupyter: python3
+fig-height: 4.5
+code-fold: false
 ---
 
+```{r setup}
+#| echo: false
+#| eval: true
 
-## Polar Axis
-
-For a demonstration of a line plot on a polar axis, see @fig-polar.
-
-```{python}
-#| label: fig-polar
-#| fig-cap: "A line plot on a polar axis"
-
-import numpy as np
-import matplotlib.pyplot as plt
-
-r = np.arange(0, 2, 0.01)
-theta = 2 * np.pi * r
-fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
-ax.plot(theta, r)
-ax.set_rticks([0.5, 1, 1.5, 2])
-ax.grid(True)
-plt.show()
+library(tidyverse)
 ```
 
+Three types of palettes:
+
+1.  discriminate
+
+2.  qualitative
+
+3.  smooth
+
+Okabe
+
+```{r plot normal color}
+mpg %>%
+  ggplot(aes(x = displ, y = hwy)) +
+  geom_point(aes(color = class)) +
+  geom_smooth()
+```
+
+
+```{r plot OkabeIto}
+mpg %>%
+  ggplot(aes(x = displ, y = hwy)) +
+  geom_point(aes(color = class)) +
+  geom_smooth() +
+  paletteer::scale_color_paletteer_d("colorblindr::OkabeIto_black")
+```
