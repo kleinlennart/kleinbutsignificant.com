@@ -74,7 +74,7 @@ params:
     author: "Lennart Klein"
     images: ["<link or path of image for opengraph, twitter-cards>"] # FIXME
 
-    defaultTheme: auto # dark, light
+    defaultTheme: light # dark, light
     disableThemeToggle: true
 
     ShowReadingTime: false
