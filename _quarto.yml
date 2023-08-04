@@ -8,12 +8,17 @@ project:
 # https://quarto.org/docs/projects/quarto-projects.html#render-targets
 
 format:
-  hugo-md
-  # code-fold: false
-  # code-copy: hover
-  # html-math-method: webtex
+  hugo-md:
+    fig-height: 3
+    # fig-width: 4.5
+    fig-dpi: 600
+    code-fold: false
+    # html-math-method: webtex
 
 execute:
   warning: false
+  # error: false
+  cache: true
+  freeze: auto
 
 # biliography: references.bib

@@ -9,3 +9,10 @@ description: ""
 
 format: hugo-md
 ---
+
+```{r setup}
+#| echo: false
+#| eval: true
+
+library(tidyverse)
+```

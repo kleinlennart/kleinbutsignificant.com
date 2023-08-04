@@ -43,7 +43,18 @@ body {
   background: var(--code-bg) !important;
 }
 
+/* pen for post edit smaller (default: 14px) */
 .post-meta a {
   font-size: 12px;
 }
+
+/* Code Highlighting, post-single.html /*/
+
+/*
+.chroma {
+  background-color: unset !important;
+}
+
+--hljs-bg: rgb(46, 46, 51)
+*/
 
