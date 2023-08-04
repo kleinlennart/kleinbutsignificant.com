@@ -66,10 +66,18 @@ menu:
       name: "Tags"
       url: /tags/
       weight: 7
+    - identifier: slides
+      name: "Slides"
+      url: /slides/
+      weight: 8
+    - identifier: art
+      name: "Art"
+      url: /art/
+      weight: 9
     - identifier: search
       name: "🔍"
       url: /search/
-      weight: 8
+      weight: 10
 
 # For search
 outputs:
@@ -178,8 +186,8 @@ params:
       SiteVerificationTag: "XYZabc"
 
   cover:
-    hidden: true # hide everywhere but not in structured data
-    hiddenInList: true # hide on list pages and home
+    hidden: false # hide everywhere but not in structured data
+    hiddenInList: false # hide on list pages and home
     hiddenInSingle: true # hide on single page
 
   editPost:
