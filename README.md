@@ -15,5 +15,8 @@ Hugo Blog on PaperMod Theme
 - add GitHub CI 
   - run `hugo -v` / `build_site` from source repo and export automatically to pages
 
+## Hugo
+
+- https://gohugo.io/getting-started/directory-structure/
 
 
