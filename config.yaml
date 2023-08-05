@@ -178,8 +178,10 @@ params:
     - name: github
       title: "GitHub"
       url: "https://github.com/kleinlennart"
-    - name: Email
-      url: "mailto:lennart.klein@student.uni-tuebingen.de?subject=New Email"
+    # - name: Email
+      # title: "Mail"
+      # url: "mailto:"
+      # NOTE: set in social_icons.html
 
   analytics:
     google:
