@@ -29,7 +29,7 @@ buildDrafts: false
 buildFuture: false
 buildExpired: false
 
-# googleAnalytics: UA-123-45
+googleAnalytics: G-GC2LB6CKDN
 
 ## Can result in weird JSON parsing errors
 minify:
@@ -186,9 +186,9 @@ params:
       # url: "mailto:"
       # NOTE: set in social_icons.html
 
-  analytics:
-    google:
-      SiteVerificationTag: "G-GC2LB6CKDN"
+  # analytics:
+  #   google:
+  #     SiteVerificationTag: "G-GC2LB6CKDN"
 
   cover:
     hidden: false # hide everywhere but not in structured data
