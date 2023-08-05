@@ -178,6 +178,9 @@ params:
     - name: github
       title: "GitHub"
       url: "https://github.com/kleinlennart"
+    - name: googlescholar
+      title: "Google Scholar"
+      url: "https://scholar.google.com/citations?hl=en&user=vK0kK7UAAAAJ"
     # - name: Email
       # title: "Mail"
       # url: "mailto:"
