@@ -1,7 +1,8 @@
-# kleinbutsignificant
+# kleinbutsignificant.com
 
 <!-- badges: start -->
 [![Netlify Status](https://api.netlify.com/api/v1/badges/7fcdb00f-8ea5-499d-a803-2a61544f74f7/deploy-status)](https://app.netlify.com/sites/kleinbutsignificant/deploys)
+![Website](https://img.shields.io/website?url=https%3A%2F%2Fwww.kleinbutsignificant.com)
 <!-- badges: end -->
 
 ## TODOs
