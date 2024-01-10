@@ -1,0 +1,7 @@
+encoding: "UTF-8"
+linters: linters_with_defaults(
+    line_length_linter = line_length_linter(120L),
+    todo_comment_linter = todo_comment_linter(todo = c("todo", "fixme"))
+    # whitespace_linter = NULL
+  )
+
