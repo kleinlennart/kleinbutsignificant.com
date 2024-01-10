@@ -87,6 +87,8 @@ outputs:
     - JSON # is necessary
 
 params:
+  mainSections:
+    - post # https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#posts-from-only-one-foldersection-visible-on-home-page
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: "@kleinbutsignificant" # <meta property="og:site_name" content="<title>"/>
   description: "Blog of Lennart Klein about Data Science, Politics, and Productivity"
