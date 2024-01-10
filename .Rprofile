@@ -32,3 +32,9 @@ options(
 # https://github.com/gohugoio/hugo/releases/
 # use blogdown::install_hugo(), also change in netlify.toml
 options(blogdown.hugo.version = "0.121.2")
+
+
+# Misc Custom ----------------------------------------------------------------
+
+
+
