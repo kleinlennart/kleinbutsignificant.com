@@ -4,12 +4,19 @@
 .httr-oauth
 .DS_Store
 Thumbs.db
-.hugo_build.lock
 
+
+.hugo_build.lock
 /blogdown/
 /public/
 /resources/
-/.quarto/
 
+## Quarto
+/.quarto/
 _freeze
 *_cache
+.quarto
+
+## Data
+data/*
+!data/.gitkeep
