@@ -1,18 +1,15 @@
 ---
 title: "Urban Sounds"
+# date: 2017-01-20
+# date: 2020-09-15T11:30:03+00:00 ## date adds it to Archive
 weight: 2
-author: 
-  - Lennart Klein
-  - Malte Fischbach
-  - Luis Wedekind
-  - and Nils Kemmerling
+author: ["Lennart Klein", "Malte Fischbach", "Luis Wedekind", "and Nils Kemmerling"]
 # layout: "art" # vgl. "search"
 # description: "Schönes Wochenende Festival Urban loops and drones"
 # summary: "search"
-date: "2017-01-20"
 # TODO: check for sensitive information!
-categories: []
-tags: []
+# categories: []
+# tags: []
 cover: 
   image: "/art/images/UrbanSounds.jpg" # image path/url
   alt: "<alt text>" # alt text

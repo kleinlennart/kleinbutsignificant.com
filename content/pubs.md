@@ -6,4 +6,6 @@ title: "Publications" # can't be empty for some reason
 # summary: "search"
 ---
 
-Coming soon...
+### Should I Go? Participation Biases in Citizen Deliberation Forums: Evidence from Germany (ISPP 2023)
+
+- https://github.com/kleinlennart/citizen-forum-biases

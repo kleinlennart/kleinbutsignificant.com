@@ -8,7 +8,7 @@ author: " "
 date: " "
 # TODO: check for sensitive information!
 categories: []
-tags: 
+tags:
   - art
 cover: 
   image: "/art/images/VJ/IMG_20190630_010030.jpg" # image path/url

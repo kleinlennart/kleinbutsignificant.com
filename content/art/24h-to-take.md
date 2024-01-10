@@ -2,7 +2,7 @@
 title: "24hToTake" # can't be empty for some reason
 weight: 1 # order in list (1 = highest)
 # layout: "art" # vgl. "search"
-# description: "A collection of my presenatations"
+description: "https://www.24h-to-take.de/"
 # summary: "search"
 date: " " # 
 # TODO: check for sensitive information!
@@ -16,7 +16,7 @@ cover:
   hidden: true # only hide on current single page
 ---
 
-- https://www.24h-to-take.de/
+The largest German Shortfilm Festival!
 
 <div class="container">
 <iframe width="700" height="480" src="https://www.youtube-nocookie.com/embed/GjhSrsmP3tY?start=19433&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
