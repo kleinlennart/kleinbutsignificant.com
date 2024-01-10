@@ -6,6 +6,8 @@
     <img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Fwww.kleinbutsignificant.com&link=https%3A%2F%2Fwww.kleinbutsignificant.com">
 </a>
 
+![Hugo](https://img.shields.io/badge/Hugo-black.svg?style=for-the-badge&logo=Hugo)
+
 <!-- badges: end -->
 
 ## TODOs
