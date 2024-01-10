@@ -230,7 +230,7 @@ markup:
   # allow raw HTML (as many R and Python packages will produce computational output using raw HTML rather than markdown)
   goldmark:
     renderer:
-      unsafe: true
+      unsafe: true # needed to support Quarto https://quarto.org/docs/output-formats/hugo.html#site-config
     # highlight:
     #   anchorLineNos: false
     #   lineNos: false

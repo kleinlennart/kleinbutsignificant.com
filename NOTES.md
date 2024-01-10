@@ -18,3 +18,22 @@ https://github.com/quarto-dev/quarto-cli/issues/6435#issuecomment-1706326046
   - linters: linters_with_defaults() # see vignette("lintr")
 
 
+
+
+## layouts
+
+### layouts/shortcodes/blogdown/postref.html
+- added by {blogdown} package
+- function?
+
+
+## assets/
+
+### asssets/css/extended/
+
+
+## R/
+
+### R/build.R
+### R/_common.R
+
