@@ -23,13 +23,25 @@ version](https://img.shields.io/github/commits-since/adityatelange/hugo-PaperMod
 
 ## TODOs
 
+- fix summary text in list cards (avoid title), instead use description
+  field
+
+- italics in post titles (markdown, html, or Go)
+
 - Update source repo on GitHub
+
 - add Google Analytics
+
 - start writing
+
   - About
+
 - CV download
+
 - add email contact
+
 - add GitHub CI
+
   - run `hugo -v` / `build_site` from source repo and export
     automatically to pages
 

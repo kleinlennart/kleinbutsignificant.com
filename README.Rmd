@@ -31,6 +31,10 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 ## TODOs
+
+- fix summary text in list cards (avoid title), instead use description field
+- italics in post titles (markdown, html, or Go)
+
 - Update source repo on GitHub
 - add Google Analytics
 - start writing

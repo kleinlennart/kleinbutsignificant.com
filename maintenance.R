@@ -1,4 +1,10 @@
+# Business as usual --------------------------------------------------------
+
 # blogdown::check_site()
+# blogdown::serve_site(port = "4321") # fixed port, easier bookmarking
+rmarkdown::render("README.Rmd")
+
+# -------------------------------------------------------------------------
 
 ## `blogdown::update_hugo()` is defunct. Please use `blogdown::install_hugo()` instead.
 # blogdown::install_hugo()

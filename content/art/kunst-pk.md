@@ -1,12 +1,13 @@
 ---
 title: "Our World In Boxes" # can't be empty for some reason
-weight: 1
+weight: 40
 # description: "A collection of my presenatations"
 # summary: "search"
 date: " " # 
 # TODO: check for sensitive information!
 categories:
 tags:
+  - art
 cover: 
   image: "/art/images/MVIMG_20181208_105837.jpg" # image path/url
   alt: "<alt text>" # alt text

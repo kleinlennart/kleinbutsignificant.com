@@ -1,6 +1,6 @@
 ---
 title: "VJ"
-weight: -1
+weight: 30
 author: " "
 # layout: "art" # vgl. "search"
 # description: "Schönes Wochenende Festival Urban loops and drones"
