@@ -1,8 +1,8 @@
 # Themes
 
 - https://github.com/adityatelange/hugo-PaperMod
-- `PaperMod` is the old version
-- current theme version: 7.0 ?? 
+- `PaperMod` used to be the old version, now name of submodule - change?
+- current theme version: latest (see commit SHA)
 - not sure how many changes I've made to the theme itself...
 - update theme with `blogdown::install_theme("adityatelange/hugo-PaperMod", force = TRUE)`
 

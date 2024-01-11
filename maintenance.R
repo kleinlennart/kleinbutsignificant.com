@@ -32,3 +32,36 @@
 # after clearing all the changes on local main
 # or stashing them
 
+# Update Theme ------------------------------------------------------------
+## Method 1: clone 
+# https://github.com/adityatelange/hugo-PaperMod/wiki/Installation#method-1
+# https://github.com/adityatelange/hugo-PaperMod
+
+## Method 2: Submodule (way to go!)
+# https://github.com/adityatelange/hugo-PaperMod/wiki/Installation#method-2
+# - allow continuous fetching of upstream changes with new versions
+# usage: git submodule add [<options>] [--] <repository> [<path>]
+
+# https://arc.net/l/quote/jattiwdw
+
+# use commit SHA for v7.0 tag release
+# SHA 25e5b4d2982aacfee9a1194d2738db284c2ac380
+# need to copy full SHA from GitHub
+
+# git submodule add --depth=1  https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
+# git checkout <tag_or_commit_sha>
+
+# git submodule update --init --recursive # needed when you reclone your repo (submodules may not get cloned automatically)
+
+## Update Submodule
+# git submodule update --remote
+
+## Releases: Note: You may use  "--branch v7.0" to end of above command if you want to stick to specific release.
+
+## Method 3: Manual
+
+
+## Method 4: Go & hugo CLI
+# hugo mod get -u
+
+

@@ -2,7 +2,7 @@
 # Example: https://github.com/adityatelange/hugo-PaperMod/blob/exampleSite/config.yml
 # https://github.com/adityatelange/hugo-PaperMod/wiki/Installation#sample-configyml
 
-theme: "hugo-PaperMod"
+theme: "PaperMod"
 baseURL: "https://www.kleinbutsignificant.com/"
 publishDir: "public" # directory under which to generate the website.
 languageCode: en-us
