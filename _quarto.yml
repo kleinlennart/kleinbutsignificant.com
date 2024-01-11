@@ -1,24 +1,57 @@
+## https://github.com/quarto-dev/quarto-cli/blob/main/src/resources/extensions/quarto/hugo/_extension.yml
+
 project:
   type: hugo # https://quarto.org/docs/output-formats/hugo.html
+  # https://quarto.org/docs/reference/projects/options.html#preview
+  preview:
+    port: 4200 # Port to listen on (defaults to random value between 3000 and 8000)
+    browser: true
+    navigate: true # go to active file
+    watch-inputs: true
+    # serve https://github.com/quarto-dev/quarto-cli/blob/main/src/resources/extensions/quarto/hugo/_extension.yml
+    
   render:
-    - "*.qmd"
+    - "*.qmd" # restrict to Quarto docs only, otherwise preview will try to render everything
+    # - "*.ipynb"
     - "!archetypes/"
+  
 
 # greedy matching
 # https://quarto.org/docs/projects/quarto-projects.html#render-targets
 
 format:
   hugo-md:
-    fig-height: 3
-    # fig-width: 4.5
+    enableEmoji: true
     fig-dpi: 600
+    fig-format: svg # png
+    # fig-height: 3
+    # fig-width: 4.5
     code-fold: false
     # html-math-method: webtex
+    mermaid:
+      # default, dark, forest, and neutral.
+      theme: neutral # https://quarto.org/docs/authoring/diagrams.html#using-mermaids-built-in-themes
+      mermaid-format: png # js, png, and svg,
+      
+
+# knitr
+# https://quarto.org/docs/computations/execution-options.html#knitr-options
+
 
 execute:
   warning: false
   # error: false
-  cache: true
-  freeze: auto
+  cache: true # true
+  freeze: false # https://mine-cetinkaya-rundel.github.io/quarto-tip-a-day/posts/03-freeze/index.html
 
 # biliography: references.bib
+
+# Workflow
+# https://quarto.org/docs/output-formats/hugo.html#workflow
+
+# index.qmd   quarto =>   index.md   hugo =>   index.html
+
+# FIXED: rename index.Rmd in root folder to index.qmd
+
+# Before site build:
+# quarto render 

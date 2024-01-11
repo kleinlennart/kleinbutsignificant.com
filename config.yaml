@@ -7,7 +7,6 @@ baseURL: "https://www.kleinbutsignificant.com/"
 publishDir: "public" # directory under which to generate the website.
 languageCode: en-us
 title: "@kleinbutsignificant"
-
 enableEmoji: true # use Emojis like :smile: in Markdown
 ignoreFiles:
   [
@@ -84,7 +83,7 @@ outputs:
   home:
     - HTML
     - RSS
-    - JSON # is necessary
+    - JSON # necessary for search
 
 params:
   mainSections:
@@ -108,7 +107,7 @@ params:
   hidemeta: false
   showtoc: false
   tocopen: false
-  ShowPostNavLinks: false
+  ShowPostNavLinks: true # Adds a Previous / Next post suggestion under a single post
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   ShowWordCount: false
