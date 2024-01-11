@@ -32,11 +32,14 @@ Read https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#bundling-custom-cs
   margin-bottom: 8px; 
 }
 
-
+/* NOTE: Home Page Profile */
 .profile_inner img {
   border-radius: 50%;
   filter: drop-shadow(0px 2px 2px #9E9E9E);
+  height: 350px;
+  width: 350px;
 }
+
 
 /* conistent background color across all pages */
 body {
