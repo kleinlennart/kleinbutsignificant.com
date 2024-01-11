@@ -11,6 +11,7 @@ Status](https://api.netlify.com/api/v1/badges/7fcdb00f-8ea5-499d-a803-2a61544f74
 [![GitHub commits since tagged
 version](https://img.shields.io/github/commits-since/adityatelange/hugo-PaperMod/71ce72b1bfb868b406c369c958f8682c63940e01?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull)](https://github.com/adityatelange/hugo-PaperMod/compare/71ce72b1bfb868b406c369c958f8682c63940e01...master)
 
+<!-- [![GitHub commits since tagged version](https://img.shields.io/github/commits-since/adityatelange/hugo-PaperMod/71ce72b1bfb868b406c369c958f8682c63940e01?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull)](https://github.com/adityatelange/hugo-PaperMod/compare/71ce72b1bfb868b406c369c958f8682c63940e01...master) -->
 <!-- https://shields.io/badges/git-hub-commits-since-tagged-version -->
 <!-- https://github.com/adityatelange/hugo-PaperMod/commits/master -->
 <!-- https://github.com/adityatelange/hugo-PaperMod/compare/master...21ae19bc2b02089a234509bd4d4bb3a72659999a -->
@@ -28,9 +29,11 @@ version](https://img.shields.io/github/commits-since/adityatelange/hugo-PaperMod
 
 - italics in post titles (markdown, html, or Go)
 
-- Update source repo on GitHub
+- change search logo to Mac on all platforms
 
-- add Google Analytics
+- get emojis to work
+
+- setup python environment local for blog
 
 - start writing
 
@@ -48,3 +51,7 @@ version](https://img.shields.io/github/commits-since/adityatelange/hugo-PaperMod
 ## Hugo
 
 - <https://gohugo.io/getting-started/directory-structure/>
+
+## Python
+
+pip install jupyter-cache or conda-forge

@@ -11,12 +11,34 @@ knitr::opts_chunk$set(
 )
 ```
 
+
+```{r setup, include=FALSE,eval=TRUE}
+get_theme_sha <- function(theme_dir = NULL) {
+  submodule <- git2r::repository(
+    path = here::here("themes", theme_dir)
+  )
+  sha <- submodule |>
+    git2r::repository_head() |>
+    git2r::branch_target()
+  return(sha)
+}
+
+commit_badge <- function(user = NULL, repo = NULL, sha = NULL) {
+  glue::glue("[![GitHub commits since tagged version](https://img.shields.io/github/commits-since/{user}/{repo}/{sha}?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull)](https://github.com/{user}/{repo}/compare/{sha}...master)")
+}
+```
+
+
+
 # [kleinbutsignificant.com](https://www.kleinbutsignificant.com)
 
 <!-- badges: start -->
 [![Netlify Status](https://api.netlify.com/api/v1/badges/7fcdb00f-8ea5-499d-a803-2a61544f74f7/deploy-status)](https://app.netlify.com/sites/kleinbutsignificant/deploys)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fwww.kleinbutsignificant.com&link=https%3A%2F%2Fwww.kleinbutsignificant.com)](https://www.kleinbutsignificant.com)
-[![GitHub commits since tagged version](https://img.shields.io/github/commits-since/adityatelange/hugo-PaperMod/`r readLines(".git/modules/themes/PaperMod/refs/heads/master")`?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull)](https://github.com/adityatelange/hugo-PaperMod/compare/`r readLines(".git/modules/themes/PaperMod/refs/heads/master")`...master)
+`r commit_badge(user = "adityatelange", repo = "hugo-PaperMod",
+                sha = get_theme_sha(theme_dir = "PaperMod"))`
+
+<!-- [![GitHub commits since tagged version](https://img.shields.io/github/commits-since/adityatelange/hugo-PaperMod/`r readLines(".git/modules/themes/PaperMod/refs/heads/master")`?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull)](https://github.com/adityatelange/hugo-PaperMod/compare/`r readLines(".git/modules/themes/PaperMod/refs/heads/master")`...master) -->
 
 
 <!-- https://shields.io/badges/git-hub-commits-since-tagged-version -->
@@ -34,9 +56,10 @@ knitr::opts_chunk$set(
 
 - fix summary text in list cards (avoid title), instead use description field
 - italics in post titles (markdown, html, or Go)
+- change search logo to Mac on all platforms
+- get emojis to work
+- setup python environment local for blog
 
-- Update source repo on GitHub
-- add Google Analytics
 - start writing
   - About
 - CV download
@@ -49,3 +72,7 @@ knitr::opts_chunk$set(
 - https://gohugo.io/getting-started/directory-structure/
 
 
+## Python
+
+pip install jupyter-cache
+or conda-forge
