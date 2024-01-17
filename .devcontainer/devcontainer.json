@@ -44,12 +44,15 @@
 		}
 	},
 
-	// Ports ----------------------------------------------------------------------------
+	// Ports & Server ----------------------------------------------------------------------------
 
-	// start RStudio Server
-	"postAttachCommand": {
-		"rstudio-start": "rserver"
-	},
+	// https://support.posit.co/hc/en-us/articles/234653607-Getting-Started-with-Posit-Workbench-RStudio-Server#:~:text=Managing%20RStudio%20Server%20Open%2DSource
+	// /usr/local/share/rocker-devcontainer-features/rstudio-server/data
+	
+	// start RStudio Server process in container
+	// "postAttachCommand": {
+	// 	"rstudio-start": "rserver"
+	// },
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [ 8787 ],
 	// README: https://containers.dev/implementors/json_reference/#port-attributes
@@ -63,6 +66,8 @@
 
 	// Lifecycle Scripts ----------------------------------------------------------------------------
 	// https://containers.dev/implementors/json_reference/#lifecycle-scripts
+
+	// "onCreateCommand": "",
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "R -q -e 'renv::install()'",
