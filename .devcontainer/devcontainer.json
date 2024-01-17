@@ -28,14 +28,10 @@
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "R -q -e 'renv::install()'",
-	"postCreateCommand": "sudo apt-get update -y && sudo apt-get install -y libxt6",
-	
-	// pull theme submodule into folder
-	"postCreateCommand": "git submodule init && git submodule update",
+	"postCreateCommand": "./.devcontainer/postCreateCommand.sh",
 	
 	// run every time the container starts
-	"postStartCommand": "quarto check",
-	"postStartCommand": "R -e 'blogdown::check_site()'",
+	"postStartCommand": "./.devcontainer/postStartCommand.sh",
 	// TODO: add full health maintenance script run here!
 
 	// Configure tool-specific properties.
