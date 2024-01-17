@@ -29,6 +29,11 @@
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "R -q -e 'renv::install()'",
 	"postCreateCommand": "sudo apt-get update -y && sudo apt-get install -y libxt6",
+	
+	
+	// run every time the container starts
+	"postStartCommand": "R -e 'blogdown::check_hugo(); blogdown::check_site()'",
+	// TODO: add full health maintenance script run here!
 
 	// Configure tool-specific properties.
 	"customizations": {

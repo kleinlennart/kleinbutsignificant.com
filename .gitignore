@@ -15,6 +15,7 @@ Thumbs.db
 *_cache
 .quarto
 index_files
+index.md
 
 # Local Environment
 /_*.local 
