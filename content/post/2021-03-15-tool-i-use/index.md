@@ -9,5 +9,15 @@ tags:
   - tools
 ---
 
-## Note Taking
 - Roam Research
+- Arc
+- Miro
+- Mermaid.js
+- Visual Studio Code
+- Todoist
+- RStudio
+- Zotero
+- GSuite
+- Overleaf
+- Anki
+- PDF Expert

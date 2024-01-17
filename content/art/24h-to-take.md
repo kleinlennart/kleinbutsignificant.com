@@ -7,7 +7,12 @@ description: "https://www.24h-to-take.de/"
 date: " " # 
 # TODO: check for sensitive information!
 categories:
-tags:
+tags: 
+  - videography
+  - film
+  - festival
+  - music
+  - art
 cover: 
   image: "/art/images/24htotake.jpg" # image path/url
   alt: "<alt text>" # alt text

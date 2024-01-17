@@ -1,6 +1,6 @@
 ---
 title: "Europe Knowledge Graph - Part 1: Scraping & Wrangling"
-date: 2020-09-15T11:30:03+00:00
+date: ""
 # weight: 1
 # aliases: ["/first"]
 tags: ["R", "rstats", "web scraping", "rvest"]

@@ -2,6 +2,8 @@
 
 project:
   type: hugo # https://quarto.org/docs/output-formats/hugo.html
+  execute-dir: project
+
   # https://quarto.org/docs/reference/projects/options.html#preview
   preview:
     port: 4200 # Port to listen on (defaults to random value between 3000 and 8000)
@@ -9,7 +11,8 @@ project:
     navigate: true # go to active file
     watch-inputs: true
     # serve https://github.com/quarto-dev/quarto-cli/blob/main/src/resources/extensions/quarto/hugo/_extension.yml
-    
+  # pre-render:
+  # post-render: 
   render:
     - "*.qmd" # restrict to Quarto docs only, otherwise preview will try to render everything
     # - "*.ipynb"
@@ -42,7 +45,24 @@ execute:
   warning: false
   # error: false
   cache: true # true
-  freeze: false # https://mine-cetinkaya-rundel.github.io/quarto-tip-a-day/posts/03-freeze/index.html
+  freeze: false 
+  # https://mine-cetinkaya-rundel.github.io/quarto-tip-a-day/posts/03-freeze/index.html
+  # https://quarto.org/docs/computations/caching.html#freezing-execution
+  
+# You can use the freeze option to denote that computational documents should 
+# never be re-rendered during a global project render (true), or alternatively 
+# only be re-rendered when their source file changes (auto)
+
+# -> avoid re-rendering old posts unless explicitly desired
+# https://quarto.org/docs/projects/code-execution.html#freeze
+
+# You should check the contents of _freeze into version control so that others rendering the project don’t need to reproduce your computational environment to render it in their environment.
+# Note that you’ll still want to take care to fully re-render your project when things outside of source code change (e.g. input data). You can remove previously frozen output by deleting the _freeze folder at the root of your project.
+
+
+
+
+
 
 # biliography: references.bib
 

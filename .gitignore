@@ -11,10 +11,14 @@ Thumbs.db
 
 ## Quarto
 /.quarto/
-_freeze
+/_site/
 *_cache
 .quarto
 index_files
+
+# Local Environment
+/_*.local 
+_freeze
 
 ## Data
 data/*

@@ -17,9 +17,12 @@ tags:
 #     relative: false # when using page bundles set this to true
 #     hidden: false # only hide on current single page
 # bibliography: references.bib
-format: hugo-md
-fig-height: 4.5
-code-fold: false
+format: 
+  hugo-md:
+    fig-height: 4.5
+    code-fold: false
+execute: 
+  enabled: true
 ---
 
 ```{r setup}

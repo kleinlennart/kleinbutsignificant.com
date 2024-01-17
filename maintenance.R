@@ -2,7 +2,34 @@
 
 # blogdown::check_site()
 # blogdown::serve_site(port = "4321") # fixed port, easier bookmarking
+
+blogdown::check_content()
+blogdown::check_site()
+
+blogdown::check_config()
+# blogdown::check_gitignore()
+
+blogdown::check_hugo()
+blogdown::check_netlify()
+
+blogdown::clean_duplicates(preview = FALSE)
+
+?build_site
+# render files
+blogdown::build_site(build_rmd = 'newfile')
+
+# update file 
+# files if their time stamps (modification time) are newer than their output files, 
+# or blogdown::filter_md5sum, which is more robust in determining if an Rmd file has been modified (hence needs to be rebuilt).
+
+blogdown::build_site(build_rmd = 'timestamp')
+blogdown::build_site(build_rmd = 'md5sum')
+
 rmarkdown::render("README.Rmd")
+
+
+styler::style_dir(path = "content/")
+
 
 # -------------------------------------------------------------------------
 
@@ -31,7 +58,7 @@ rmarkdown::render("README.Rmd")
 # blogdown::serve_site()
 # blogdown::stop_server()
 
-# find_hugo("all")
+# blogdown::find_hugo("all")
 
 
 # update theme (on new branch)

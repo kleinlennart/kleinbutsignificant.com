@@ -17,9 +17,12 @@ tags:
 #     relative: false # when using page bundles set this to true
 #     hidden: false # only hide on current single page
 # bibliography: references.bib
-format: hugo-md
-fig-height: 4.5
-code-fold: false
+format: 
+  hugo-md:
+    fig-height: 4.5
+    code-fold: false
+execute: 
+  enabled: true
 ---
 
 Three types of palettes:
@@ -39,7 +42,7 @@ mpg %>%
   geom_smooth()
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/plot%20normal%20color-1.png" width="4800" />
+![](index.markdown_strict_files/figure-markdown_strict/plot%20normal%20color-1.svg)
 
 ``` r
 mpg %>%
@@ -49,4 +52,4 @@ mpg %>%
   paletteer::scale_color_paletteer_d("colorblindr::OkabeIto_black")
 ```
 
-<img src="index.markdown_strict_files/figure-markdown_strict/plot%20OkabeIto-1.png" width="4800" />
+![](index.markdown_strict_files/figure-markdown_strict/plot%20OkabeIto-1.svg)
