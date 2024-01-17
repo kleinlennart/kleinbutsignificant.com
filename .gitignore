@@ -14,7 +14,7 @@ Thumbs.db
 /_site/
 *_cache
 .quarto
-index.md
+# index.md # fatal, should only be on main folder
 # index_files # important support and auxilary files?
 
 # Local Environment
