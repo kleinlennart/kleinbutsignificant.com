@@ -28,10 +28,10 @@
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "R -q -e 'renv::install()'",
-	"postCreateCommand": "./.devcontainer/postCreateCommand.sh",
+	"postCreateCommand": "sh ./.devcontainer/postCreateCommand.sh",
 	
 	// run every time the container starts
-	"postStartCommand": "./.devcontainer/postStartCommand.sh",
+	"postStartCommand": "sh ./.devcontainer/postStartCommand.sh",
 	// TODO: add full health maintenance script run here!
 
 	// Configure tool-specific properties.
