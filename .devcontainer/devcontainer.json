@@ -1,45 +1,73 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/rocker-org/devcontainer-templates/tree/main/src/r-ver
+
+// All Rocker features: https://github.com/rocker-org/devcontainer-features/tree/main/src
+
 {
-	"name": "R (rocker/r-ver base)",
+	"name": "Blogdown Codespace",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "ghcr.io/rocker-org/devcontainer/tidyverse:4.3",
-	"features": {
-			// https://github.com/rocker-org/devcontainer-features/tree/main/src/quarto-cli
-			"ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {
-					// "version": "latest"
-					"installChromium": true,
-					"installTinyTex": false
-			},
-			"ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
-					"packages": "libgtk-3-dev,libnotify-dev,libgconf-2-4,libnss3,libxss1,libasound2"
-			},
 
-		// https://github.com/rocker-org/devcontainer-features/tree/main/src/r-packages
+	// Features ----------------------------------------------------------------------------
+	// https://containers.dev/features
+	"features": {
+		"ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+			"packages": "jq" // needed for rstudio-server
+		},
+
+		// https://github.com/rocker-org/devcontainer-features/tree/main/src/rstudio-server
+		"ghcr.io/rocker-org/devcontainer-features/rstudio-server": { },
+
+		// https://github.com/rocker-org/devcontainer-features/tree/main/src/quarto-cli
+		"ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {
+			// "version": "latest"
+			"installChromium": true,
+			"installTinyTex": false
+		},
+
+		// Chromium dependencies
+		"ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+			"packages": "libgtk-3-dev,libnotify-dev,libgconf-2-4,libnss3,libxss1,libasound2"
+		},
+
+		// FIXME: add libxt6 here?
+
+		// README: https://github.com/rocker-org/devcontainer-features/tree/main/src/r-packages
 		"ghcr.io/rocker-org/devcontainer-features/r-packages:1": {
 			"packages": "blogdown,paletteer,git2r,here",
-			"installSystemRequirements" : true
+			"installSystemRequirements": true
 		},
-		// https://github.com/devcontainers/features/tree/main/src/hugo
+		// README: https://github.com/devcontainers/features/tree/main/src/hugo
 		"ghcr.io/devcontainers/features/hugo:1": {
 			"version": "0.121.2",
 			"extended": true // SASS/SCSS
 		}
 	},
 
-	// TODO: add RStudio Server IDE
+	// Ports ----------------------------------------------------------------------------
 
-
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
-
+	// start RStudio Server
+	"postAttachCommand": {
+		"rstudio-start": "rserver"
+	},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
+	"forwardPorts": [ 8787 ],
+	// README: https://containers.dev/implementors/json_reference/#port-attributes
+	"portsAttributes": {
+		"8787": {
+			"label": "RStudio IDE",
+			"requireLocalPort": true, // defaults to false
+			"onAutoForward": "ignore" // defaults to notify
+		}
+	},
+
+	// Lifecycle Scripts ----------------------------------------------------------------------------
+	// https://containers.dev/implementors/json_reference/#lifecycle-scripts
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "R -q -e 'renv::install()'",
 	"postCreateCommand": "sh ./.devcontainer/postCreateCommand.sh",
-	
+
 	// run every time the container starts
 	"postStartCommand": "sh ./.devcontainer/postStartCommand.sh",
 	// TODO: add full health maintenance script run here!
@@ -47,14 +75,24 @@
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
-      "extensions": [
-				"quarto.quarto"
-				// "eamodio.gitlens"
-	]
-    	}
-    }
+			"extensions": [
+				"quarto.quarto",
+				"REditorSupport.r"
+				// "ms-toolsai.jupyter",
+				// "ms-python.python"
+			]
+		}
+	}
 
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// Uncomment to connect as root instead. 
+	// More info: https://aka.ms/dev-containers-non-root.
+	// https://containers.dev/implementors/json_reference/#remoteUser
 	// "remoteUser": "root"
-
 }
+
+
+//"hostRequirements": {
+//	"cpus": 8,
+//	"memory": "8gb",
+//	"storage": "32gb"
+// },
