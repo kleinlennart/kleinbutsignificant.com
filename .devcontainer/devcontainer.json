@@ -9,6 +9,11 @@
 		"ghcr.io/rocker-org/devcontainer-features/r-packages:1": {
 			"packages": "blogdown",
 			"installSystemRequirements" : true
+		},
+		// https://github.com/devcontainers/features/tree/main/src/hugo
+		"ghcr.io/devcontainers/features/hugo:1": {
+			"version": "0.121.2",
+			"extended": true // SASS/SCSS
 		}
 	},
 
