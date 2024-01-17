@@ -1,6 +1,6 @@
 #!/usr/bin/bash 
 # postStartCommand.sh
 
-quarto check
+# quarto check
 
-R -e 'blogdown::check_site()'
+# R -e 'blogdown::check_site()'

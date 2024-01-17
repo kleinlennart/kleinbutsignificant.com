@@ -5,9 +5,19 @@
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "ghcr.io/rocker-org/devcontainer/tidyverse:4.3",
 	"features": {
+			// https://github.com/rocker-org/devcontainer-features/tree/main/src/quarto-cli
+			"ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {
+					// "version": "latest"
+					"installChromium": true,
+					"installTinyTex": false
+			},
+			"ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+					"packages": "libgtk-3-dev,libnotify-dev,libgconf-2-4,libnss3,libxss1,libasound2"
+			},
+
 		// https://github.com/rocker-org/devcontainer-features/tree/main/src/r-packages
 		"ghcr.io/rocker-org/devcontainer-features/r-packages:1": {
-			"packages": "blogdown",
+			"packages": "blogdown,paletteer,git2r,here",
 			"installSystemRequirements" : true
 		},
 		// https://github.com/devcontainers/features/tree/main/src/hugo
