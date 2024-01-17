@@ -30,9 +30,12 @@
 	// "postCreateCommand": "R -q -e 'renv::install()'",
 	"postCreateCommand": "sudo apt-get update -y && sudo apt-get install -y libxt6",
 	
+	// pull theme submodule into folder
+	"postCreateCommand": "git submodule init && git submodule update",
 	
 	// run every time the container starts
-	"postStartCommand": "R -e 'blogdown::check_hugo(); blogdown::check_site()'",
+	"postStartCommand": "quarto check",
+	"postStartCommand": "R -e 'blogdown::check_site()'",
 	// TODO: add full health maintenance script run here!
 
 	// Configure tool-specific properties.
@@ -41,8 +44,8 @@
       "extensions": [
         "quarto.quarto"
       ]
+    	}
     }
-	}
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
