@@ -13,6 +13,8 @@ format:
     fig-width: 6
     mermaid-format: png # js, png, and svg
 jupyter: python3
+execute: 
+  enabled: false # disabled until Python setup done
 ---
 
 ## Workflow :sparkles:

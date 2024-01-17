@@ -13,6 +13,8 @@ format:
     fig-width: 6
     mermaid-format: png # js, png, and svg
 jupyter: python3
+execute: 
+  enabled: false # disabled until Python setup done
 ---
 
 ## Workflow :sparkles:
@@ -21,11 +23,7 @@ jupyter: python3
 
 The basic concept of using Quarto with Hugo is that you take computational markdown documents (.qmd) or Jupyter notebooks (.ipynb) and use them to generate plain markdown files (.md) that are rendered to HTML by Hugo.
 
-<figure class=''>
-
-<img src="index_files/figure-markdown_strict/mermaid-figure-1.png" style="width:6.35in;height:0.52in" />
-
-</figure>
+<img src="index_files/figure-markdown_strict/mermaid-figure-1.png" style="width:6.59in;height:0.48in" />
 
 <https://mermaid.js.org/syntax/flowchart.html#node-shapes> <https://quarto.org/docs/authoring/diagrams.html#mermaid-formats>
 
@@ -53,8 +51,5 @@ ax.set_rticks([0.5, 1, 1.5, 2])
 ax.grid(True)
 plt.show()
 ```
-
-<img src="index_files/figure-markdown_strict/fig-polar-output-1.svg"
-id="fig-polar" alt="Figure 1: A line plot on a polar axis" />
 
 ## Freeze

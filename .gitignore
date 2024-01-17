@@ -14,8 +14,8 @@ Thumbs.db
 /_site/
 *_cache
 .quarto
-index_files
 index.md
+# index_files # important support and auxilary files?
 
 # Local Environment
 /_*.local 
