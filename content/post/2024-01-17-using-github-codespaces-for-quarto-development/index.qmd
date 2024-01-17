@@ -67,7 +67,7 @@ To set it up correctly, I settled on this `devcontainer.json` for now:
 		}
 	},
   
-  // fix current X11 error
+	// fix current X11 error
 	"postCreateCommand": "sudo apt-get update -y && sudo apt-get install -y libxt6",
 	
 	// run every time the container starts
@@ -81,7 +81,8 @@ To set it up correctly, I settled on this `devcontainer.json` for now:
     }
 	}
 
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// Uncomment to connect as root instead.
+	// More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
 
 }

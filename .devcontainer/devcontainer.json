@@ -48,8 +48,9 @@
 	"customizations": {
 		"vscode": {
       "extensions": [
-        "quarto.quarto"
-      ]
+				"quarto.quarto"
+				// "eamodio.gitlens"
+	]
     	}
     }
 
