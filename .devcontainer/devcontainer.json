@@ -84,7 +84,11 @@
 				"quarto.quarto",
 				"REditorSupport.r",
 				"ms-python.python",
-				"ms-toolsai.jupyter"
+				"ms-toolsai.jupyter",
+				// user custom:
+				"GitHub.copilot-chat",
+				"GitHub.copilot",
+				"eamodio.gitlens"
 			]
 		}
 	}
