@@ -43,8 +43,8 @@ cover:
   hidden: true # only hide on current single page
 
 execute: 
-  enabled: true # rerender disabled until bug fixed
-  # freeze: true
+  enabled: false # need to manually change .md file badges because Quarto fucks them up
+  freeze: true
 ---
 
 ```{r setup}
@@ -87,7 +87,8 @@ library(git2r)
     very specific [directory
     structure](https://gohugo.io/getting-started/directory-structure/#directories "https://gohugo.io/getting-started/directory-structure/#directories").
 
-[![](https://img.shields.io/github/commits-since/adityatelange/hugo-PaperMod/71ce72?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull)](https://github.com/adityatelange/hugo-PaperMod/compare/71ce72...master)
+[![GitHub commits since tagged
+version](https://img.shields.io/github/commits-since/adityatelange/hugo-PaperMod/71ce72b1bfb868b406c369c958f8682c63940e01?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull%20)](https://github.com/adityatelange/hugo-PaperMod/compare/71ce72b1bfb868b406c369c958f8682c63940e01...master)
 
 ### How it works
 
@@ -121,7 +122,7 @@ get_theme_sha(theme_dir = "PaperMod")
 
 ```{R}
 commit_badge <- function(user = NULL, repo = NULL, sha = NULL) {
-  glue::glue("[![](https://img.shields.io/github/commits-since/{user}/{repo}/{sha}?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull)](https://github.com/{user}/{repo}/compare/{sha}...master)")
+  glue::glue("[![GitHub commits since tagged version](https://img.shields.io/github/commits-since/{user}/{repo}/{sha}?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull)](https://github.com/{user}/{repo}/compare/{sha}...master)")
 }
 
 badge <- commit_badge(

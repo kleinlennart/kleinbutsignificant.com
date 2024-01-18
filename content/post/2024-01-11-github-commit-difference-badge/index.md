@@ -43,8 +43,8 @@ cover:
   hidden: true # only hide on current single page
 
 execute: 
-  enabled: true # rerender disabled until bug fixed
-  # freeze: true
+  enabled: true
+  freeze: true
 ---
 
 ### TL;DR
@@ -69,7 +69,8 @@ execute:
     to quickly see all the recent changes to the theme before I pull
     them
 
-[![](https://img.shields.io/github/commits-since/adityatelange/hugo-PaperMod/71ce72?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull.png)](https://github.com/adityatelange/hugo-PaperMod/compare/71ce72...master)
+[![](https://img.shields.io/github/commits-since/adityatelange/hugo-PaperMod/71ce72b1bfb868b406c369c958f8682c63940e01?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull%20)](https://github.com/adityatelange/hugo-PaperMod/compare/71ce72b1bfb868b406c369c958f8682c63940e01...master)
+
 
 ### How it works
 
@@ -100,7 +101,7 @@ get_theme_sha(theme_dir = "PaperMod")
 
 ``` r
 commit_badge <- function(user = NULL, repo = NULL, sha = NULL) {
-  glue::glue("[![](https://img.shields.io/github/commits-since/{user}/{repo}/{sha}?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull)](https://github.com/{user}/{repo}/compare/{sha}...master)")
+  glue::glue("[![GitHub commits since tagged version](https://img.shields.io/github/commits-since/{user}/{repo}/{sha}?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull)](https://github.com/{user}/{repo}/compare/{sha}...master)")
 }
 
 badge <- commit_badge(
@@ -110,7 +111,7 @@ badge <- commit_badge(
 )
 
 badge
-#> [![](https://img.shields.io/github/commits-since/adityatelange/hugo-PaperMod/71ce72b1bfb868b406c369c958f8682c63940e01?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull)](https://github.com/adityatelange/hugo-PaperMod/compare/71ce72b1bfb868b406c369c958f8682c63940e01...master)
+#> [![GitHub commits since tagged version](https://img.shields.io/github/commits-since/adityatelange/hugo-PaperMod/71ce72b1bfb868b406c369c958f8682c63940e01?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull)](https://github.com/adityatelange/hugo-PaperMod/compare/71ce72b1bfb868b406c369c958f8682c63940e01...master)
 ```
 
 To include the badge in your Markdown file, use [inline
@@ -123,7 +124,7 @@ code](https://quarto.org/docs/computations/inline-code.html "https://quarto.org/
                 sha = get_theme_sha(theme_dir = "PaperMod"))`
 ```
 
-[![](https://img.shields.io/github/commits-since/adityatelange/hugo-PaperMod/71ce72b1bfb868b406c369c958f8682c63940e01?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull.png)](https://github.com/adityatelange/hugo-PaperMod/compare/71ce72b1bfb868b406c369c958f8682c63940e01...master)
+[![](https://img.shields.io/github/commits-since/adityatelange/hugo-PaperMod/71ce72b1bfb868b406c369c958f8682c63940e01?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull)](https://github.com/adityatelange/hugo-PaperMod/compare/71ce72b1bfb868b406c369c958f8682c63940e01...master)
 
 Also works with `knitr::include_graphics()`
 
