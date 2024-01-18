@@ -47,7 +47,7 @@ menu:
       weight: 2
     - identifier: blog
       name: "Blog"
-      url: /archives/
+      url: /post/
       weight: 3
     - identifier: pubs
       name: "Publications"
