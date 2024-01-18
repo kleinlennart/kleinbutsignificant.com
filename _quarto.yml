@@ -17,8 +17,8 @@ project:
   # pre-render:
   # post-render: 
   render:
-    - "*.qmd" # restrict to Quarto docs only, otherwise preview will try to render everything
-    - "*.Rmd" 
+    - "*/*.qmd" # restrict to Quarto docs only, otherwise preview will try to render everything (don't render .md!)
+    - "*/*.Rmd" # make sure no in base directory
     # - "*.ipynb"
     - "!archetypes/"
   
@@ -49,7 +49,7 @@ execute:
   warning: false
   # error: false
   cache: true # true
-  freeze: false 
+  freeze: auto 
   # https://mine-cetinkaya-rundel.github.io/quarto-tip-a-day/posts/03-freeze/index.html
   # https://quarto.org/docs/computations/caching.html#freezing-execution
   
