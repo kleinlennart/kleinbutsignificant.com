@@ -1,0 +1,14 @@
+{
+  "hash": "330a8ce9c06322c64246e0645811db49",
+  "result": {
+    "markdown": "---\ntitle: In Search for the Perfect Palette\nauthor: Lennart Klein\ndate: '2023-08-04'\nslug: perfect-palette\ncategories:\n  - Data Science\ntags:\n  - R\n  - data-viz\n  - color\n# cover:\n#     linkFullImages: true\n#     image: \"https://assets-global.website-files.com/620d42e86cb8ec4d0839e59d/622f95de676fccd3d9f0483b_Color%20Palettes%20Image_0314122.jpg\"\n#     alt: \"<alt text>\" # alt text\n#     caption: \"<text>\" # display caption under cover\n#     relative: false # when using page bundles set this to true\n#     hidden: false # only hide on current single page\n# bibliography: references.bib\nformat: \n  hugo-md:\n    fig-height: 4.5\n    code-fold: false\nexecute: \n  enabled: true\n---\n\n::: {.cell hash='index_cache/markdown_strict/setup_e92b94df67475abd5c93897da116029f'}\n\n:::\n\n\nThree types of palettes:\n\n1.  discriminate\n\n2.  qualitative\n\n3.  smooth\n\nOkabe\n\n\n::: {.cell hash='index_cache/markdown_strict/plot normal color_852f5bd9f4cb3ffd6ef961bcfcadc37b'}\n\n```{.r .cell-code}\nmpg %>%\n  ggplot(aes(x = displ, y = hwy)) +\n  geom_point(aes(color = class)) +\n  geom_smooth()\n```\n\n::: {.cell-output-display}\n![](index.markdown_strict_files/figure-markdown_strict/plot normal color-1.svg)\n:::\n:::\n\n::: {.cell hash='index_cache/markdown_strict/plot OkabeIto_26cc11b3ec49e5485bd5bdda79472773'}\n\n```{.r .cell-code}\nmpg %>%\n  ggplot(aes(x = displ, y = hwy)) +\n  geom_point(aes(color = class)) +\n  geom_smooth() +\n  paletteer::scale_color_paletteer_d(\"colorblindr::OkabeIto_black\")\n```\n\n::: {.cell-output-display}\n![](index.markdown_strict_files/figure-markdown_strict/plot OkabeIto-1.svg)\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": null,
+    "postProcess": false
+  }
+}

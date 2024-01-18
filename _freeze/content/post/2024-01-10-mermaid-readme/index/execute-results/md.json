@@ -1,0 +1,14 @@
+{
+  "hash": "4b79ebcaa8bfce37a1d06b7617f56404",
+  "result": {
+    "markdown": "---\ntitle: Mermaid in README for GitHub with Quarto\nauthor: Lennart Klein\ndate: '2024-01-10'\nslug: mermaid-readme\ncategories: []\ntags: [\"quarto\", \"mermaid\"]\ndescription: ''\nformat: hugo-md\ndraft: true\n---\n\n::: {.cell hash='index_cache/markdown_strict/setup_618778022b846436701ee21462c0ae55'}\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": null,
+    "postProcess": false
+  }
+}

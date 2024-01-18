@@ -1,0 +1,14 @@
+{
+  "hash": "389e79945498978bd1513eb9ab52c199",
+  "result": {
+    "markdown": "---\ntitle: \"Europe Knowledge Graph - Part 1: Scraping & Wrangling\"\ndate: \"\"\n# weight: 1\n# aliases: [\"/first\"]\ntags: [\"R\", \"rstats\", \"web scraping\", \"rvest\"]\nauthor: \"Lennart Klein\"\nshowToc: true\nTocOpen: false\ndraft: true\nhidemeta: false\ncomments: false\ndescription: \"\"\n# disableHLJS: true # to disable highlightjs\ndisableShare: false\ndisableHLJS: false\nsearchHidden: true\ncover:\n    image: \"<image path/url>\" # image path/url\n    alt: \"<alt text>\" # alt text\n    caption: \"<text>\" # display caption under cover\n    relative: false # when using page bundles set this to true\n    hidden: true # only hide on current single page\nformat: hugo-md\n---\n\n\n``` r\ncat(\"hi\")\nlibrary(tidyverse)\n```\n\n\\<copyright acknowledgement!!\\>\n\n## Idea\n\nI'm currently taking a class on EU politics and while studying for my exam, I stumbled upon an online [Europe Dictionary](https://www.bpb.de/kurz-knapp/lexika/das-europalexikon/ \"(German)\") by the bpb. Since I'm a big fan of ontologies, knowledge graphs and graph-based TfTs (e.g., Roam Research) .\n\n## Rvest\n\n## Wrangling\n\n## tidygraph\n\n### neo4j\n\n<https://neo4j.com/developer/graph-data-science/build-knowledge-graph-nlp-ontologies/>\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": null,
+    "postProcess": false
+  }
+}

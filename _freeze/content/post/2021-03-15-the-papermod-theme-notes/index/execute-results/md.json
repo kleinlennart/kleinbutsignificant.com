@@ -1,0 +1,14 @@
+{
+  "hash": "319032d4b5823850bf069b04e8799c5e",
+  "result": {
+    "markdown": "---\ntitle: Implementing the PaperMod Theme\nauthor: Lennart Klein\ndate: '2021-03-15'\nslug: [\"papermod-theme-notes\"]\ncategories:\n  - Tech\ntags:\n  - meta\n  - blogdown\n  - hugo\n  - resources\ndraft: true\n---\n\n\n## Links & Resources\n- https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-features/\n- https://github.com/adityatelange/hugo-PaperMod (-> branches)\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": null,
+    "postProcess": false
+  }
+}

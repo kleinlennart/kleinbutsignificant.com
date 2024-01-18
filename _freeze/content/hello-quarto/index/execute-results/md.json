@@ -1,0 +1,11 @@
+{
+  "hash": "dfd5b0ae0a38caff2695e06174b4e28e",
+  "result": {
+    "markdown": "---\ntitle: 'Hello, Quarto'\ndate: '2012-04-06'\ncategories: null\ntags:\n  - R\n  - quarto\n  - python\nformat:\n  hugo-md:\n    fig-format: svg\n    fig-height: 6\n    fig-width: 6\n    mermaid-format: png\nexecute:\n  enabled: true\n---\n\n## Workflow :sparkles:\n\n<https://quarto.org/docs/output-formats/hugo.html#workflow>\n\nThe basic concept of using Quarto with Hugo is that you take computational markdown documents (.qmd) or Jupyter notebooks (.ipynb) and use them to generate plain markdown files (.md) that are rendered to HTML by Hugo.\n\n\n```{mermaid}\nflowchart LR\n  index.qmd --> quarto([quarto]) --> index.md --> hugo([hugo]) --> index.html\n```\n\n\n<https://mermaid.js.org/syntax/flowchart.html#node-shapes> <https://quarto.org/docs/authoring/diagrams.html#mermaid-formats>\n\nThe quarto render and quarto preview commands are used to transform .qmd or .ipynb files to Hugo compatible markdown (.md).\n\n## Polar Axis in Python\n\n-   apparently, the `python3` kernel uses the `conda` `base` env (or rather the currently active env, of course since I am running quarto preview from my interactive session)\n\n-   do i really have to manually build my quarto docs then before deploying them? -\\> the .md files to hugo that is\n\n-   cache works\n\nFor a demonstration of a line plot on a polar axis, see \\@fig-polar.\n\n::: {.cell execution_count=2}\n``` {.python .cell-code}\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(subplot_kw={'projection': 'polar'})\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n```\n\n::: {.cell-output .cell-output-display}\n![A line plot on a polar axis](index_files/figure-markdown_strict/fig-polar-output-1.svg){#fig-polar}\n:::\n:::\n\n\n",
+    "supporting": [
+      "index_files/figure-markdown_strict"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

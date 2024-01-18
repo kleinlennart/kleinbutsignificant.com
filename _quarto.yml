@@ -5,7 +5,7 @@
 
 project:
   type: hugo # https://quarto.org/docs/output-formats/hugo.html
-  execute-dir: project
+  execute-dir: project # rendering in main project directory
 
   # https://quarto.org/docs/reference/projects/options.html#preview
   preview:
@@ -21,6 +21,7 @@ project:
     - "*/*.Rmd" # make sure no in base directory
     # - "*.ipynb"
     - "!archetypes/"
+    - "!content/post/2024-01-11-github-commit-difference-badge/index.qmd" # index.md is rerendered from freeze, but index.qmd is not rerenderd on change
   
 
 # greedy matching
@@ -44,12 +45,13 @@ format:
 # knitr
 # https://quarto.org/docs/computations/execution-options.html#knitr-options
 
+# Managing Execution: https://quarto.org/docs/projects/code-execution.html
 
 execute:
   warning: false
   # error: false
-  cache: true # true
-  freeze: auto 
+  cache: true
+  freeze: true
   # https://mine-cetinkaya-rundel.github.io/quarto-tip-a-day/posts/03-freeze/index.html
   # https://quarto.org/docs/computations/caching.html#freezing-execution
   

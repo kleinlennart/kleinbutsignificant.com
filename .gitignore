@@ -19,7 +19,7 @@ Thumbs.db
 
 # Local Environment
 /_*.local 
-_freeze
+# _freeze
 
 ## Data
 data/*

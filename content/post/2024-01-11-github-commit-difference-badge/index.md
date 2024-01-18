@@ -23,18 +23,11 @@ format:
     mermaid-format: png # js, png, and svg
     code-annotations: true
     code-overflow: wrap
-# jupyter: python3
 
 editor: 
   markdown: 
     wrap: 72
     
-knitr:
-  opts_chunk: 
-    collapse: true
-    comment: "#>" 
-    R.options:
-      knitr.graphics.auto_pdf: true
 cover: 
   image: "badge_params.png" # image path/url
   alt: "<alt text>" # alt text
@@ -42,9 +35,9 @@ cover:
   relative: false # when using page bundles set this to true
   hidden: true # only hide on current single page
 
-execute: 
-  enabled: true
-  freeze: true
+# execute: 
+  # enabled: true # need to manually change .md file badges because Quarto fucks them up
+  # freeze: true
 ---
 
 ### TL;DR
@@ -69,7 +62,7 @@ execute:
     to quickly see all the recent changes to the theme before I pull
     them
 
-[![](https://img.shields.io/github/commits-since/adityatelange/hugo-PaperMod/71ce72b1bfb868b406c369c958f8682c63940e01?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull%20)](https://github.com/adityatelange/hugo-PaperMod/compare/71ce72b1bfb868b406c369c958f8682c63940e01...master)
+[![](https://img.shields.io/github/commits-since/adityatelange/hugo-PaperMod/71ce72b1bfb868b406c369c958f8682c63940e01?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull)](https://github.com/adityatelange/hugo-PaperMod/compare/71ce72b1bfb868b406c369c958f8682c63940e01...master)
 
 
 ### How it works
@@ -94,8 +87,9 @@ get_theme_sha <- function(theme_dir = NULL) {
 }
 
 get_theme_sha(theme_dir = "PaperMod")
-#> [1] "71ce72b1bfb868b406c369c958f8682c63940e01"
 ```
+
+    [1] "71ce72b1bfb868b406c369c958f8682c63940e01"
 
 #### Creating the badge
 
@@ -111,8 +105,9 @@ badge <- commit_badge(
 )
 
 badge
-#> [![GitHub commits since tagged version](https://img.shields.io/github/commits-since/adityatelange/hugo-PaperMod/71ce72b1bfb868b406c369c958f8682c63940e01?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull)](https://github.com/adityatelange/hugo-PaperMod/compare/71ce72b1bfb868b406c369c958f8682c63940e01...master)
 ```
+
+    [![GitHub commits since tagged version](https://img.shields.io/github/commits-since/adityatelange/hugo-PaperMod/71ce72b1bfb868b406c369c958f8682c63940e01?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull)](https://github.com/adityatelange/hugo-PaperMod/compare/71ce72b1bfb868b406c369c958f8682c63940e01...master)
 
 To include the badge in your Markdown file, use [inline
 code](https://quarto.org/docs/computations/inline-code.html "https://quarto.org/docs/computations/inline-code.html"):
