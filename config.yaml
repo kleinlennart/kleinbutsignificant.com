@@ -47,7 +47,7 @@ menu:
       weight: 2
     - identifier: blog
       name: "Blog"
-      url: /archives/
+      url: /post/ # alternatively /archives/
       weight: 3
     - identifier: pubs
       name: "Publications"
@@ -103,8 +103,8 @@ params:
   ShowShareButtons: false
   disableSpecial1stPost: false
   comments: false # https://github.com/adityatelange/hugo-PaperMod/wiki/Features#comments
-  hideSummary: false
-  hidemeta: false
+  hideSummary: false # no metadata description summary for posts in list.html, class="entry-content"
+  hidemeta: false # date and author below description
   showtoc: false
   tocopen: false
   ShowPostNavLinks: true # Adds a Previous / Next post suggestion under a single post
