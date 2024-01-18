@@ -14,10 +14,10 @@
 # python3 -m pip install --upgrade requests
 
 ## Export all installed packages
-# python3 -m pip freeze > requirements.txt
+# python3 -m pip freeze > ./.devcontainer/requirements.txt
 
 ## Upgrade all installed packages
-# pip install -r requirements.txt --upgrade 
+# pip install -r ./.devcontainer/requirements.txt --upgrade 
 
 ## Install env packages (not exclusive)
-# python3 -m pip install -r requirements.txt
+# python3 -m pip install -r ./.devcontainer/requirements.txt

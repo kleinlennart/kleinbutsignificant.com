@@ -17,8 +17,8 @@ python3 -m pip install jupyter-cache
 # quarto check jupyter
 
 ## Install all other env packages
-python3 -m pip install -r requirements.txt
-# python3 -m pip freeze > requirements.txt
+python3 -m pip install -r ./.devcontainer/requirements.txt
+# python3 -m pip freeze > ./.devcontainer/requirements.txt
 
 # https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/setting-up-your-python-project-for-codespaces
 # // Use 'postCreateCommand' to run commands after the container is created.
