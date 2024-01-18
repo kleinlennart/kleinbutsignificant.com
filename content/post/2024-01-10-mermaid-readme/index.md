@@ -1,0 +1,12 @@
+---
+title: Mermaid in README for GitHub with Quarto
+author: Lennart Klein
+date: '2024-01-10'
+slug: mermaid-readme
+categories: []
+tags: ["quarto", "mermaid"]
+description: ''
+format: hugo-md
+draft: true
+---
+

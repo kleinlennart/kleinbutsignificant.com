@@ -1,4 +1,7 @@
-## https://github.com/quarto-dev/quarto-cli/blob/main/src/resources/extensions/quarto/hugo/_extension.yml
+# https://quarto.org/docs/projects/profiles.html
+
+
+## Hugo: https://github.com/quarto-dev/quarto-cli/blob/main/src/resources/extensions/quarto/hugo/_extension.yml
 
 project:
   type: hugo # https://quarto.org/docs/output-formats/hugo.html
@@ -15,6 +18,7 @@ project:
   # post-render: 
   render:
     - "*.qmd" # restrict to Quarto docs only, otherwise preview will try to render everything
+    - "*.Rmd" 
     # - "*.ipynb"
     - "!archetypes/"
   

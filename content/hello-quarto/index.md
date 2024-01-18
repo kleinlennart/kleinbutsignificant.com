@@ -5,6 +5,7 @@ categories:
 tags:
   - R
   - quarto
+  - python
 # format also set globally, global seems to overwrite local
 format: 
   hugo-md:
@@ -13,8 +14,9 @@ format:
     fig-width: 6
     mermaid-format: png # js, png, and svg
 jupyter: python3
+# kernel: 
 execute: 
-  enabled: false # disabled until Python setup done
+  enabled: true # disabled until Python setup done
 ---
 
 ## Workflow :sparkles:
@@ -52,4 +54,4 @@ ax.grid(True)
 plt.show()
 ```
 
-## Freeze
+<img src="index_files/figure-markdown_strict/fig-polar-output-1.svg" id="fig-polar" alt="Figure 1: A line plot on a polar axis" />

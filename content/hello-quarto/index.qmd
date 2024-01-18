@@ -5,6 +5,7 @@ categories:
 tags:
   - R
   - quarto
+  - python
 # format also set globally, global seems to overwrite local
 format: 
   hugo-md:
@@ -13,8 +14,9 @@ format:
     fig-width: 6
     mermaid-format: png # js, png, and svg
 jupyter: python3
+# kernel: 
 execute: 
-  enabled: false # disabled until Python setup done
+  enabled: true # disabled until Python setup done
 ---
 
 ## Workflow :sparkles:
@@ -57,5 +59,3 @@ ax.set_rticks([0.5, 1, 1.5, 2])
 ax.grid(True)
 plt.show()
 ```
-
-## Freeze

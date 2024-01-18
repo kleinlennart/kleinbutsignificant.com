@@ -1,0 +1,19 @@
+---
+title: Implementing the PaperMod Theme
+author: Lennart Klein
+date: '2021-03-15'
+slug: ["papermod-theme-notes"]
+categories:
+  - Tech
+tags:
+  - meta
+  - blogdown
+  - hugo
+  - resources
+draft: true
+---
+
+## Links & Resources
+
+-   https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-features/
+-   https://github.com/adityatelange/hugo-PaperMod (-\> branches)
