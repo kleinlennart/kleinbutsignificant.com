@@ -31,7 +31,6 @@ commit_badge <- function(user = NULL, repo = NULL, sha = NULL) {
 ```
 
 
-
 # [kleinbutsignificant.com](https://www.kleinbutsignificant.com)
 
 <!-- badges: start -->

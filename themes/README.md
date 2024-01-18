@@ -16,3 +16,16 @@ https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#custom-head--footer
 
 - potentially "a few lightweight template files under layouts/ in the theme, so that you can override them without touching the core template files"
 - The way that you customize these files is not to edit them directly in the theme folder, but to create a directory `layouts/partials/` under the root directory of your website
+
+## Update 
+
+https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-installation/#installingupdating-papermod
+
+In main home folder run:
+
+```bash
+git submodule update --remote --merge
+```
+
+-> make sure to rerun readme afterwards: `rmarkdown::render("README.Rmd")`
+

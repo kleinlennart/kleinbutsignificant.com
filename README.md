@@ -9,7 +9,7 @@
 Status](https://api.netlify.com/api/v1/badges/7fcdb00f-8ea5-499d-a803-2a61544f74f7/deploy-status)](https://app.netlify.com/sites/kleinbutsignificant/deploys)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fwww.kleinbutsignificant.com&link=https%3A%2F%2Fwww.kleinbutsignificant.com)](https://www.kleinbutsignificant.com)
 [![GitHub commits since tagged
-version](https://img.shields.io/github/commits-since/adityatelange/hugo-PaperMod/71ce72b1bfb868b406c369c958f8682c63940e01?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull)](https://github.com/adityatelange/hugo-PaperMod/compare/71ce72b1bfb868b406c369c958f8682c63940e01...master)
+version](https://img.shields.io/github/commits-since/adityatelange/hugo-PaperMod/d6cd6d91757c6966a6573c21c0311ba5d957263f?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull)](https://github.com/adityatelange/hugo-PaperMod/compare/d6cd6d91757c6966a6573c21c0311ba5d957263f...master)
 
 <!-- [![GitHub commits since tagged version](https://img.shields.io/github/commits-since/adityatelange/hugo-PaperMod/d6cd6d91757c6966a6573c21c0311ba5d957263f?style=flat&logo=github&label=Commits%20since%20last%20theme%20submodule%20pull)](https://github.com/adityatelange/hugo-PaperMod/compare/d6cd6d91757c6966a6573c21c0311ba5d957263f...master) -->
 <!-- https://shields.io/badges/git-hub-commits-since-tagged-version -->
