@@ -82,9 +82,9 @@
 		"vscode": {
 			"extensions": [
 				"quarto.quarto",
-				"REditorSupport.r"
-				// "ms-toolsai.jupyter",
-				// "ms-python.python"
+				"REditorSupport.r",
+				"ms-python.python",
+				"ms-toolsai.jupyter"
 			]
 		}
 	}
