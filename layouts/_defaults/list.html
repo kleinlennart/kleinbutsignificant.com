@@ -1,11 +1,12 @@
 {{- define "main" }}
 
-
 <!-- profileMode      -->
 {{- if (and site.Params.profileMode.enabled .IsHome) }}
 {{- partial "index_profile.html" . }}
 {{- else }} {{/* if not profileMode */}}
+<!-- profileMode      -->
 
+<!-- List starts here -->
 {{- if not .IsHome | and .Title }}
 <header class="page-header">
   {{- partial "breadcrumbs.html" . }}
@@ -83,10 +84,14 @@
       {{- end }}
     </h2>
   </header>
+
+
+  <!-- Post Meta Description Summary -->
   {{- if (ne (.Param "hideSummary") true) }}
   <div class="entry-content">
     <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
   </div>
+  <!-- -> use "summary" YAML field -->
   {{- end }}
   {{- if not (.Param "hideMeta") }}
   <footer class="entry-footer">
