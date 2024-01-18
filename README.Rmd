@@ -1,5 +1,7 @@
 ---
-output: github_document
+output: 
+  github_document:
+    html_preview: false # https://rmarkdown.rstudio.com/github_document_format.html#HTML_Preview
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -15,11 +17,11 @@ knitr::opts_chunk$set(
 ```{r setup, include=FALSE,eval=TRUE}
 get_theme_sha <- function(theme_dir = NULL) {
   submodule <- git2r::repository(
-    path = here::here("themes", theme_dir)
-  )
+    path = here::here("themes", theme_dir))
+
   sha <- submodule |>
     git2r::repository_head() |>
-    git2r::branch_target()
+    git2r::sha()
   return(sha)
 }
 
@@ -87,6 +89,7 @@ or conda-forge
 - `RSTUDIO_DATA_DIR=/usr/local/share/rocker-devcontainer-features/rstudio-server/data`
 
 **Config:**
+
 - /etc/rstudio/rserver.conf
 - /etc/rstudio/rsession.conf
 - /etc/rstudio/logging.conf
