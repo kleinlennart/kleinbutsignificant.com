@@ -1,0 +1,49 @@
+/* Design tokens. Minimal on purpose: black on white, one signal accent. */
+
+:root {
+  --font-sans: 'Source Sans 3 Variable', 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'Source Serif 4 Variable', 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Type scale (1.25 minor third-ish, fluid at the top end) */
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.5625rem;
+  --step-3: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
+  --step-4: clamp(2.25rem, 1.6rem + 3vw, 4rem);
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2.5rem;
+  --space-6: 4rem;
+
+  --measure: 36rem;        /* reading column */
+  --margin-col: 14rem;     /* Tufte-style side column */
+  --page-max: 64rem;
+  --gutter: 1rem;
+
+  --color-bg: #ffffff;
+  --color-fg: #111111;
+  --color-muted: #6b6b6b;
+  --color-rule: #e2e2e2;
+  --color-code-bg: #f5f5f3;
+  --color-accent: #d9381e; /* signal red */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0f0f0f;
+    --color-fg: #ededed;
+    --color-muted: #9a9a9a;
+    --color-rule: #2a2a2a;
+    --color-code-bg: #1a1a1a;
+    --color-accent: #ff5a3c;
+  }
+}
+
+@media (min-width: 40rem) {
+  :root { --gutter: 2rem; }
+}
