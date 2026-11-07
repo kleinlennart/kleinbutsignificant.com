@@ -1,0 +1,118 @@
+/* Long-form reading: a Tufte-ish column with a margin for sidenotes on wide screens. */
+@import 'rehype-callouts/theme/obsidian';
+
+.prose {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  max-width: var(--measure);
+  position: relative;
+}
+
+:where(.prose) :where(p, ul, ol, pre, table, blockquote, figure) { margin-block: 0; }
+.prose > * + * { margin-top: 1.1em; }
+.prose li + li { margin-top: 0.3em; }
+
+.prose h2, .prose h3, .prose h4 {
+  font-family: var(--font-sans);
+  margin-top: 2em;
+  margin-bottom: 0;
+}
+.prose h2 { font-size: var(--step-2); }
+.prose h3 { font-size: var(--step-1); }
+.prose h4 { font-size: var(--step-0); }
+
+.prose a { text-decoration-color: var(--color-accent); }
+
+.prose blockquote {
+  margin-inline: 0;
+  padding-left: var(--space-3);
+  border-left: 2px solid var(--color-fg);
+  font-style: italic;
+}
+
+.prose img, .prose svg, .prose video { display: block; margin-inline: auto; }
+
+.prose figure { margin-inline: 0; }
+.prose figcaption {
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  color: var(--color-muted);
+  margin-top: var(--space-2);
+}
+
+.prose iframe { width: 100%; aspect-ratio: 16 / 10; border: 0; }
+
+.prose table {
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  border-collapse: collapse;
+  display: block;
+  overflow-x: auto;
+}
+.prose th, .prose td { padding: 0.35em 0.75em; border-bottom: 1px solid var(--color-rule); text-align: left; }
+.prose th { border-bottom-color: var(--color-fg); }
+
+/* Code */
+.prose :not(pre) > code {
+  background: var(--color-code-bg);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+}
+.prose pre {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  padding: var(--space-3);
+  overflow-x: auto;
+  border-radius: 4px;
+  background: var(--color-code-bg) !important;
+}
+@media (prefers-color-scheme: dark) {
+  .prose .astro-code, .prose .astro-code span {
+    color: var(--shiki-dark) !important;
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+  }
+}
+
+/* Obsidian */
+.wikilink-missing { color: var(--color-muted); }
+.prose .callout {
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  background: var(--color-code-bg);
+  border-left: 2px solid var(--color-fg);
+  border-radius: 0;
+}
+.prose .callout-title { color: var(--color-fg); }
+
+/* Sidenotes (see src/plugins/rehype-sidenotes.mjs) */
+.sidenote { display: none; }
+.sidenote-num { font-weight: 600; color: var(--color-accent); }
+.prose sup a[data-footnote-ref] { text-decoration: none; color: var(--color-accent); font-family: var(--font-sans); }
+
+.prose .footnotes {
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  border-top: 1px solid var(--color-rule);
+  margin-top: var(--space-5);
+  padding-top: var(--space-3);
+}
+
+@media (min-width: 64rem) {
+  .sidenote {
+    display: block;
+    float: right;
+    clear: right;
+    width: var(--margin-col);
+    margin-right: calc(-1 * var(--margin-col) - 2.5rem);
+    margin-top: 0.15rem;
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    line-height: 1.4;
+    color: var(--color-muted);
+  }
+  .prose .footnotes { display: none; }
+  /* Wide elements can break out into the margin. */
+  .prose .wide { width: calc(var(--measure) + var(--margin-col) + 2.5rem); max-width: none; }
+}

@@ -1,8 +1,70 @@
 ---
+import { getEntry, render } from 'astro:content';
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import ProjectGrid from '../components/ProjectGrid.astro';
+import { getProjects, getWriting } from '../lib/content';
+import '../styles/prose.css';
+
+const home = await getEntry('pages', 'home');
+if (!home) throw new Error('content/pages/home.md is missing');
+const { Content } = await render(home);
+
+const featured = (await getProjects()).filter((p) => p.data.featured);
+const recent = (await getWriting()).slice(0, 6);
 ---
 
-<Base>
-  <h1>Hi, I'm Lennart</h1>
-  <p>v2 under construction.</p>
+<Base description={home.data.description}>
+  <section class="intro">
+    {home.data.portrait && (
+      <Image
+        src={home.data.portrait}
+        alt="Portrait of Lennart Klein"
+        class="portrait"
+        width={400}
+        height={400}
+        fit="cover"
+        layout="fixed"
+        loading="eager"
+      />
+    )}
+    <h1>{home.data.title}</h1>
+    <div class="prose"><Content /></div>
+  </section>
+
+  <section>
+    <h2 class="section-title"><a href="/projects/">Selected work</a></h2>
+    <ProjectGrid projects={featured} />
+  </section>
+
+  <section>
+    <h2 class="section-title"><a href="/writing/">Writing</a></h2>
+    <PostList posts={recent} />
+  </section>
 </Base>
+
+<style>
+  .intro { margin-bottom: var(--space-6); }
+  .portrait {
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: var(--space-4);
+  }
+  @media (min-width: 40rem) {
+    .portrait { width: 10rem; height: 10rem; }
+  }
+  .intro h1 { font-size: var(--step-4); letter-spacing: -0.03em; margin: 0 0 var(--space-4); }
+  .intro .prose { font-size: var(--step-1); }
+  section + section { margin-top: var(--space-6); }
+  .section-title {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 var(--space-3);
+  }
+  .section-title a { text-decoration: none; }
+</style>

@@ -1,0 +1,16 @@
+---
+title: Implementing the PaperMod Theme
+date: '2021-03-15'
+tags:
+- Tech
+- meta
+- blogdown
+- hugo
+- resources
+draft: true
+---
+
+## Links & Resources
+
+-   https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-features/
+-   https://github.com/adityatelange/hugo-PaperMod (-\> branches)

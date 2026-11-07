@@ -1,0 +1,45 @@
+---
+title: In Search for the Perfect Palette
+date: '2023-08-04'
+tags:
+- Data Science
+- R
+- data-viz
+- color
+fig-height: 4.5
+execute:
+  enabled: true
+---
+
+```{r setup}
+#| echo: false
+#| eval: true
+
+library(tidyverse)
+```
+
+Three types of palettes:
+
+1.  discriminate
+
+2.  qualitative
+
+3.  smooth
+
+Okabe
+
+```{r plot normal color}
+mpg %>%
+  ggplot(aes(x = displ, y = hwy)) +
+  geom_point(aes(color = class)) +
+  geom_smooth()
+```
+
+
+```{r plot OkabeIto}
+mpg %>%
+  ggplot(aes(x = displ, y = hwy)) +
+  geom_point(aes(color = class)) +
+  geom_smooth() +
+  paletteer::scale_color_paletteer_d("colorblindr::OkabeIto_black")
+```

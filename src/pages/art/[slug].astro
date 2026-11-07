@@ -1,0 +1,21 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Article from '../../layouts/Article.astro';
+import Label from '../../components/Label.astro';
+import { editUrl, getArt } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const works = await getArt();
+  return works.map((work) => ({ params: { slug: work.id }, props: { work } }));
+}
+
+const { work } = Astro.props as { work: CollectionEntry<'art'> };
+const { Content } = await render(work);
+const d = work.data;
+const link = d.link ? `<a href="${d.link}">${new URL(d.link).host.replace(/^www\./, '')}</a>` : undefined;
+---
+
+<Article title={d.title} kicker="Art" edit={editUrl(work)}>
+  <Label slot="meta" items={[['Year', d.year ? String(d.year) : undefined], ['Medium', d.medium], ['With', d.credits], ['Link', link]]} />
+  <Content />
+</Article>

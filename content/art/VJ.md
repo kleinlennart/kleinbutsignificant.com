@@ -1,27 +1,13 @@
 ---
-title: "VJ"
-weight: 30
-author: " "
-# layout: "art" # vgl. "search"
-# description: "Schönes Wochenende Festival Urban loops and drones"
-# summary: "search"
-date: " "
-# TODO: check for sensitive information!
-categories: []
-tags:
-  - art
-cover: 
-  image: "/art/images/VJ/IMG_20190630_010030.jpg" # image path/url
-  alt: "<alt text>" # alt text
-  caption: "<text>" # display caption under cover
-  relative: false # when using page bundles set this to true
-  hidden: true # only hide on current single page
+title: VJ
+order: 30
+cover: ./images/VJ/IMG_20190630_010030.jpg
 ---
 
 
-![alt text](/art/images/VJ/IMG_20190630_010134.jpg "i see you")
+![alt text](./images/VJ/IMG_20190630_010134.jpg "i see you")
 
-![alt text](/art/images/VJ/IMG-20210704-WA0014.jpg "crowd")
+![alt text](./images/VJ/IMG-20210704-WA0014.jpg "crowd")
 
 
 

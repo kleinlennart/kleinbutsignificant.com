@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProjectGrid from '../../components/ProjectGrid.astro';
+import { getProjects } from '../../lib/content';
+
+const all = await getProjects();
+const groups = [
+  { title: 'Work', items: all.filter((p) => p.data.status !== 'idea') },
+  { title: 'Ideas & side projects (2021)', items: all.filter((p) => p.data.status === 'idea') },
+].filter((g) => g.items.length);
+---
+
+<Base title="Projects" description="Selected work and side projects.">
+  <h1>Projects</h1>
+  {groups.map((g) => (
+    <section>
+      <h2>{g.title}</h2>
+      <ProjectGrid projects={g.items} />
+    </section>
+  ))}
+</Base>
+
+<style>
+  h1 { font-size: var(--step-3); margin: 0 0 var(--space-5); }
+  h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 var(--space-3); }
+  section + section { margin-top: var(--space-6); }
+</style>

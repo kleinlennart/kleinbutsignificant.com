@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import { getWriting } from '../../lib/content';
+
+const posts = await getWriting();
+---
+
+<Base title="Writing" description="Essays, notes and computational posts.">
+  <h1>Writing</h1>
+  <PostList posts={posts} />
+</Base>
+
+<style>
+  h1 { font-size: var(--step-3); margin: 0 0 var(--space-4); }
+</style>

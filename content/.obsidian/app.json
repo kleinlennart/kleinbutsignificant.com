@@ -1,0 +1,11 @@
+{
+  "attachmentFolderPath": "attachments",
+  "newLinkFormat": "shortest",
+  "useMarkdownLinks": false,
+  "alwaysUpdateLinks": true,
+  "showUnsupportedFiles": false,
+  "userIgnoreFilters": [
+    "/_files\\//",
+    "/\\.markdown_strict_files\\//"
+  ]
+}

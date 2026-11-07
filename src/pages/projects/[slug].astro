@@ -1,0 +1,30 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import Article from '../../layouts/Article.astro';
+import Label from '../../components/Label.astro';
+import { editUrl, getProjects } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const items = await getProjects();
+  return items.map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
+
+const { project } = Astro.props as { project: CollectionEntry<'projects'> };
+const { Content } = await render(project);
+const d = project.data;
+const link = (href?: string) => (href ? `<a href="${href}">${new URL(href).host.replace(/^www\./, '')}</a>` : undefined);
+const summary = d.summary.startsWith('TODO') ? undefined : d.summary;
+---
+
+<Article title={d.title} description={summary} kicker="Project" draft={d.draft} edit={editUrl(project)}>
+  <Fragment slot="meta">
+    <Label items={[['Organisation', d.org], ['Role', d.role], ['Years', d.years], ['Link', link(d.url)], ['Code', link(d.repo)]]} />
+    {d.cover && <Image src={d.cover} alt="" class="cover" widths={[480, 960]} sizes="(min-width: 40rem) 36rem, 100vw" />}
+  </Fragment>
+  <Content />
+</Article>
+
+<style>
+  .cover { max-width: var(--measure); height: auto; margin-top: var(--space-4); }
+</style>

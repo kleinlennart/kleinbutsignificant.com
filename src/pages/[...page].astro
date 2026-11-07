@@ -1,0 +1,18 @@
+---
+// Single pages from content/pages/ (about, cv, publications, slides, slides/hiwi, ...).
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Article from '../layouts/Article.astro';
+import { editUrl } from '../lib/content';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages', ({ id }) => id !== 'home');
+  return pages.map((page) => ({ params: { page: page.id }, props: { page } }));
+}
+
+const { page } = Astro.props as { page: CollectionEntry<'pages'> };
+const { Content } = await render(page);
+---
+
+<Article title={page.data.title} description={page.data.description} edit={editUrl(page)}>
+  <Content />
+</Article>

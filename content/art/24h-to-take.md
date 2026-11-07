@@ -1,24 +1,13 @@
 ---
-title: "24hToTake" # can't be empty for some reason
-weight: 20 # order in list (1 = highest)
-# layout: "art" # vgl. "search"
-description: "https://www.24h-to-take.de/"
-# summary: "search"
-date: " " # 
-# TODO: check for sensitive information!
-categories:
-tags: 
-  - videography
-  - film
-  - festival
-  - music
-  - art
-cover: 
-  image: "/art/images/24htotake.jpg" # image path/url
-  alt: "<alt text>" # alt text
-  caption: "<text>" # display caption under cover
-  relative: false # when using page bundles set this to true
-  hidden: true # only hide on current single page
+title: 24hToTake
+order: 20
+link: https://www.24h-to-take.de/
+medium:
+- videography
+- film
+- festival
+- music
+cover: ./images/24htotake.jpg
 ---
 
 The largest German Shortfilm Festival!
@@ -27,7 +16,7 @@ The largest German Shortfilm Festival!
 <iframe width="700" height="480" src="https://www.youtube-nocookie.com/embed/GjhSrsmP3tY?start=21907&autoplay=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 
-![alt text](/art/images/24h-to-take_collage.jpeg "ahhh")
+![alt text](./images/24h-to-take_collage.jpeg "ahhh")
 
 
 

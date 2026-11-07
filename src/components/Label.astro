@@ -1,0 +1,35 @@
+---
+// Museum "wall label": a compact definition list of facts about a work or project.
+interface Props {
+  items: Array<[string, string | string[] | undefined | null]>;
+}
+const rows = Astro.props.items
+  .map(([k, v]) => [k, Array.isArray(v) ? v.join(', ') : v] as const)
+  .filter(([, v]) => v && v !== 'TODO');
+---
+
+{rows.length > 0 && (
+  <dl class="label">
+    {rows.map(([k, v]) => (
+      <div>
+        <dt>{k}</dt>
+        <dd set:html={v} />
+      </div>
+    ))}
+  </dl>
+)}
+
+<style>
+  .label {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+    gap: var(--space-3) var(--space-4);
+    margin: var(--space-4) 0 var(--space-5);
+    padding-block: var(--space-3);
+    border-block: 1px solid var(--color-fg);
+    font-size: var(--step--1);
+  }
+  dt { color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.75rem; }
+  dd { margin: 0; font-weight: 600; }
+  dd :global(a) { font-weight: 600; }
+</style>
