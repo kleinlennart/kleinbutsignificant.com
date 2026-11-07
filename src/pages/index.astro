@@ -18,16 +18,17 @@ const recent = (await getWriting()).slice(0, 6);
 <Base description={home.data.description}>
   <section class="intro">
     {home.data.portrait && (
-      <Image
-        src={home.data.portrait}
-        alt="Portrait of Lennart Klein"
-        class="portrait"
-        width={400}
-        height={400}
-        fit="cover"
-        layout="fixed"
-        loading="eager"
-      />
+      <div class="portrait">
+        <Image
+          src={home.data.portrait}
+          alt="Portrait of Lennart Klein"
+          width={480}
+          height={480}
+          fit="cover"
+          layout="fixed"
+          loading="eager"
+        />
+      </div>
     )}
     <h1>{home.data.title}</h1>
     <div class="prose"><Content /></div>
@@ -46,13 +47,23 @@ const recent = (await getWriting()).slice(0, 6);
 
 <style>
   .intro { margin-bottom: var(--space-6); }
+  /* Round crop; zoom + focus point frame the face (tweak per photo). */
   .portrait {
-    display: block;
+    --zoom: 1.4;
+    --focus: 50% 38%;
     width: 8rem;
     height: 8rem;
     border-radius: 50%;
-    object-fit: cover;
+    overflow: hidden;
     margin-bottom: var(--space-4);
+  }
+  .portrait :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(var(--zoom));
+    transform-origin: var(--focus);
   }
   @media (min-width: 40rem) {
     .portrait { width: 10rem; height: 10rem; }

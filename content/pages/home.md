@@ -1,7 +1,7 @@
 ---
 title: "Hi, I'm Lennart 👋"
 # Headshot: drop a new image next to this one (any jpg/png; it is cropped round automatically) and point this at it.
-portrait: ./images/portrait.png
+portrait: ./images/lennart_headshot.jpg
 description: Data & AI at the United Nations. Former research fellow at the Social Change Lab. Big fan of #rstats.
 ---
 
