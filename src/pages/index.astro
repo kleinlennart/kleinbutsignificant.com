@@ -88,6 +88,19 @@ const person = data.person && {
      *Job title* = role (medium, not italic); plain [links](url) stay regular weight. */
   .intro-text :global(strong) { font-weight: 600; }
   .intro-text :global(em) { font-style: normal; font-weight: 500; }
+  /* Internal links (/projects/ etc.) are navigation, not references: no underline, an arrow. */
+  .intro-text :global(a[href^='/']) {
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .intro-text :global(a[href^='/'])::after {
+    content: '→';
+    display: inline-block;
+    margin-left: 0.25em;
+    transition: transform 0.15s ease;
+  }
+  .intro-text :global(a[href^='/']:hover)::after { transform: translateX(0.2em); }
   .socials { margin-top: var(--space-4); }
 
   @media (min-width: 40rem) {
