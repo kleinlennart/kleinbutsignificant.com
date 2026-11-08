@@ -55,15 +55,29 @@ const art = defineCollection({
     }),
 });
 
+const org = z.object({ name: z.string(), url: z.url().optional() });
+
 // Single pages; the id is the path (e.g. "about", "slides/hiwi"). "home" feeds the landing page.
 const pages = defineCollection({
   loader: glob({ base: './content/pages', pattern: '**/*.{md,mdx}' }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
+      /** Full <title> override (otherwise "<title> · Lennart Klein"). */
+      seoTitle: z.string().optional(),
       description: z.string().optional(),
       date: z.coerce.date().optional(),
       portrait: image().optional(),
+      /** schema.org Person data, emitted as JSON-LD on the home page. */
+      person: z
+        .object({
+          jobTitle: z.string().optional(),
+          worksFor: z.array(org).default([]),
+          affiliation: z.array(org).default([]),
+          alumniOf: z.array(org).default([]),
+          knowsAbout: z.array(z.string()).default([]),
+        })
+        .optional(),
     }),
 });
 

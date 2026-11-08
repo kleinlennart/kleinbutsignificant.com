@@ -1,14 +1,39 @@
 ---
 import { getEntry, render } from 'astro:content';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import Base from '../layouts/Base.astro';
+import SocialIcons from '../components/SocialIcons.astro';
+import { SITE, SOCIAL } from '../consts';
 
 const home = await getEntry('pages', 'home');
 if (!home) throw new Error('content/pages/home.md is missing');
 const { Content } = await render(home);
+const { data } = home;
+
+// Share/structured-data image: a 600px version of the headshot.
+const portraitUrl = data.portrait
+  ? new URL((await getImage({ src: data.portrait, width: 600, height: 600, fit: 'cover', format: 'jpg' })).src, Astro.site).href
+  : undefined;
+
+// schema.org Person (JSON-LD), driven by the `person` block in content/pages/home.md.
+const org = (o: { name: string; url?: string }) => ({ '@type': 'Organization', name: o.name, ...(o.url && { url: o.url }) });
+const person = data.person && {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: SITE.author,
+  url: Astro.site?.href,
+  ...(portraitUrl && { image: portraitUrl }),
+  ...(data.person.jobTitle && { jobTitle: data.person.jobTitle }),
+  worksFor: data.person.worksFor.map(org),
+  affiliation: data.person.affiliation.map(org),
+  alumniOf: data.person.alumniOf.map(org),
+  knowsAbout: data.person.knowsAbout,
+  sameAs: SOCIAL.map((s) => s.href),
+};
 ---
 
-<Base description={home.data.description}>
+<Base fullTitle={data.seoTitle} description={data.description} image={portraitUrl}>
+  {person && <script slot="head" type="application/ld+json" set:html={JSON.stringify(person)} />}
   <section class="intro">
     {home.data.portrait && (
       <div class="portrait">
@@ -23,13 +48,18 @@ const { Content } = await render(home);
         />
       </div>
     )}
-    <h1>{home.data.title}</h1>
-    <div class="intro-text"><Content /></div>
+    <div class="intro-body">
+      <h1>{home.data.title}</h1>
+      <div class="intro-text"><Content /></div>
+      <div class="socials"><SocialIcons /></div>
+    </div>
   </section>
 </Base>
 
 <style>
-  .intro { margin-bottom: var(--space-6); }
+  /* Phones/tablets: stacked. Desktop (>= 56rem): headshot left of the text, so the page
+     fits one laptop screen without scrolling. */
+  .intro { padding-top: var(--space-3); }
   .portrait {
     width: 9rem;
     height: 9rem;
@@ -44,12 +74,9 @@ const { Content } = await render(home);
     height: 100%;
     object-fit: cover;
   }
-  @media (min-width: 40rem) {
-    .portrait { width: 12.5rem; height: 12.5rem; } /* 200px */
-  }
   .intro h1 { font-size: var(--step-4); letter-spacing: -0.03em; margin: 0 0 var(--space-4); }
   .intro-text {
-    max-width: 38rem;
+    max-width: 40rem;
     font-family: var(--font-sans);
     font-size: clamp(1.125rem, 1rem + 0.45vw, 1.3125rem);
     line-height: 1.5;
@@ -57,5 +84,26 @@ const { Content } = await render(home);
   }
   .intro-text :global(p) { margin: 0; }
   .intro-text :global(p + p) { margin-top: 0.85em; }
+  /* In home.md: **[Place](url)** = where you worked/studied (semibold, the main emphasis);
+     *Job title* = role (medium, not italic); plain [links](url) stay regular weight. */
   .intro-text :global(strong) { font-weight: 600; }
+  .intro-text :global(em) { font-style: normal; font-weight: 500; }
+  .socials { margin-top: var(--space-4); }
+
+  @media (min-width: 40rem) {
+    .portrait { width: 12.5rem; height: 12.5rem; } /* 200px */
+  }
+
+  @media (min-width: 56rem) {
+    .intro {
+      display: grid;
+      grid-template-columns: 12.5rem minmax(0, 40rem);
+      column-gap: var(--space-6);
+      justify-content: center; /* hero shares the footer's center line */
+      align-items: start;
+      padding-top: clamp(var(--space-3), 6vh, var(--space-6));
+    }
+    .portrait { margin-bottom: 0; }
+    .socials { margin-top: var(--space-5); }
+  }
 </style>

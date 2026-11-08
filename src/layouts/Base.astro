@@ -2,15 +2,19 @@
 import '@fontsource-variable/source-sans-3';
 import '@fontsource-variable/source-serif-4';
 import '../styles/global.css';
-import { SITE, NAV, SOCIAL } from '../consts';
+import { SITE, NAV, STACK } from '../consts';
 
 interface Props {
   title?: string;
+  /** Full <title> override, used as-is. */
+  fullTitle?: string;
   description?: string;
+  /** Absolute URL of a share image (Open Graph). */
+  image?: string;
 }
 
-const { title, description = SITE.description } = Astro.props;
-const pageTitle = title ? `${title} · ${SITE.title}` : SITE.title;
+const { title, fullTitle, description = SITE.description, image } = Astro.props;
+const pageTitle = fullTitle ?? (title ? `${title} · ${SITE.title}` : SITE.title);
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const path = Astro.url.pathname;
 ---
@@ -29,7 +33,9 @@ const path = Astro.url.pathname;
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={SITE.title} />
+    {image && <meta property="og:image" content={image} />}
     <meta name="generator" content={Astro.generator} />
+    <slot name="head" />
   </head>
   <body>
     <header class="site-header wrap">
@@ -52,11 +58,9 @@ const path = Astro.url.pathname;
     </main>
 
     <footer class="site-footer wrap">
-      <span>© {new Date().getFullYear()} {SITE.author}</span>
-      <ul>
-        {SOCIAL.map((s) => <li><a href={s.href} rel="me noopener">{s.label}</a></li>)}
-        <li><a href="/rss.xml">RSS</a></li>
-      </ul>
+      <span class="grp">Built with {STACK.map((t, i) => (
+        <>{i > 0 && (i === STACK.length - 1 ? ' & ' : ', ')}<a href={t.href} rel="noopener">{t.label}</a></>
+      ))}</span><span class="sep"> · </span><span class="grp"><a href={SITE.repo} rel="noopener">Source</a> · <a href="/rss.xml">RSS</a> · © {new Date().getFullYear()}</span>
     </footer>
   </body>
 </html>
@@ -68,14 +72,17 @@ const path = Astro.url.pathname;
     align-items: baseline;
     justify-content: space-between;
     gap: var(--space-2) var(--space-4);
-    padding-block: var(--space-4) var(--space-5);
+    padding-block: var(--space-4) clamp(var(--space-3), 3vh, var(--space-5));
   }
   .site-name {
+    font-size: var(--step-2);
     font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.025em;
     text-decoration: none;
-    letter-spacing: -0.01em;
   }
-  nav ul, .site-footer ul {
+  .site-name:hover { color: inherit; }
+  nav ul {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-1) var(--space-3);
@@ -90,15 +97,21 @@ const path = Astro.url.pathname;
   nav a:hover, nav a[aria-current='page'] { color: var(--color-fg); }
   nav a[aria-current='page'] { text-decoration: underline; text-decoration-color: var(--color-accent); }
 
+  /* One quiet line; body is a flex column, so it sits at the bottom of short pages. */
   .site-footer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: var(--space-2);
-    margin-top: var(--space-6);
-    padding-block: var(--space-4);
-    border-top: 1px solid var(--color-rule);
-    font-size: var(--step--1);
-    color: var(--color-muted);
+    text-align: center;
+    margin-top: var(--space-3);
+    padding-block: var(--space-2) var(--space-3);
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: var(--color-faint);
   }
+  /* Phones: two stacked lines, no separator. Desktop: one line. */
+  .site-footer .grp { display: block; }
+  .site-footer .sep { display: none; }
+  @media (min-width: 40rem) {
+    .site-footer .grp, .site-footer .sep { display: inline; }
+  }
+  .site-footer a { text-decoration-color: transparent; }
+  .site-footer a:hover { text-decoration-color: currentColor; }
 </style>
