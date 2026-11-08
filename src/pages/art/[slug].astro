@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 const { work } = Astro.props as { work: CollectionEntry<'art'> };
 const { Content } = await render(work);
 const d = work.data;
-const link = d.link ? `<a href="${d.link}">${new URL(d.link).host.replace(/^www\./, '')}</a>` : undefined;
+const link = d.link ? `<a href="${d.link}" target="_blank" rel="noopener noreferrer">${new URL(d.link).host.replace(/^www\./, '')}</a>` : undefined;
 ---
 
 <Article title={d.title} kicker="Art" edit={editUrl(work)}>

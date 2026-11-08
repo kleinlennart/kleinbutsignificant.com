@@ -22,7 +22,7 @@
 
   --measure: 36rem;        /* reading column */
   --margin-col: 14rem;     /* Tufte-style side column */
-  --page-max: 64rem;
+  --page-max: 63rem;      /* = 59rem content (home hero: 15rem photo + 4rem gap + 40rem text) + 2rem gutters */
   --gutter: 1rem;
 
   --color-bg: #ffffff;

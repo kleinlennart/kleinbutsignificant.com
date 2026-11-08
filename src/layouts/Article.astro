@@ -24,7 +24,7 @@ const { title, description, kicker, draft, edit } = Astro.props;
       <slot />
     </div>
     {edit && (
-      <p class="edit muted"><a href={edit} rel="noopener">Edit on GitHub</a></p>
+      <p class="edit muted"><a href={edit} target="_blank" rel="noopener noreferrer">Edit on GitHub</a></p>
     )}
   </article>
 </Base>

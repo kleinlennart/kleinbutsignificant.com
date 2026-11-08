@@ -37,7 +37,7 @@ const person = data.person && {
   {person && <script slot="head" type="application/ld+json" set:html={JSON.stringify(person)} />}
   <section class="intro">
     {home.data.portrait && (
-      <a class="portrait" href={linkedin?.href} target="_blank" rel="noopener me" aria-label="Lennart Klein on LinkedIn (opens in a new tab)">
+      <a class="portrait" href={linkedin?.href} target="_blank" rel="noopener noreferrer me" aria-label="Lennart Klein on LinkedIn (opens in a new tab)">
         <Image
           src={home.data.portrait}
           alt="Portrait of Lennart Klein"

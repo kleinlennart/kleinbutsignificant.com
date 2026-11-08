@@ -1,9 +1,8 @@
 ---
 title: "Hi, I'm Lennart."
 portrait: ./images/lennart_headshot.jpg
-seoTitle: "Lennart Klein · Data & AI, United Nations"
-description: Lennart Klein is a Data & AI Analyst at the United Nations (EOSG, CRAF'd) and a Master's student in Political Science at Sciences Po.
-# Shown under the intro as "Research interests".
+seoTitle: "Lennart Klein"
+description: Lennart Klein is a Data & AI Analyst at the United Nations (EOSG, CRAF'd). Master's in Political Science at Sciences Po.
 interests: [AI governance, institutional decision-making, collective action problems, social movements, computational social science]
 person:
   jobTitle: Data & AI Analyst

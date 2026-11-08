@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 const { project } = Astro.props as { project: CollectionEntry<'projects'> };
 const { Content } = await render(project);
 const d = project.data;
-const link = (href?: string) => (href ? `<a href="${href}">${new URL(href).host.replace(/^www\./, '')}</a>` : undefined);
+const link = (href?: string) => (href ? `<a href="${href}" target="_blank" rel="noopener noreferrer">${new URL(href).host.replace(/^www\./, '')}</a>` : undefined);
 const summary = d.summary.startsWith('TODO') ? undefined : d.summary;
 ---
 

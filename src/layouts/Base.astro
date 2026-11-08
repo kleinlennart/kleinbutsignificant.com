@@ -59,8 +59,8 @@ const path = Astro.url.pathname;
 
     <footer class="site-footer wrap">
       <span class="grp">Built with {STACK.map((t, i) => (
-        <>{i > 0 && (i === STACK.length - 1 ? ' & ' : ', ')}<a href={t.href} rel="noopener">{t.label}</a></>
-      ))}</span><span class="sep"> · </span><span class="grp"><a href={SITE.repo} rel="noopener">Source</a> · <a href="/rss.xml">RSS</a> · © {new Date().getFullYear()}</span>
+        <>{i > 0 && (i === STACK.length - 1 ? ' & ' : ', ')}<a href={t.href} target="_blank" rel="noopener noreferrer">{t.label}</a></>
+      ))}</span><span class="sep"> · </span><span class="grp"><a href={SITE.repo} target="_blank" rel="noopener noreferrer">Source</a> · <a href="/rss.xml">RSS</a> · © {new Date().getFullYear()}</span>
     </footer>
   </body>
 </html>
@@ -74,11 +74,14 @@ const path = Astro.url.pathname;
     gap: var(--space-2) var(--space-4);
     padding-block: var(--space-4) clamp(var(--space-3), 3vh, var(--space-5));
   }
+  /* Name as an uppercase wordmark in the headline typeface (Source Sans 3). Same size as
+     the menu, so its capitals line up with the menu's capitals (top and baseline). */
   .site-name {
-    font-size: var(--step-2);
-    font-weight: 700;
+    font-size: 1em;
+    font-weight: 600;
     line-height: 1;
-    letter-spacing: -0.025em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     text-decoration: none;
   }
   .site-name:hover { color: inherit; }

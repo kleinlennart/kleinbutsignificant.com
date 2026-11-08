@@ -6,6 +6,7 @@ import { unified } from '@astrojs/markdown-remark';
 import rehypeCallouts from 'rehype-callouts';
 import remarkObsidian from './src/plugins/remark-obsidian.mjs';
 import rehypeSidenotes from './src/plugins/rehype-sidenotes.mjs';
+import rehypeExternalLinks from './src/plugins/rehype-external-links.mjs';
 import contentAssets from './src/integrations/content-assets.mjs';
 
 // https://astro.build/config
@@ -18,7 +19,7 @@ export default defineConfig({
   markdown: {
     processor: unified({
       remarkPlugins: [remarkObsidian],
-      rehypePlugins: [[rehypeCallouts, { theme: 'obsidian' }], rehypeSidenotes],
+      rehypePlugins: [[rehypeCallouts, { theme: 'obsidian' }], rehypeSidenotes, rehypeExternalLinks],
     }),
     shikiConfig: {
       // Near-monochrome highlighting to match the black & white look.
