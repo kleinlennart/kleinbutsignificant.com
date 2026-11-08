@@ -3,6 +3,8 @@ title: "Hi, I'm Lennart."
 portrait: ./images/lennart_headshot.jpg
 seoTitle: "Lennart Klein · Data & AI, United Nations"
 description: Lennart Klein is a Data & AI Analyst at the United Nations (EOSG, CRAF'd) and a Master's student in Political Science at Sciences Po.
+# Shown under the intro as "Research interests".
+interests: [AI governance, institutional decision-making, collective action problems, social movements, computational social science]
 person:
   jobTitle: Data & AI Analyst
   worksFor:
@@ -23,9 +25,6 @@ person:
 
 I'm a *Data & AI Analyst* at the United Nations, in the **[Executive Office of the Secretary-General](https://www.un.org/sg/en/global-leadership/entity/secretariat-and-regional-commissions/executive-office-of-the-secretary-general)** and the **[Complex Risk Analytics Fund (CRAF'd)](https://crafd.io/)**, working on digital innovation ([UN 2.0](https://un-two-zero.network/)) and [UN reform](https://www.un.org/un80-initiative/en "UN80 Initiative"). [See some of my work](/projects/)
 
-Previously, I was a Research Fellow at the **[Social Change Lab](https://www.socialchangelab.org/)** and a Research Assistant at the University of Michigan's **[Institute for Social Research](https://isr.umich.edu/)** and the **[Hector Research Institute](https://uni-tuebingen.de/en/faculties/faculty-of-economics-and-social-sciences/subjects/department-of-social-sciences/education-sciences-and-psychology/institute/)** at the University of Tübingen.
+Previously, I was a Research Fellow at the **[Social Change Lab](https://www.socialchangelab.org/)** and a Research Assistant at the University of Michigan's **[Institute for Social Research](https://isr.umich.edu/)** and the **[Hector Research Institute](https://uni-tuebingen.de/en/faculties/faculty-of-economics-and-social-sciences/subjects/department-of-social-sciences/education-sciences-and-psychology/institute/)** at the University of Tübingen. [See my research](/research/)
 
 Alongside my work, I'm pursuing a Master’s in Political Science, specializing in Political Behaviour at the **[Sciences Po School of Research](https://www.sciencespo.fr/ecole-recherche/en/)**.
-Research interests: AI Governance, institutional decision making, collective action problems, and social movements, among others.
-
-<!-- TODO: add research interests -->

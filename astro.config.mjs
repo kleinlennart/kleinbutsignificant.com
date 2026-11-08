@@ -32,7 +32,8 @@ export default defineConfig({
     '/post/[slug]': '/writing/[slug]',
     '/post': '/writing/',
     '/vitae': '/cv/',
-    '/pubs': '/publications/',
+    '/pubs': '/research/',
+    '/publications': '/research/',
     '/archives': '/writing/',
   },
 });

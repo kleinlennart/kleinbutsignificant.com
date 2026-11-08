@@ -13,14 +13,17 @@ export const NAV = [
   { href: '/projects/', label: 'Projects' },
   { href: '/writing/', label: 'Writing' },
   { href: '/cv/', label: 'CV' },
-  { href: '/publications/', label: 'Publications' },
+  { href: '/research/', label: 'Research' },
   { href: '/art/', label: 'Art' },
-  { href: '/slides/', label: 'Slides' },
 ];
+
+// Email, shown as the last icon after SOCIAL. Kept as [user, domain] without an "@" so scrapers
+// scanning the repo don't match it; the page only ships an encoded form (see SocialIcons.astro).
+export const EMAIL: [string, string] = ['lennart.klein', 'sciencespo.fr'];
 
 // Shown as icons below the home intro, in this order.
 // Icon paths: Simple Icons (CC0), 24×24 viewBox.
-// Future candidates: ORCID, Bluesky, Mail (mailto: link).
+// Future candidates: ORCID, Bluesky.
 export const SOCIAL = [
   {
     label: 'LinkedIn',

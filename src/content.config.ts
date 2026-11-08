@@ -57,7 +57,7 @@ const art = defineCollection({
 
 const org = z.object({ name: z.string(), url: z.url().optional() });
 
-// Single pages; the id is the path (e.g. "about", "slides/hiwi"). "home" feeds the landing page.
+// Single pages; the id is the path (e.g. "about", "cv"). "home" feeds the landing page.
 const pages = defineCollection({
   loader: glob({ base: './content/pages', pattern: '**/*.{md,mdx}' }),
   schema: ({ image }) =>
@@ -68,6 +68,8 @@ const pages = defineCollection({
       description: z.string().optional(),
       date: z.coerce.date().optional(),
       portrait: image().optional(),
+      /** Home page: topics shown under the intro as "Research interests". */
+      interests: z.array(z.string()).default([]),
       /** schema.org Person data, emitted as JSON-LD on the home page. */
       person: z
         .object({

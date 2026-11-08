@@ -9,6 +9,7 @@ const home = await getEntry('pages', 'home');
 if (!home) throw new Error('content/pages/home.md is missing');
 const { Content } = await render(home);
 const { data } = home;
+const linkedin = SOCIAL.find((s) => s.label === 'LinkedIn');
 
 // Share/structured-data image: a 600px version of the headshot.
 const portraitUrl = data.portrait
@@ -36,21 +37,29 @@ const person = data.person && {
   {person && <script slot="head" type="application/ld+json" set:html={JSON.stringify(person)} />}
   <section class="intro">
     {home.data.portrait && (
-      <div class="portrait">
+      <a class="portrait" href={linkedin?.href} target="_blank" rel="noopener me" aria-label="Lennart Klein on LinkedIn (opens in a new tab)">
         <Image
           src={home.data.portrait}
           alt="Portrait of Lennart Klein"
-          width={480}
-          height={480}
+          width={576}
+          height={576}
           fit="cover"
           layout="fixed"
           loading="eager"
         />
-      </div>
+      </a>
     )}
     <div class="intro-body">
       <h1>{home.data.title}</h1>
       <div class="intro-text"><Content /></div>
+      {data.interests.length > 0 && (
+        <p class="interests">
+          <span class="label">Research interests</span>
+          {data.interests.map((topic, i) => (
+            <>{i > 0 && <span class="dot" aria-hidden="true"> · </span>}<span class="topic">{topic}</span></>
+          ))}
+        </p>
+      )}
       <div class="socials"><SocialIcons /></div>
     </div>
   </section>
@@ -61,6 +70,7 @@ const person = data.person && {
      fits one laptop screen without scrolling. */
   .intro { padding-top: var(--space-3); }
   .portrait {
+    display: block;
     width: 9rem;
     height: 9rem;
     border-radius: 50%;
@@ -102,21 +112,44 @@ const person = data.person && {
   }
   .intro-text :global(a[href^='/']:hover)::after { transform: translateX(0.2em); }
   .socials { margin-top: var(--space-4); }
+  .interests {
+    max-width: 40rem;
+    margin: var(--space-4) 0 0;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--color-muted);
+  }
+  .interests .label {
+    display: block;
+    margin-bottom: var(--space-1);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-fg);
+  }
+  .interests .topic { white-space: nowrap; } /* wrap between topics, never inside one */
 
   @media (min-width: 40rem) {
-    .portrait { width: 12.5rem; height: 12.5rem; } /* 200px */
+    .portrait { width: 15rem; height: 15rem; } /* 240px */
   }
 
   @media (min-width: 56rem) {
     .intro {
       display: grid;
-      grid-template-columns: 12.5rem minmax(0, 40rem);
+      grid-template-columns: 15rem minmax(0, 40rem);
       column-gap: var(--space-6);
       justify-content: center; /* hero shares the footer's center line */
       align-items: start;
-      padding-top: clamp(var(--space-3), 6vh, var(--space-6));
+      padding-top: clamp(0.5rem, 4vh, var(--space-6));
     }
-    .portrait { margin-bottom: 0; }
-    .socials { margin-top: var(--space-5); }
+    /* Align the photo with the top of the headline's capital letters, not its line box
+       (Source Sans 3 bold at line-height 1.15: cap top sits 0.235em below the box top). */
+    .portrait { margin-bottom: 0; margin-top: calc(var(--step-4) * 0.235); }
+    /* Vertical rhythm tightens on shorter screens so the page fits without scrolling. */
+    .intro h1 { margin-bottom: clamp(var(--space-3), 2.5vh, var(--space-4)); }
+    .intro-text :global(p + p) { margin-top: clamp(0.6em, 1.2vh, 0.85em); }
+    .interests { margin-top: clamp(var(--space-3), 2.5vh, var(--space-4)); }
+    .socials { margin-top: clamp(var(--space-3), 2.5vh, var(--space-4)); }
   }
 </style>
