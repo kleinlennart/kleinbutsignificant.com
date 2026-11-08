@@ -4,54 +4,48 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Personal blog/website (kleinbutsignificant.com): a **Hugo** site using the **PaperMod** theme, with computational posts authored in **R Markdown (blogdown)** or **Quarto**. Deployed by Netlify, which only runs `hugo` — it never executes R/Python. Every rendered `.md`/`.html` output must therefore be committed alongside its source.
+Personal site kleinbutsignificant.com, v2: a hand-built **Astro 7** static site (landing page, project portfolio, writing, CV, art). Hosted on **Vercel** (the domain stays on Netlify, serving v1, until cutover). v1 (Hugo + PaperMod + blogdown) is preserved as tag `v1` and branch `archive/v1`; v2 is developed on branch `v2`.
 
-## Rendering pipeline (the key thing to understand)
-
-Two pre-render paths both produce files Hugo can consume; Hugo itself ignores the sources (`ignoreFiles` in [config.yaml](config.yaml) excludes `.Rmd`, `.qmd`, `.ipynb`, `.py`):
-
-- **Quarto** (`index.qmd` → `index.md`, format `hugo-md`): configured in [_quarto.yml](_quarto.yml) as a `project: type: hugo`. Execution uses `freeze: true` + `cache: true`, so posts are **not re-executed** on a project render; frozen results live in `_freeze/` and are committed. To re-run a post's code, render that file explicitly (or delete its `_freeze/` entry). The `render:` list restricts Quarto to `*/*.qmd` and `*/*.Rmd` and excludes `archetypes/` plus specific posts.
-- **blogdown** (`index.Rmd` → `index.html` via Pandoc, `blogdown.method = "html"`): options set in [.Rprofile](.Rprofile). `knit.on_save` is off, so Rmd posts are built manually. Note that Quarto's `render:` list also matches `*/*.Rmd`, so some Rmd posts have both `index.html` and `index.md` committed while others have only `index.md`. `blogdown::clean_duplicates()` removes duplicate outputs. Check which outputs a post already has before re-rendering it.
-
-Root-level `index.Rmd` / `index.qmd` are tool markers for blogdown/Quarto — do not edit them. `README.md` is generated from `README.Rmd` (`rmarkdown::render("README.Rmd")`).
-
-Posts are page bundles: `content/post/YYYY-MM-DD-slug/index.{qmd,Rmd,md}` plus `index_files/` support files. Plain-markdown posts are just `index.md`.
+The owner makes the design decisions. Don't change visual design, crops, colours or copy beyond what was asked; propose changes instead. Open design questions and feedback live in `notes/`.
 
 ## Commands
 
-Hugo is not necessarily on PATH locally; blogdown manages its own Hugo binary.
-
 ```sh
-quarto render content/post/<post>/index.qmd   # render one Quarto post to index.md
-quarto preview                                  # wraps `hugo serve` on port 4200; needs hugo on PATH (see NOTES.md re _environment)
-hugo server -D                                  # plain Hugo dev server
-hugo                                            # production build into public/ (gitignored)
+npm run dev        # http://localhost:4321; drafts are visible in dev only
+npm run build      # static build into dist/ (drafts excluded)
+npm run check      # astro check (TypeScript + content schemas)
+uv run quarto render content/writing/<slug>/<slug>.qmd   # render one computational post
+./maintain.sh      # versions + dependency upgrades (npm, uv, rv) + check/build
 ```
 
-New posts come from `archetypes/` (`quarto-post.md`, `default-post.md`, `full_post.md`). [archetypes/README.md](archetypes/README.md) documents `hugo new --kind post <name>`, and says a `.md` archetype can be used to create a `.qmd` file.
+## Content (`content/` is also an Obsidian vault)
 
-From R (see [maintenance.R](maintenance.R)):
+- `writing/<slug>/<slug>.md`: one folder per post. The folder name is the URL slug (`/writing/<slug>/`) and the note's file name, so Obsidian `[[wikilinks]]` resolve. Computational posts keep `<slug>.qmd` (or `.Rmd`) next to the rendered `<slug>.md` and `<slug>_files/`.
+- `projects/*.md` (files starting with `_` are templates and are not published), `art/*.md` + `art/images/`, `pages/*.md` (single pages; `pages/home.md` feeds the landing page, including the `portrait` headshot), and `attachments/` (Obsidian's paste target).
+- Schemas are in [src/content.config.ts](src/content.config.ts) and use Zod from `astro/zod`. Unknown frontmatter keys are stripped rather than rejected.
+- `.qmd`/`.Rmd` are never loaded by Astro. Only `.md`/`.mdx` are.
 
-```r
-blogdown::serve_site(port = "4321")
-blogdown::build_site(build_rmd = "md5sum")   # rebuild only changed Rmd posts
-blogdown::check_site()                        # config / content / hugo / netlify checks
-lintr::lint_dir()                             # .lintr: tidyverse defaults, 120-char lines
-styler::style_dir(path = "content/")
-```
+## Markdown pipeline
 
-[maintain.sh](maintain.sh) prints tool versions, updates the theme submodule, and upgrades/refreezes Python packages in `.devcontainer/requirements.txt`.
+[astro.config.mjs](astro.config.mjs) uses the `unified()` processor from `@astrojs/markdown-remark`. Astro 7 defaults to the native Sätteri processor, which can't run remark/rehype plugins. Custom plugins live in `src/plugins/`:
+- `remark-obsidian.mjs`: `[[note]]`, `[[note|label]]` and `![[image.png]]`, resolved by file name across `content/`. Its `urlFor()` must match the routes in `src/pages/`.
+- `rehype-sidenotes.mjs`: GFM footnotes become Tufte-style margin notes on wide screens, with plain footnotes on mobile. This is CSS-only, in `src/styles/prose.css`.
+- `rehype-callouts` (Obsidian theme) handles `> [!note]` callouts.
 
-## Theme and customization
+[src/integrations/content-assets.mjs](src/integrations/content-assets.mjs) serves every non-source file in a post folder at the post URL, in dev and in build. Raw HTML from Quarto (`<img src="slug_files/...">`, htmlwidget libs) and embedded standalone HTML therefore work with relative paths. Markdown-syntax images are additionally optimised by Astro.
 
-- `themes/PaperMod` is a **git submodule**. After cloning: `git submodule update --init --recursive`. Update with `git submodule update --remote --merge` (then re-render README, since it has a badge pinned to the theme commit SHA). Never edit files inside the theme.
-- Overrides use Hugo's lookup order: files in root `layouts/` (partials such as `home_info.html`, `social_icons.html`, `footer.html`, `edit_post.html`) and `assets/css/` / `assets/js/` shadow the theme's files at the same relative paths. Because `assets/css/{common,core,includes,hljs}` and `assets/js/` sit at the theme's own paths, they shadow the theme's versions, so theme submodule updates will not reach those files. Site-specific styles go in `assets/css/extended/`, where every file is bundled automatically.
-- Site params (menu, home-info content, social icons, search via Fuse.js which requires the `JSON` home output) are in [config.yaml](config.yaml). `markup.goldmark.renderer.unsafe: true` is required for Quarto/R raw-HTML output.
+## Quarto / computational posts
 
-## Version pinning
+- Render locally and commit the `.md`, the `_files/` and `_freeze/`. Vercel only runs `astro build` and has no R or Python.
+- [_quarto.yml](_quarto.yml) is a plain project rendering `content/**/*.qmd` to `hugo-md` (Markdown + YAML; the name is historical), with `freeze: auto`. `commit-badge` is excluded because its code reads the removed v1 theme submodule.
+- R packages: `rv` (`rproject.toml`, `rv.lock`, library in `rv/library/`, gitignored). `.Rprofile` sources rv's activation scripts.
+- Python: `uv` (`pyproject.toml`). Running `uv run quarto render` lets Quarto find the venv's Jupyter.
 
-The Hugo version (currently `0.121.2`) is pinned in three places that must be kept in sync: [.Rprofile](.Rprofile) (`blogdown.hugo.version`), [netlify.toml](netlify.toml) (`HUGO_VERSION`), and [.devcontainer/devcontainer.json](.devcontainer/devcontainer.json). Check theme compatibility before bumping.
+## Design system
 
-## Dev container
+Tokens are in [src/styles/tokens.css](src/styles/tokens.css). The palette is currently black and white: `--color-accent` aliases `--color-fg`, ready for a colour later. Type is Source Sans 3 (UI) and Source Serif 4 (body), self-hosted via `@fontsource-variable`. Light and dark follow `prefers-color-scheme`. [src/pages/writing/style-guide](content/writing/style-guide/style-guide.md) is a draft post showing every styled element; use it to check visual changes.
 
-`.devcontainer/` provides a Codespaces image (rocker tidyverse + RStudio Server on 8787, Quarto, Hugo extended, Python/Jupyter from `requirements.txt`). `postCreateCommand.sh` initializes the theme submodule.
+## Redirects and deploy
+
+- v1 `/post/*` URLs redirect to `/writing/*` (`redirects` in the Astro config). Slugs that changed are mapped explicitly.
+- `netlify.toml` keeps deploying v1 from `master` until cutover: merge `v2` → `master`, point the Vercel production branch at `master`, move DNS, remove Netlify.

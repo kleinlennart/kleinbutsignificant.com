@@ -1,40 +1,8 @@
-# source("renv/activate.R")
-# REMEMBER to restart R after you modify and save this file!
+source("rv/scripts/rvr.R")
+source("rv/scripts/activate.R")
+# Project R profile. Package library is managed by rv (see rproject.toml);
+# The two source() lines above are rv's activation (added by `rv init`).
 
-# First, execute the global .Rprofile if it exists. You may configure blogdown
-# options there, too, so they apply to any blogdown projects. Feel free to
-# ignore this part if it sounds too complicated to you.
 if (file.exists("~/.Rprofile")) {
   base::sys.source("~/.Rprofile", envir = environment())
 }
-
-# Load blogdown at startup
-if (interactive()) {
-  suppressMessages(require(blogdown))
-}
-
-# Now set options to customize the behavior of blogdown for this project. Below
-# are a few sample options; for more options, see
-# https://bookdown.org/yihui/blogdown/global-options.html
-options(
-  # to automatically serve the site on RStudio startup, set this option to TRUE
-  blogdown.serve_site.startup = FALSE,
-  # to disable knitting Rmd files on save, set this option to FALSE
-  blogdown.knit.on_save = FALSE,
-  # build .Rmd to .html (via Pandoc); to build to Markdown, set this option to 'markdown'
-  blogdown.method = "html",
-  blogdown.author = "Lennart Klein",
-  blogdown.ext = ".Rmd",
-  blogdown.subdir = "post"
-)
-
-# set Hugo version
-# https://github.com/gohugoio/hugo/releases/
-# use blogdown::install_hugo(), also change in netlify.toml
-options(blogdown.hugo.version = "0.121.2")
-
-
-# Misc Custom ----------------------------------------------------------------
-
-
-

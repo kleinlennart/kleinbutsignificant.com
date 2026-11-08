@@ -1,26 +1,26 @@
 #!/usr/bin/env bash
+# Routine maintenance: print tool versions and upgrade dependencies.
+set -euo pipefail
+cd "$(dirname "$0")"
 
 ## Versions
-hugo version
-quarto check
-jupyter --version
-R --version
+node --version
+quarto --version
+uv --version
+rv --version
+R --version | head -1
 
-## Update Theme Submodule 
-git submodule update --remote --merge
+## JavaScript (Astro)
+npm outdated || true
+npm update
 
+## Python (Jupyter engine for Quarto)
+uv lock --upgrade
+uv sync
 
-## Prepare pip
-python3 -m pip install --upgrade pip
-python3 -m pip --version
+## R (knitr engine for Quarto)
+rv upgrade
 
-## Update Python Packages
-python3 -m pip install -r .devcontainer/requirements.txt --upgrade
-python3 -m pip freeze > .devcontainer/requirements.txt
-
-
-
-
-
-
-
+## Sanity check
+npm run check
+npm run build

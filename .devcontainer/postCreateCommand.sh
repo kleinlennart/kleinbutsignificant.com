@@ -1,27 +1,14 @@
-#!/usr/bin/bash 
-# postCreateCommand.sh
+#!/usr/bin/env bash
+# Runs once after the container is created.
+set -euo pipefail
 
-# fix X11 bug
-sudo apt-get update -y && sudo apt-get install -y libxt6
+# JavaScript (Astro)
+npm ci
 
-# pull theme submodule into folder
-git submodule init && git submodule update
+# Python (uv) for Quarto's Jupyter engine
+curl -LsSf https://astral.sh/uv/install.sh | sh
+"$HOME/.local/bin/uv" sync
 
-
-# https://github.com/rocker-org/devcontainer-features/tree/main/src/quarto-cli#execution-engine
-python3 -m pip install --upgrade pip
-
-## Essential for quarto
-python3 -m pip install jupyter
-python3 -m pip install jupyter-cache
-# quarto check jupyter
-
-## Install all other env packages
-python3 -m pip install -r ./.devcontainer/requirements.txt
-# python3 -m pip freeze > ./.devcontainer/requirements.txt
-
-# https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/setting-up-your-python-project-for-codespaces
-# // Use 'postCreateCommand' to run commands after the container is created.
-# "postCreateCommand": "pip3 install --user -r requirements.txt",
-
-# "postCreateCommand": "echo 'options(repos = c(CRAN = \"https://cloud.r-project.org\"))' | sudo sh -c 'cat - >>\"${R_HOME}/etc/Rprofile.site\"'",
+# R packages (rv) for Quarto's knitr engine
+curl -sSL https://raw.githubusercontent.com/A2-ai/rv/refs/heads/main/scripts/install.sh | bash
+rv sync
