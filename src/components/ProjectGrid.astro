@@ -1,21 +1,46 @@
 ---
+// Website cards: screenshot, year · domain, title, blurb, collaborators.
+// A card opens the live site in a new tab; projects with a written-up body open their detail page instead.
 import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
 
 interface Props { projects: CollectionEntry<'projects'>[] }
 const { projects } = Astro.props;
-const clean = (v?: string) => (v && v !== 'TODO' ? v : undefined);
+
+const real = (v?: string) => (v && !v.startsWith('TODO') ? v : undefined);
+const domain = (url?: string) => (url ? new URL(url).host.replace(/^www\./, '') : undefined);
+const hasBody = (p: CollectionEntry<'projects'>) => Boolean(p.body?.replace(/<!--[\s\S]*?-->/g, '').trim());
 ---
 
 <ul class="grid">
-  {projects.map((p) => (
-    <li>
-      <a href={`/projects/${p.id}/`}>
-        <span class="meta">{[clean(p.data.org), clean(p.data.years)].filter(Boolean).join(' · ')}</span>
-        <span class="title">{p.data.title}</span>
-        {!p.data.summary.startsWith('TODO') && <span class="summary">{p.data.summary}</span>}
-      </a>
-    </li>
-  ))}
+  {projects.map((p) => {
+    const external = !hasBody(p) && p.data.url;
+    const href = external ? p.data.url : `/projects/${p.id}/`;
+    const host = domain(p.data.url);
+    const year = real(p.data.years);
+    return (
+      <li class:list={[{ draft: p.data.draft }]}>
+        <a class="card" href={href} {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
+          <div class="shot">
+            {p.data.cover ? (
+              <Image src={p.data.cover} alt="" widths={[480, 720, 960]} sizes="(min-width: 56rem) 28rem, 100vw" />
+            ) : (
+              <span class="placeholder">{domain(p.data.url) ?? p.data.title}</span>
+            )}
+          </div>
+          {(host || year) && (
+            <span class="meta">
+              {host && <span class="domain">{host}{external && <span class="arrow" aria-hidden="true">↗</span>}</span>}
+              {host && year && <span class="sep" aria-hidden="true">·</span>}
+              {year && <span class="year">{year}</span>}
+            </span>
+          )}
+          <span class="title">{p.data.title}{p.data.draft && <span class="draft-tag">Draft</span>}</span>
+          {real(p.data.summary) && <span class="summary">{p.data.summary}</span>}
+        </a>
+      </li>
+    );
+  })}
 </ul>
 
 <style>
@@ -24,20 +49,52 @@ const clean = (v?: string) => (v && v !== 'TODO' ? v : undefined);
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
-    border-top: 1px solid var(--color-fg);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+    gap: var(--space-5) var(--space-5);
   }
-  li { border-bottom: 1px solid var(--color-rule); }
-  a {
+  .card {
     display: flex;
     flex-direction: column;
     gap: var(--space-1);
-    height: 100%;
-    padding: var(--space-3) var(--space-3) var(--space-4) 0;
     text-decoration: none;
+    color: inherit;
   }
-  a:hover .title { color: var(--color-accent); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.18em; }
-  .meta { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-muted); }
-  .title { font-size: var(--step-1); font-weight: 650; line-height: 1.2; }
-  .summary { color: var(--color-muted); font-size: var(--step--1); }
+  .shot {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: 6px;
+    background: var(--color-code-bg);
+    box-shadow: 0 0 0 1px var(--color-rule);
+    margin-bottom: var(--space-2);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .shot :global(img) { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .placeholder {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    font-size: var(--step--1);
+    letter-spacing: 0.04em;
+    color: var(--color-muted);
+  }
+  .card:hover .shot { box-shadow: 0 0 0 1px var(--color-rule), 0 8px 24px rgb(0 0 0 / 0.1); transform: translateY(-2px); }
+  .card:hover .title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+  /* The domain leads (un.org addresses are credentials); the year stays quiet. */
+  .meta { display: flex; align-items: baseline; gap: 0.4em; font-size: 0.875rem; font-variant-numeric: tabular-nums; }
+  .domain { font-weight: 600; color: var(--color-fg); letter-spacing: 0.005em; }
+  .arrow { margin-left: 0.2em; font-weight: 400; color: var(--color-muted); }
+  .sep, .year { color: var(--color-muted); }
+  .title { font-size: var(--step-1); font-weight: 600; line-height: 1.25; }
+  .summary { color: var(--color-muted); font-size: 0.9375rem; line-height: 1.45; }
+  .draft { opacity: 0.6; }
+  .draft-tag {
+    margin-left: var(--space-2);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    vertical-align: middle;
+    border: 1px solid currentColor;
+    padding: 0.05em 0.4em;
+  }
 </style>

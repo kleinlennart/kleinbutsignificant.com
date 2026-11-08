@@ -1,6 +1,7 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { PROJECT_GROUPS } from './consts';
 
 // content/ is also an Obsidian vault. Sources (.qmd/.Rmd) live next to their rendered .md
 // and are ignored here; only .md/.mdx is loaded.
@@ -27,6 +28,7 @@ const projects = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
+      group: z.enum(PROJECT_GROUPS),
       summary: z.string(),
       org: z.string().optional(),
       role: z.string().optional(),
@@ -35,7 +37,11 @@ const projects = defineCollection({
       repo: z.url().optional(),
       featured: z.boolean().default(false),
       order: z.number().default(100),
-      status: z.enum(['active', 'past', 'idea']).default('active'),
+      status: z.enum(['active', 'past']).default('active'),
+      /** website: screenshot card that opens the live site. report: title page on the shelf. */
+      kind: z.enum(['website', 'report']).default('website'),
+      /** Reports: publication date (shown as month + year; reports sort newest first). */
+      published: z.coerce.date().optional(),
       cover: image().optional(),
       draft: z.boolean().default(false),
     }),

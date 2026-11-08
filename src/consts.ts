@@ -11,9 +11,9 @@ export const SITE = {
 
 export const NAV = [
   { href: '/projects/', label: 'Projects' },
-  { href: '/writing/', label: 'Writing' },
-  { href: '/cv/', label: 'CV' },
   { href: '/research/', label: 'Research' },
+  { href: '/cv/', label: 'CV' },
+  { href: '/writing/', label: 'Writing' },
   { href: '/art/', label: 'Art' },
 ];
 
@@ -41,6 +41,16 @@ export const SOCIAL = [
     icon: 'M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z',
   },
 ];
+
+// Sections on /projects/, in this order. Each project picks one via `group:` in its frontmatter.
+export const PROJECT_GROUPS = ['United Nations', "CRAF'd", 'Nonprofit', 'For Fun'] as const;
+
+// GitHub organisations linked at the end of each projects section.
+export const PROJECT_GITHUB: Partial<Record<(typeof PROJECT_GROUPS)[number], string[]>> = {
+  'United Nations': ['united-nations', 'UN-EOSG-Analytics'],
+  "CRAF'd": ['UN-CRAFd'],
+  Nonprofit: ['SocialChangeLab'],
+};
 
 // Shown in the footer.
 export const STACK = [

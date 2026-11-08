@@ -4,6 +4,7 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
   color-scheme: light dark;
 }
 
@@ -57,3 +58,5 @@ hr { border: 0; border-top: 1px solid var(--color-rule); margin: var(--space-5) 
   position: absolute; width: 1px; height: 1px; overflow: hidden;
   clip: rect(0 0 0 0); white-space: nowrap;
 }
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

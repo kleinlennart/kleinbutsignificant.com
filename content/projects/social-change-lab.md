@@ -1,12 +1,12 @@
 ---
 title: Social Change Lab
+group: Nonprofit
 summary: "TODO: research fellowship at the Social Change Lab."
 org: Social Change Lab
 role: Research Fellow
 years: TODO
 url: https://www.socialchangelab.org/
-featured: true
-order: 3
+order: 2
 status: past
 cover: ./images/social-change-lab.jpg
 ---
