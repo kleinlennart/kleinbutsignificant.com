@@ -20,8 +20,14 @@ body {
 
 img, svg, video, iframe { max-width: 100%; height: auto; }
 
-a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
-a:hover { color: var(--color-accent); text-decoration-thickness: 2px; }
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--color-link-line);
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color 0.15s ease;
+}
+a:hover { color: var(--color-accent); text-decoration-color: currentColor; }
 
 h1, h2, h3, h4 { line-height: 1.15; font-weight: 650; letter-spacing: -0.01em; }
 

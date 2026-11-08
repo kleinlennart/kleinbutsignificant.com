@@ -29,6 +29,7 @@
   --color-fg: #111111;
   --color-muted: #6b6b6b;
   --color-rule: #e2e2e2;
+  --color-link-line: #c4c4c4; /* faint link underline */
   --color-code-bg: #f5f5f3;
   /* Black & white for now. To bring colour back, set e.g. --color-accent: #0ea5e9; */
   --color-accent: var(--color-fg);
@@ -40,6 +41,7 @@
     --color-fg: #ededed;
     --color-muted: #9a9a9a;
     --color-rule: #2a2a2a;
+    --color-link-line: #555555;
     --color-code-bg: #1a1a1a;
   }
 }

@@ -31,7 +31,7 @@ const recent = (await getWriting()).slice(0, 6);
       </div>
     )}
     <h1>{home.data.title}</h1>
-    <div class="prose"><Content /></div>
+    <div class="intro-text"><Content /></div>
   </section>
 
   <section>
@@ -48,8 +48,8 @@ const recent = (await getWriting()).slice(0, 6);
 <style>
   .intro { margin-bottom: var(--space-6); }
   .portrait {
-    width: 8rem;
-    height: 8rem;
+    width: 9rem;
+    height: 9rem;
     border-radius: 50%;
     overflow: hidden;
     margin-bottom: var(--space-4);
@@ -62,10 +62,19 @@ const recent = (await getWriting()).slice(0, 6);
     object-fit: cover;
   }
   @media (min-width: 40rem) {
-    .portrait { width: 10rem; height: 10rem; }
+    .portrait { width: 12.5rem; height: 12.5rem; } /* 200px */
   }
   .intro h1 { font-size: var(--step-4); letter-spacing: -0.03em; margin: 0 0 var(--space-4); }
-  .intro .prose { font-size: var(--step-1); }
+  .intro-text {
+    max-width: 38rem;
+    font-family: var(--font-sans);
+    font-size: clamp(1.125rem, 1rem + 0.45vw, 1.3125rem);
+    line-height: 1.5;
+    letter-spacing: -0.003em;
+  }
+  .intro-text :global(p) { margin: 0; }
+  .intro-text :global(p + p) { margin-top: 0.85em; }
+  .intro-text :global(strong) { font-weight: 600; }
   section + section { margin-top: var(--space-6); }
   .section-title {
     font-size: 0.8rem;
