@@ -21,13 +21,13 @@ export async function getArt() {
   return items.sort((a, b) => a.data.order - b.data.order);
 }
 
-/** GitHub edit URL for an entry; points at the .qmd/.Rmd source when one sits next to the .md. */
-export function editUrl(entry: { filePath?: string }) {
+/** GitHub file URL for an entry (used by the footer "Source" link); prefers the .qmd/.Rmd source next to the .md. */
+export function sourceUrl(entry: { filePath?: string }) {
   if (!entry.filePath) return undefined;
   const rel = path.relative('content', entry.filePath);
   const stem = entry.filePath.replace(/\.(md|mdx)$/, '');
   const source = ['.qmd', '.Rmd'].find((ext) => fs.existsSync(stem + ext));
-  return `${SITE.editBase}/${source ? rel.replace(/\.(md|mdx)$/, source) : rel}`;
+  return `${SITE.sourceBase}/${source ? rel.replace(/\.(md|mdx)$/, source) : rel}`;
 }
 
 export function hasSource(entry: { filePath?: string }) {

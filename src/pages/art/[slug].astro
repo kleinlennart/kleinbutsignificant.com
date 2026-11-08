@@ -2,7 +2,7 @@
 import { render, type CollectionEntry } from 'astro:content';
 import Article from '../../layouts/Article.astro';
 import Label from '../../components/Label.astro';
-import { editUrl, getArt } from '../../lib/content';
+import { sourceUrl, getArt } from '../../lib/content';
 
 export async function getStaticPaths() {
   const works = await getArt();
@@ -15,7 +15,7 @@ const d = work.data;
 const link = d.link ? `<a href="${d.link}" target="_blank" rel="noopener noreferrer">${new URL(d.link).host.replace(/^www\./, '')}</a>` : undefined;
 ---
 
-<Article title={d.title} kicker="Art" edit={editUrl(work)}>
+<Article title={d.title} kicker="Art" source={sourceUrl(work)}>
   <Label slot="meta" items={[['Year', d.year ? String(d.year) : undefined], ['Medium', d.medium], ['With', d.credits], ['Link', link]]} />
   <Content />
 </Article>

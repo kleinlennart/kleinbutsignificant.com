@@ -1,10 +1,6 @@
 ---
-import { EMAIL, SOCIAL } from '../consts';
-
-// Spam protection: the address is never in the HTML as text or a mailto: link. We ship it
-// reversed + base64-encoded, and a small script builds the mailto: link on first hover,
-// focus or click.
-const encodedEmail = Buffer.from(EMAIL.join('@').split('').reverse().join('')).toString('base64');
+import { SOCIAL } from '../consts';
+// The email link is spam-protected by the script in Base.astro (data-email).
 
 // Envelope (filled, matches the other icons), 24×24.
 const MAIL_ICON =
@@ -22,7 +18,7 @@ const MAIL_ICON =
     </li>
   ))}
   <li>
-    <a href="#" data-m={encodedEmail} aria-label="Email" title="Email">
+    <a href="#email" data-email aria-label="Email" title="Email">
       <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor" fill-rule="evenodd">
         <path d={MAIL_ICON} />
       </svg>
@@ -30,21 +26,6 @@ const MAIL_ICON =
   </li>
 </ul>
 
-<script>
-  const decode = (s: string) => atob(s).split('').reverse().join('');
-  document.querySelectorAll<HTMLAnchorElement>('a[data-m]').forEach((a) => {
-    const reveal = () => {
-      const m = a.dataset.m;
-      if (!m) return;
-      a.href = `mailto:${decode(m)}`;
-      delete a.dataset.m;
-    };
-    a.addEventListener('pointerenter', reveal, { once: true });
-    a.addEventListener('focus', reveal, { once: true });
-    // A click before hover/focus (e.g. touch) still works: href is set before navigation.
-    a.addEventListener('click', reveal);
-  });
-</script>
 
 <style>
   .socials {

@@ -2,7 +2,11 @@
 import '@fontsource-variable/source-sans-3';
 import '@fontsource-variable/source-serif-4';
 import '../styles/global.css';
-import { SITE, NAV, STACK } from '../consts';
+import { SITE, NAV, STACK, EMAIL } from '../consts';
+
+// Spam protection for email links: the address is never in the HTML. Links written as
+// [text](#email) in Markdown (or with data-email) get a mailto: only on first hover/focus/click.
+const encodedEmail = Buffer.from(EMAIL.join('@').split('').reverse().join('')).toString('base64');
 
 interface Props {
   title?: string;
@@ -11,9 +15,11 @@ interface Props {
   description?: string;
   /** Absolute URL of a share image (Open Graph). */
   image?: string;
+  /** This page's source file on GitHub; the footer "Source" link points here (else the repo). */
+  source?: string;
 }
 
-const { title, fullTitle, description = SITE.description, image } = Astro.props;
+const { title, fullTitle, description = SITE.description, image, source } = Astro.props;
 const pageTitle = fullTitle ?? (title ? `${title} · ${SITE.title}` : SITE.title);
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const path = Astro.url.pathname;
@@ -60,8 +66,21 @@ const path = Astro.url.pathname;
     <footer class="site-footer wrap">
       <span class="grp">Built with {STACK.map((t, i) => (
         <>{i > 0 && (i === STACK.length - 1 ? ' & ' : ', ')}<a href={t.href} target="_blank" rel="noopener noreferrer">{t.label}</a></>
-      ))}</span><span class="sep"> · </span><span class="grp"><a href={SITE.repo} target="_blank" rel="noopener noreferrer">Source</a> · <a href="/rss.xml">RSS</a> · © {new Date().getFullYear()}</span>
+      ))}</span><span class="sep"> · </span><span class="grp"><a href={source ?? SITE.repo} target="_blank" rel="noopener noreferrer">Source</a> · <a href="/rss.xml">RSS</a> · © {new Date().getFullYear()}</span>
     </footer>
+    <script is:inline define:vars={{ encodedEmail }}>
+      const decode = (s) => atob(s).split('').reverse().join('');
+      document.querySelectorAll('a[href="#email"], a[data-email]').forEach((a) => {
+        const reveal = () => {
+          if (a.dataset.revealed) return;
+          a.href = `mailto:${decode(encodedEmail)}`;
+          a.dataset.revealed = '1';
+        };
+        a.addEventListener('pointerenter', reveal, { once: true });
+        a.addEventListener('focus', reveal, { once: true });
+        a.addEventListener('click', reveal);
+      });
+    </script>
   </body>
 </html>
 

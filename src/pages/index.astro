@@ -4,6 +4,7 @@ import { Image, getImage } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import SocialIcons from '../components/SocialIcons.astro';
 import { SITE, SOCIAL } from '../consts';
+import { sourceUrl } from '../lib/content';
 
 const home = await getEntry('pages', 'home');
 if (!home) throw new Error('content/pages/home.md is missing');
@@ -33,7 +34,7 @@ const person = data.person && {
 };
 ---
 
-<Base fullTitle={data.seoTitle} description={data.description} image={portraitUrl}>
+<Base fullTitle={data.seoTitle} description={data.description} image={portraitUrl} source={sourceUrl(home)}>
   {person && <script slot="head" type="application/ld+json" set:html={JSON.stringify(person)} />}
   <section class="intro">
     {home.data.portrait && (

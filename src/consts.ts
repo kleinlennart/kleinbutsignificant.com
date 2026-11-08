@@ -6,7 +6,8 @@ export const SITE = {
   description: 'Lennart Klein: data & AI, politics, and the occasional experiment.',
   author: 'Lennart Klein',
   repo: 'https://github.com/kleinlennart/kleinbutsignificant.com',
-  editBase: 'https://github.com/kleinlennart/kleinbutsignificant.com/edit/master/content',
+  /** GitHub file view for content files; the footer "Source" link points to the current page's file. */
+  sourceBase: 'https://github.com/kleinlennart/kleinbutsignificant.com/blob/master/content',
 };
 
 export const NAV = [

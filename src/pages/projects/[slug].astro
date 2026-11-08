@@ -3,7 +3,7 @@ import { render, type CollectionEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import Article from '../../layouts/Article.astro';
 import Label from '../../components/Label.astro';
-import { editUrl, getProjects } from '../../lib/content';
+import { sourceUrl, getProjects } from '../../lib/content';
 
 export async function getStaticPaths() {
   const items = await getProjects();
@@ -17,7 +17,7 @@ const link = (href?: string) => (href ? `<a href="${href}" target="_blank" rel="
 const summary = d.summary.startsWith('TODO') ? undefined : d.summary;
 ---
 
-<Article title={d.title} description={summary} kicker="Project" draft={d.draft} edit={editUrl(project)}>
+<Article title={d.title} description={summary} kicker="Project" draft={d.draft} source={sourceUrl(project)}>
   <Fragment slot="meta">
     <Label items={[['Organisation', d.org], ['Role', d.role], ['Years', d.years], ['Link', link(d.url)], ['Code', link(d.repo)]]} />
     {d.cover && <Image src={d.cover} alt="" class="cover" widths={[480, 960]} sizes="(min-width: 40rem) 36rem, 100vw" />}
