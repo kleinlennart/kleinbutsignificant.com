@@ -16,6 +16,7 @@ const writing = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
+    /** Last substantial revision; shown next to the original `date`, which stays the publish date. */
     updated: z.coerce.date().optional(),
     description: z.string().optional(),
     tags: z.array(z.string()).default([]),

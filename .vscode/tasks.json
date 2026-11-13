@@ -137,6 +137,16 @@
       "args": ["render", { "value": "${file}", "quoting": "weak" }],
       "presentation": { "reveal": "always", "clear": true },
       "problemMatcher": []
+    },
+    {
+      "label": "watch post",
+      "detail": "Re-render the open .qmd/.Rmd on every save (Quarto preview without a server); pnpm dev shows it live",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["watch", { "value": "${file}", "quoting": "weak" }],
+      "isBackground": true,
+      "presentation": { "reveal": "always", "clear": true },
+      "problemMatcher": []
     }
   ],
   "inputs": [

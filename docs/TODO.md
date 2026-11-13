@@ -20,3 +20,6 @@ The test render left one line in .gitignore. Quarto added **/*.quarto_ipynb the 
 
 - add bibliography and citations from Zotero -- which style?
 - lock emoji style?
+
+
+- possible to have Quarto hot reload with Astro page??

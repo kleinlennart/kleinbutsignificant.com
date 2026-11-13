@@ -3,6 +3,8 @@
 //
 //   pnpm render <slug>                 # content/writing/<slug>/<slug>.qmd (or .Rmd)
 //   pnpm render path/to/post.qmd       # a file path (the VS Code task passes the open file)
+//   pnpm watch <slug>                  # = render --watch: re-render on every save, until Ctrl+C.
+//                                      #   With `pnpm dev` running, the page reloads by itself.
 //
 // Then commit <slug>.md, <slug>.markdown_strict_files/ and _freeze/: Vercel never runs R or Python.
 import fs from 'node:fs';
@@ -11,10 +13,12 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const arg = process.argv.slice(2).find((a) => a !== '--');
+const args = process.argv.slice(2).filter((a) => a !== '--');
+const watch = args.includes('--watch');
+const arg = args.find((a) => !a.startsWith('--'));
 
 if (!arg) {
-  console.error('Usage: pnpm render <slug> | <file.qmd>');
+  console.error('Usage: pnpm render <slug> | <file.qmd>    pnpm watch <slug> | <file.qmd>');
   process.exit(1);
 }
 
@@ -32,6 +36,16 @@ if (!file || !fs.existsSync(file)) {
 }
 
 const rel = path.relative(ROOT, file);
-console.log(`Rendering ${rel} …`);
-const r = spawnSync('uv', ['run', 'quarto', 'render', rel], { cwd: ROOT, stdio: 'inherit' });
+const slug = path.basename(path.dirname(file));
+const quarto = watch
+  ? // Renders once, then again on every save; no Quarto server, Astro's dev server shows it.
+    ['preview', rel, '--no-serve', '--no-browser']
+  : ['render', rel];
+
+console.log(
+  watch
+    ? `Watching ${rel}: saves re-render it. Preview: http://localhost:4321/writing/${slug}/ (Ctrl+C to stop)`
+    : `Rendering ${rel} …`,
+);
+const r = spawnSync('uv', ['run', 'quarto', ...quarto], { cwd: ROOT, stdio: 'inherit' });
 process.exit(r.status ?? 1);

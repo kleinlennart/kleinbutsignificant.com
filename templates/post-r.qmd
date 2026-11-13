@@ -1,6 +1,7 @@
 ---
 title: {{title}}
 date: '{{date}}'
+# updated: 'YYYY-MM-DD'   # after a revision; `date` stays the publish date
 # description: One sentence, shown under the title.
 tags: [R] # lowercase; names as spelled: R, Python, Quarto, GitHub
 draft: true # remove to publish (drafts only show in `pnpm dev`)

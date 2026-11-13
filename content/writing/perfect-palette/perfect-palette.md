@@ -1,11 +1,13 @@
 ---
-title: In Search for the Perfect Palette
+title: In Search of the Perfect Palette
 date: '2023-08-04'
+updated: '2026-11-13'
 tags:
   - data science
   - R
-  - data-viz
+  - data vizualisation
   - color
+  - color blindness
 archive: true
 fig-height: 4.5
 execute:
@@ -21,23 +23,27 @@ Three types of palettes:
 
 3.  smooth
 
+### The {ggplot2} default colors
+
 ``` r
-mpg %>%
-  ggplot(aes(x = displ, y = hwy)) +
+ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(color = class)) +
   geom_smooth()
 ```
 
-![](perfect-palette.markdown_strict_files/figure-markdown_strict/plot%20normal%20color-1.svg)
+![](perfect-palette.markdown_strict_files/figure-markdown_strict/plot-default-1.svg)
+
+-\> not color blindness friendly
+
+### Quick switch to `Okabe-Ito`
 
 ``` r
-mpg %>%
-  ggplot(aes(x = displ, y = hwy)) +
+ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(color = class)) +
   geom_smooth() +
-  paletteer::scale_color_paletteer_d("colorblindr::OkabeIto_black")
+  scale_colour_manual(values = palette.colors(palette = "Okabe-Ito"))
 ```
 
-![](perfect-palette.markdown_strict_files/figure-markdown_strict/plot%20OkabeIto-1.svg)
+![](perfect-palette.markdown_strict_files/figure-markdown_strict/plot-okabe-ito-1.svg)
 
-From @wong2011PointsView.
+The Nature standard in academic publishing. See @wong2011PointsView.

@@ -89,6 +89,49 @@
   padding: 0.1em 0.3em;
   border-radius: 3px;
 }
+/* Copy button, added by the script in Article.astro. Shows on hover/focus; always on touch screens. */
+.prose .code-block {
+  position: relative;
+}
+.prose .copy-code {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  color: var(--color-faint);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity 120ms,
+    color 120ms;
+}
+.prose .copy-code svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+.prose .code-block:hover .copy-code,
+.prose .copy-code:focus-visible {
+  opacity: 1;
+}
+.prose .copy-code:hover {
+  color: var(--color-muted);
+}
+.prose .copy-code.copied {
+  color: var(--color-fg);
+}
+@media (hover: none) {
+  .prose .copy-code {
+    opacity: 1;
+  }
+}
+
 .prose pre {
   font-size: 0.85rem;
   line-height: 1.5;

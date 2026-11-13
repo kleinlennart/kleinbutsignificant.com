@@ -12,6 +12,7 @@
     "dev:public": "DRAFTS=hide astro dev",
     "new": "node scripts/new-post.mjs",
     "render": "node scripts/render-post.mjs",
+    "watch": "node scripts/render-post.mjs --watch",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",

@@ -34,6 +34,50 @@ const { title, description, kicker, draft, source } = Astro.props;
   </article>
 </Base>
 
+<script>
+  // Copy button on every code block (Markdown, MDX and rendered Quarto posts alike).
+  // The <pre> scrolls sideways, so the button sits on a wrapper, not inside it. Styles: prose.css.
+  // Icons: GitHub Octicons copy-16 / check-16 (MIT).
+  const svg = (d: string) =>
+    `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">${d}</svg>`;
+  const COPY = svg(
+    '<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/>',
+  );
+  const CHECK = svg(
+    '<path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/>',
+  );
+
+  for (const pre of document.querySelectorAll<HTMLPreElement>('.prose pre')) {
+    const wrap = document.createElement('div');
+    wrap.className = 'code-block';
+    pre.replaceWith(wrap);
+    wrap.append(pre);
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'copy-code';
+    button.innerHTML = COPY;
+    button.title = 'Copy';
+    button.setAttribute('aria-label', 'Copy code to clipboard');
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText((pre.querySelector('code') ?? pre).innerText);
+      } catch {
+        return; // no clipboard access (e.g. insecure context): leave the button as it is
+      }
+      button.innerHTML = CHECK;
+      button.classList.add('copied');
+      button.setAttribute('aria-label', 'Copied');
+      setTimeout(() => {
+        button.innerHTML = COPY;
+        button.classList.remove('copied');
+        button.setAttribute('aria-label', 'Copy code to clipboard');
+      }, 1500);
+    });
+    wrap.append(button);
+  }
+</script>
+
 <style>
   .article-header {
     max-width: calc(var(--measure) + 6rem);
