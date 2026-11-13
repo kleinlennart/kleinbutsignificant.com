@@ -1,0 +1,95 @@
+// Run with Terminal → Run Task… (or ⇧⌘P "Tasks: Run Task").
+// ⇧⌘B runs the default build task; "Tasks: Run Test Task" runs verify.
+// typecheck and lint report problems into the Problems panel.
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "dev",
+      "detail": "Astro dev server on http://localhost:4321 (drafts visible)",
+      "type": "shell",
+      "command": "pnpm dev",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "build",
+      "detail": "Static build into dist/ (drafts excluded)",
+      "type": "shell",
+      "command": "pnpm build",
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "preview",
+      "detail": "Build, then serve dist/ locally",
+      "type": "shell",
+      "command": "pnpm preview",
+      "dependsOn": "build",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "typecheck",
+      "detail": "astro check: TypeScript and content schemas",
+      "type": "shell",
+      "command": "pnpm check",
+      "presentation": { "clear": true },
+      "problemMatcher": {
+        "owner": "astro-check",
+        "fileLocation": ["relative", "${workspaceFolder}"],
+        "pattern": {
+          "regexp": "^(.+?):(\\d+):(\\d+) - (error|warning) (\\w+\\(\\d+\\)): (.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "code": 5,
+          "message": 6
+        }
+      }
+    },
+    {
+      "label": "lint",
+      "detail": "oxlint",
+      "type": "shell",
+      "command": "pnpm lint --format=unix",
+      "presentation": { "clear": true },
+      "problemMatcher": {
+        "owner": "oxlint",
+        "fileLocation": ["relative", "${workspaceFolder}"],
+        "pattern": {
+          "regexp": "^(.+?):(\\d+):(\\d+): (.*) \\[(Error|Warning)/(.+)\\]$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "message": 4,
+          "severity": 5,
+          "code": 6
+        }
+      }
+    },
+    {
+      "label": "format",
+      "detail": "Prettier: rewrite code files in place (content/ and Markdown are skipped)",
+      "type": "shell",
+      "command": "pnpm format",
+      "problemMatcher": []
+    },
+    {
+      "label": "format:check",
+      "detail": "Prettier: list files that are not formatted, change nothing",
+      "type": "shell",
+      "command": "pnpm format:check",
+      "presentation": { "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "verify",
+      "detail": "typecheck + lint + format:check",
+      "dependsOn": ["typecheck", "lint", "format:check"],
+      "group": { "kind": "test", "isDefault": true },
+      "problemMatcher": []
+    }
+  ]
+}

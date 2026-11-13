@@ -13,7 +13,12 @@ const { Content } = await render(post);
 const source = hasSource(post);
 ---
 
-<Article title={post.data.title} description={post.data.description} draft={post.data.draft} source={sourceUrl(post)}>
+<Article
+  title={post.data.title}
+  description={post.data.description}
+  draft={post.data.draft}
+  source={sourceUrl(post)}
+>
   <p slot="meta" class="meta">
     <time datetime={isoDate(post.data.date)}>{fmtDate(post.data.date)}</time>
     {post.data.tags.length > 0 && <span> · {post.data.tags.join(', ')}</span>}
@@ -23,5 +28,9 @@ const source = hasSource(post);
 </Article>
 
 <style>
-  .meta { margin: var(--space-3) 0 0; font-size: var(--step--1); color: var(--color-muted); }
+  .meta {
+    margin: var(--space-3) 0 0;
+    font-size: var(--step--1);
+    color: var(--color-muted);
+  }
 </style>

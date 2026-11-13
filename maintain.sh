@@ -24,4 +24,5 @@ rv upgrade
 
 ## Sanity check
 pnpm check
+pnpm lint
 pnpm build

@@ -12,6 +12,9 @@ v1 (2021–2024, Hugo + PaperMod + blogdown) lives on as tag [`v1`](../../tree/v
 pnpm install
 pnpm dev         # http://localhost:4321
 pnpm build       # static site in dist/
+pnpm check       # types + content schemas
+pnpm lint        # oxlint
+pnpm format      # Prettier
 ```
 
 ## Write

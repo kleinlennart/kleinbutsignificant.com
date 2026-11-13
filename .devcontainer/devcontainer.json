@@ -1,31 +1,31 @@
 // Codespaces / devcontainer for the v2 (Astro) site.
 // Untested since the v2 migration: check the image tag matches r_version in rproject.toml.
 {
-	"name": "kleinbutsignificant v2",
-	// https://github.com/rocker-org/devcontainer-images
-	"image": "ghcr.io/rocker-org/devcontainer/r-ver:4.6",
+  "name": "kleinbutsignificant v2",
+  // https://github.com/rocker-org/devcontainer-images
+  "image": "ghcr.io/rocker-org/devcontainer/r-ver:4.6",
 
-	"features": {
-		// https://github.com/devcontainers/features/tree/main/src/node
-		"ghcr.io/devcontainers/features/node:1": { "version": "24", "pnpmVersion": "11.25.0" },
-		// https://github.com/rocker-org/devcontainer-features/tree/main/src/quarto-cli
-		"ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": { "installTinyTex": false }
-	},
+  "features": {
+    // https://github.com/devcontainers/features/tree/main/src/node
+    "ghcr.io/devcontainers/features/node:1": { "version": "24", "pnpmVersion": "11.25.0" },
+    // https://github.com/rocker-org/devcontainer-features/tree/main/src/quarto-cli
+    "ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": { "installTinyTex": false }
+  },
 
-	"forwardPorts": [4321],
-	"portsAttributes": { "4321": { "label": "Astro dev" } },
+  "forwardPorts": [4321],
+  "portsAttributes": { "4321": { "label": "Astro dev" } },
 
-	"postCreateCommand": "bash ./.devcontainer/postCreateCommand.sh",
+  "postCreateCommand": "bash ./.devcontainer/postCreateCommand.sh",
 
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"astro-build.astro-vscode",
-				"quarto.quarto",
-				"REditorSupport.r",
-				"ms-python.python",
-				"ms-toolsai.jupyter"
-			]
-		}
-	}
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "astro-build.astro-vscode",
+        "quarto.quarto",
+        "REditorSupport.r",
+        "ms-python.python",
+        "ms-toolsai.jupyter"
+      ]
+    }
+  }
 }

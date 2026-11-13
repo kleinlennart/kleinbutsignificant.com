@@ -1,0 +1,16 @@
+# Prettier also skips everything in .gitignore.
+
+# Writing, not code: the Obsidian vault, Quarto output, notes and docs.
+content/
+notes/
+*.md
+
+# Static files served as-is (including standalone HTML).
+public/
+
+# Generated or managed by tools.
+pnpm-lock.yaml
+skills-lock.json
+rv/
+.agents/
+.claude/

@@ -13,18 +13,47 @@ export async function getStaticPaths() {
 const { project } = Astro.props as { project: CollectionEntry<'projects'> };
 const { Content } = await render(project);
 const d = project.data;
-const link = (href?: string) => (href ? `<a href="${href}" target="_blank" rel="noopener noreferrer">${new URL(href).host.replace(/^www\./, '')}</a>` : undefined);
+const link = (href?: string) =>
+  href
+    ? `<a href="${href}" target="_blank" rel="noopener noreferrer">${new URL(href).host.replace(/^www\./, '')}</a>`
+    : undefined;
 const summary = d.summary.startsWith('TODO') ? undefined : d.summary;
 ---
 
-<Article title={d.title} description={summary} kicker="Project" draft={d.draft} source={sourceUrl(project)}>
+<Article
+  title={d.title}
+  description={summary}
+  kicker="Project"
+  draft={d.draft}
+  source={sourceUrl(project)}
+>
   <Fragment slot="meta">
-    <Label items={[['Organisation', d.org], ['Role', d.role], ['Years', d.years], ['Link', link(d.url)], ['Code', link(d.repo)]]} />
-    {d.cover && <Image src={d.cover} alt="" class="cover" widths={[480, 960]} sizes="(min-width: 40rem) 36rem, 100vw" />}
+    <Label
+      items={[
+        ['Organisation', d.org],
+        ['Role', d.role],
+        ['Years', d.years],
+        ['Link', link(d.url)],
+        ['Code', link(d.repo)],
+      ]}
+    />
+    {d.cover && (
+      <Image
+        src={d.cover}
+        alt=""
+        class="cover"
+        widths={[480, 960]}
+        sizes="(min-width: 40rem) 36rem, 100vw"
+      />
+    )}
   </Fragment>
   <Content />
 </Article>
 
 <style>
-  .cover { max-width: var(--measure); height: auto; margin-top: var(--space-4); }
+  .cover {
+    max-width: var(--measure);
+    height: auto;
+    margin-top: var(--space-4);
+  }
 </style>

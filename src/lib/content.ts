@@ -13,7 +13,9 @@ export async function getWriting() {
 
 export async function getProjects() {
   const items = await getCollection('projects', ({ data }) => visible(data.draft));
-  return items.sort((a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title));
+  return items.sort(
+    (a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title),
+  );
 }
 
 export async function getArt() {
@@ -37,7 +39,12 @@ export function hasSource(entry: { filePath?: string }) {
 }
 
 export const fmtDate = (d: Date) =>
-  d.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' });
+  d.toLocaleDateString('en-GB', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    timeZone: 'UTC',
+  });
 
 export const isoDate = (d: Date) => d.toISOString().slice(0, 10);
 

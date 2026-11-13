@@ -46,7 +46,9 @@ export default function rehypeSidenotes() {
 
     visit(tree, 'element', (node, index, parent) => {
       if (!isEl(node, 'sup') || !parent || index === undefined) return;
-      const a = node.children.find((c) => isEl(c, 'a') && 'dataFootnoteRef' in (c.properties ?? {}));
+      const a = node.children.find(
+        (c) => isEl(c, 'a') && 'dataFootnoteRef' in (c.properties ?? {}),
+      );
       if (!a) return;
       const id = String(a.properties.href ?? '').replace(/^#/, '');
       const li = notes.get(id);
@@ -56,7 +58,12 @@ export default function rehypeSidenotes() {
         tagName: 'span',
         properties: { className: ['sidenote'], role: 'note' },
         children: [
-          { type: 'element', tagName: 'span', properties: { className: ['sidenote-num'] }, children: [{ type: 'text', value: textOf(a) }] },
+          {
+            type: 'element',
+            tagName: 'span',
+            properties: { className: ['sidenote-num'] },
+            children: [{ type: 'text', value: textOf(a) }],
+          },
           { type: 'text', value: ' ' },
           ...inlineContent(li),
         ],

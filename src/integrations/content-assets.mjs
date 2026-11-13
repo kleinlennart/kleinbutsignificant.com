@@ -11,11 +11,22 @@ import { fileURLToPath } from 'node:url';
 
 const SOURCE_EXT = new Set(['.md', '.mdx', '.qmd', '.Rmd', '.rmd', '.ipynb']);
 const MIME = {
-  '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.gif': 'image/gif',
-  '.svg': 'image/svg+xml', '.webp': 'image/webp', '.avif': 'image/avif',
-  '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8',
-  '.js': 'text/javascript; charset=utf-8', '.json': 'application/json', '.csv': 'text/csv; charset=utf-8',
-  '.woff': 'font/woff', '.woff2': 'font/woff2', '.pdf': 'application/pdf', '.rds': 'application/octet-stream',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.gif': 'image/gif',
+  '.svg': 'image/svg+xml',
+  '.webp': 'image/webp',
+  '.avif': 'image/avif',
+  '.html': 'text/html; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.js': 'text/javascript; charset=utf-8',
+  '.json': 'application/json',
+  '.csv': 'text/csv; charset=utf-8',
+  '.woff': 'font/woff',
+  '.woff2': 'font/woff2',
+  '.pdf': 'application/pdf',
+  '.rds': 'application/octet-stream',
 };
 
 const skip = (name) => name.startsWith('.') || name.endsWith('_cache');
@@ -49,9 +60,13 @@ export default function contentAssets({ sections = ['writing'] } = {}) {
                     if (!m || !sections.includes(m[1])) return next();
                     const file = path.join(root, 'content', m[1], m[2], m[3]);
                     const base = path.join(root, 'content', m[1], m[2]);
-                    if (!file.startsWith(base + path.sep) || SOURCE_EXT.has(path.extname(file))) return next();
+                    if (!file.startsWith(base + path.sep) || SOURCE_EXT.has(path.extname(file)))
+                      return next();
                     if (!fs.existsSync(file) || !fs.statSync(file).isFile()) return next();
-                    res.setHeader('Content-Type', MIME[path.extname(file).toLowerCase()] ?? 'application/octet-stream');
+                    res.setHeader(
+                      'Content-Type',
+                      MIME[path.extname(file).toLowerCase()] ?? 'application/octet-stream',
+                    );
                     fs.createReadStream(file).pipe(res);
                   });
                 },

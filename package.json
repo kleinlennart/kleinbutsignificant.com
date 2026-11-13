@@ -12,6 +12,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "lint": "oxlint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "astro": "astro"
   },
   "dependencies": {
@@ -30,6 +33,9 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
+    "oxlint": "^1.93.0",
+    "prettier": "^3.10.1",
+    "prettier-plugin-astro": "^1.1.2",
     "typescript": "^6.0.3"
   }
 }

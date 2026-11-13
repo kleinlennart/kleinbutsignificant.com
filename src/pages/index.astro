@@ -14,11 +14,19 @@ const linkedin = SOCIAL.find((s) => s.label === 'LinkedIn');
 
 // Share/structured-data image: a 600px version of the headshot.
 const portraitUrl = data.portrait
-  ? new URL((await getImage({ src: data.portrait, width: 600, height: 600, fit: 'cover', format: 'jpg' })).src, Astro.site).href
+  ? new URL(
+      (await getImage({ src: data.portrait, width: 600, height: 600, fit: 'cover', format: 'jpg' }))
+        .src,
+      Astro.site,
+    ).href
   : undefined;
 
 // schema.org Person (JSON-LD), driven by the `person` block in content/pages/home.md.
-const org = (o: { name: string; url?: string }) => ({ '@type': 'Organization', name: o.name, ...(o.url && { url: o.url }) });
+const org = (o: { name: string; url?: string }) => ({
+  '@type': 'Organization',
+  name: o.name,
+  ...(o.url && { url: o.url }),
+});
 const person = data.person && {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -34,11 +42,22 @@ const person = data.person && {
 };
 ---
 
-<Base fullTitle={data.seoTitle} description={data.description} image={portraitUrl} source={sourceUrl(home)}>
+<Base
+  fullTitle={data.seoTitle}
+  description={data.description}
+  image={portraitUrl}
+  source={sourceUrl(home)}
+>
   {person && <script slot="head" type="application/ld+json" set:html={JSON.stringify(person)} />}
   <section class="intro">
     {home.data.portrait && (
-      <a class="portrait" href={linkedin?.href} target="_blank" rel="noopener noreferrer me" aria-label="Lennart Klein on LinkedIn (opens in a new tab)">
+      <a
+        class="portrait"
+        href={linkedin?.href}
+        target="_blank"
+        rel="noopener noreferrer me"
+        aria-label="Lennart Klein on LinkedIn (opens in a new tab)"
+      >
         <Image
           src={home.data.portrait}
           alt="Portrait of Lennart Klein"
@@ -52,16 +71,28 @@ const person = data.person && {
     )}
     <div class="intro-body">
       <h1>{home.data.title}</h1>
-      <div class="intro-text"><Content /></div>
+      <div class="intro-text">
+        <Content />
+      </div>
       {data.interests.length > 0 && (
         <p class="interests">
           <span class="label">Research interests</span>
           {data.interests.map((topic, i) => (
-            <>{i > 0 && <span class="dot" aria-hidden="true"> · </span>}<span class="topic">{topic}</span></>
+            <>
+              {i > 0 && (
+                <span class="dot" aria-hidden="true">
+                  {' '}
+                  ·{' '}
+                </span>
+              )}
+              <span class="topic">{topic}</span>
+            </>
           ))}
         </p>
       )}
-      <div class="socials"><SocialIcons /></div>
+      <div class="socials">
+        <SocialIcons />
+      </div>
     </div>
   </section>
 </Base>
@@ -69,7 +100,9 @@ const person = data.person && {
 <style>
   /* Phones/tablets: stacked. Desktop (>= 56rem): headshot left of the text, so the page
      fits one laptop screen without scrolling. */
-  .intro { padding-top: var(--space-3); }
+  .intro {
+    padding-top: var(--space-3);
+  }
   .portrait {
     display: block;
     width: 9rem;
@@ -77,7 +110,9 @@ const person = data.person && {
     border-radius: 50%;
     overflow: hidden;
     margin-bottom: var(--space-4);
-    box-shadow: 0 1px 2px rgb(0 0 0 / 0.08), 0 6px 18px rgb(0 0 0 / 0.12);
+    box-shadow:
+      0 1px 2px rgb(0 0 0 / 0.08),
+      0 6px 18px rgb(0 0 0 / 0.12);
   }
   .portrait :global(img) {
     display: block;
@@ -85,7 +120,11 @@ const person = data.person && {
     height: 100%;
     object-fit: cover;
   }
-  .intro h1 { font-size: var(--step-4); letter-spacing: -0.03em; margin: 0 0 var(--space-4); }
+  .intro h1 {
+    font-size: var(--step-4);
+    letter-spacing: -0.03em;
+    margin: 0 0 var(--space-4);
+  }
   .intro-text {
     max-width: 40rem;
     font-family: var(--font-sans);
@@ -93,12 +132,21 @@ const person = data.person && {
     line-height: 1.5;
     letter-spacing: -0.003em;
   }
-  .intro-text :global(p) { margin: 0; }
-  .intro-text :global(p + p) { margin-top: 0.85em; }
+  .intro-text :global(p) {
+    margin: 0;
+  }
+  .intro-text :global(p + p) {
+    margin-top: 0.85em;
+  }
   /* In home.md: **[Place](url)** = where you worked/studied (semibold, the main emphasis);
      *Job title* = role (medium, not italic); plain [links](url) stay regular weight. */
-  .intro-text :global(strong) { font-weight: 600; }
-  .intro-text :global(em) { font-style: normal; font-weight: 500; }
+  .intro-text :global(strong) {
+    font-weight: 600;
+  }
+  .intro-text :global(em) {
+    font-style: normal;
+    font-weight: 500;
+  }
   /* Internal links (/projects/ etc.) are navigation, not references: no underline, an arrow. */
   .intro-text :global(a[href^='/']) {
     font-weight: 600;
@@ -111,8 +159,12 @@ const person = data.person && {
     margin-left: 0.25em;
     transition: transform 0.15s ease;
   }
-  .intro-text :global(a[href^='/']:hover)::after { transform: translateX(0.2em); }
-  .socials { margin-top: var(--space-4); }
+  .intro-text :global(a[href^='/']:hover)::after {
+    transform: translateX(0.2em);
+  }
+  .socials {
+    margin-top: var(--space-4);
+  }
   .interests {
     max-width: 40rem;
     margin: var(--space-4) 0 0;
@@ -129,10 +181,15 @@ const person = data.person && {
     text-transform: uppercase;
     color: var(--color-fg);
   }
-  .interests .topic { white-space: nowrap; } /* wrap between topics, never inside one */
+  .interests .topic {
+    white-space: nowrap;
+  } /* wrap between topics, never inside one */
 
   @media (min-width: 40rem) {
-    .portrait { width: 15rem; height: 15rem; } /* 240px */
+    .portrait {
+      width: 15rem;
+      height: 15rem;
+    } /* 240px */
   }
 
   @media (min-width: 56rem) {
@@ -146,11 +203,22 @@ const person = data.person && {
     }
     /* Align the photo with the top of the headline's capital letters, not its line box
        (Source Sans 3 bold at line-height 1.15: cap top sits 0.235em below the box top). */
-    .portrait { margin-bottom: 0; margin-top: calc(var(--step-4) * 0.235); }
+    .portrait {
+      margin-bottom: 0;
+      margin-top: calc(var(--step-4) * 0.235);
+    }
     /* Vertical rhythm tightens on shorter screens so the page fits without scrolling. */
-    .intro h1 { margin-bottom: clamp(var(--space-3), 2.5vh, var(--space-4)); }
-    .intro-text :global(p + p) { margin-top: clamp(0.6em, 1.2vh, 0.85em); }
-    .interests { margin-top: clamp(var(--space-3), 2.5vh, var(--space-4)); }
-    .socials { margin-top: clamp(var(--space-3), 2.5vh, var(--space-4)); }
+    .intro h1 {
+      margin-bottom: clamp(var(--space-3), 2.5vh, var(--space-4));
+    }
+    .intro-text :global(p + p) {
+      margin-top: clamp(0.6em, 1.2vh, 0.85em);
+    }
+    .interests {
+      margin-top: clamp(var(--space-3), 2.5vh, var(--space-4));
+    }
+    .socials {
+      margin-top: clamp(var(--space-3), 2.5vh, var(--space-4));
+    }
   }
 </style>

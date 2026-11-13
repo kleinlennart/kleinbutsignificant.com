@@ -12,9 +12,18 @@ const works = await getArt();
     {works.map((w) => (
       <li>
         <a href={`/art/${w.id}/`}>
-          {w.data.cover && <Image src={w.data.cover} alt="" widths={[400, 800]} sizes="(min-width: 40rem) 30vw, 100vw" />}
+          {w.data.cover && (
+            <Image
+              src={w.data.cover}
+              alt=""
+              widths={[400, 800]}
+              sizes="(min-width: 40rem) 30vw, 100vw"
+            />
+          )}
           <span class="title">{w.data.title}</span>
-          <span class="meta">{[w.data.year, w.data.medium.join(', ')].filter(Boolean).join(' · ')}</span>
+          <span class="meta">
+            {[w.data.year, w.data.medium.join(', ')].filter(Boolean).join(' · ')}
+          </span>
         </a>
       </li>
     ))}
@@ -22,7 +31,10 @@ const works = await getArt();
 </Base>
 
 <style>
-  h1 { font-size: var(--step-3); margin: 0 0 var(--space-5); }
+  h1 {
+    font-size: var(--step-3);
+    margin: 0 0 var(--space-5);
+  }
   .works {
     list-style: none;
     margin: 0;
@@ -31,10 +43,30 @@ const works = await getArt();
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
     gap: var(--space-5) var(--space-4);
   }
-  a { text-decoration: none; display: flex; flex-direction: column; gap: var(--space-1); }
-  img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; filter: grayscale(0.15); }
-  a:hover img { filter: none; }
-  a:hover .title { color: var(--color-accent); }
-  .title { font-weight: 650; margin-top: var(--space-2); }
-  .meta { font-size: var(--step--1); color: var(--color-muted); }
+  a {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    filter: grayscale(0.15);
+  }
+  a:hover img {
+    filter: none;
+  }
+  a:hover .title {
+    color: var(--color-accent);
+  }
+  .title {
+    font-weight: 650;
+    margin-top: var(--space-2);
+  }
+  .meta {
+    font-size: var(--step--1);
+    color: var(--color-muted);
+  }
 </style>

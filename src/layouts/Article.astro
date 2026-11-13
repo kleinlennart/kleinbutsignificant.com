@@ -16,8 +16,15 @@ const { title, description, kicker, draft, source } = Astro.props;
 <Base title={title} description={description} source={source}>
   <article>
     <header class="article-header">
-      {kicker && <p class="kicker"><Fragment set:html={kicker} /></p>}
-      <h1>{title}{draft && <span class="draft">Draft</span>}</h1>
+      {kicker && (
+        <p class="kicker">
+          <Fragment set:html={kicker} />
+        </p>
+      )}
+      <h1>
+        {title}
+        {draft && <span class="draft">Draft</span>}
+      </h1>
       {description && <p class="lede">{description}</p>}
       <slot name="meta" />
     </header>
@@ -28,8 +35,15 @@ const { title, description, kicker, draft, source } = Astro.props;
 </Base>
 
 <style>
-  .article-header { max-width: calc(var(--measure) + 6rem); margin-bottom: var(--space-5); }
-  h1 { font-size: var(--step-4); margin: 0; letter-spacing: -0.025em; }
+  .article-header {
+    max-width: calc(var(--measure) + 6rem);
+    margin-bottom: var(--space-5);
+  }
+  h1 {
+    font-size: var(--step-4);
+    margin: 0;
+    letter-spacing: -0.025em;
+  }
   .kicker {
     margin: 0 0 var(--space-2);
     font-size: var(--step--1);
@@ -37,7 +51,12 @@ const { title, description, kicker, draft, source } = Astro.props;
     letter-spacing: 0.08em;
     color: var(--color-muted);
   }
-  .lede { font-size: var(--step-1); color: var(--color-muted); margin: var(--space-3) 0 0; max-width: var(--measure); }
+  .lede {
+    font-size: var(--step-1);
+    color: var(--color-muted);
+    margin: var(--space-3) 0 0;
+    max-width: var(--measure);
+  }
   .draft {
     font-size: var(--step--1);
     vertical-align: middle;

@@ -30,7 +30,10 @@ function urlFor(rel) {
     case 'art':
       return parts.length === 2 ? `/art/${name.toLowerCase()}/` : null;
     case 'pages': {
-      const id = parts.slice(1).join('/').replace(/\.(md|mdx)$/, '');
+      const id = parts
+        .slice(1)
+        .join('/')
+        .replace(/\.(md|mdx)$/, '');
       return id === 'home' ? '/' : `/${id}/`;
     }
     default:

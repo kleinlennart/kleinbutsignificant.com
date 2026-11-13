@@ -1,7 +1,8 @@
 /* Design tokens. Minimal on purpose: black on white, one signal accent. */
 
 :root {
-  --font-sans: 'Source Sans 3 Variable', 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-sans:
+    'Source Sans 3 Variable', 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-serif: 'Source Serif 4 Variable', 'Source Serif 4', Georgia, 'Times New Roman', serif;
   --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 
@@ -20,9 +21,9 @@
   --space-5: 2.5rem;
   --space-6: 4rem;
 
-  --measure: 36rem;        /* reading column */
-  --margin-col: 14rem;     /* Tufte-style side column */
-  --page-max: 63rem;      /* = 59rem content (home hero: 15rem photo + 4rem gap + 40rem text) + 2rem gutters */
+  --measure: 36rem; /* reading column */
+  --margin-col: 14rem; /* Tufte-style side column */
+  --page-max: 63rem; /* = 59rem content (home hero: 15rem photo + 4rem gap + 40rem text) + 2rem gutters */
   --gutter: 1rem;
 
   --color-bg: #ffffff;
@@ -49,5 +50,7 @@
 }
 
 @media (min-width: 40rem) {
-  :root { --gutter: 2rem; }
+  :root {
+    --gutter: 2rem;
+  }
 }

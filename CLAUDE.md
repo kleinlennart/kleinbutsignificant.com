@@ -14,6 +14,8 @@ The owner makes the design decisions. Don't change visual design, crops, colours
 pnpm dev           # http://localhost:4321; drafts are visible in dev only
 pnpm build         # static build into dist/ (drafts excluded)
 pnpm check         # astro check (TypeScript + content schemas)
+pnpm lint          # oxlint (also lints .astro frontmatter and scripts)
+pnpm format        # Prettier on code; content/, notes/ and *.md are skipped (.prettierignore)
 uv run quarto render content/writing/<slug>/<slug>.qmd   # render one computational post
 ./maintain.sh      # versions + dependency upgrades (pnpm, uv, rv) + check/build
 ```

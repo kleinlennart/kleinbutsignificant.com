@@ -6,7 +6,12 @@ import { getProjects } from '../../lib/content';
 import { PROJECT_GITHUB, PROJECT_GROUPS, SOCIAL } from '../../consts';
 
 const all = await getProjects();
-const slug = (s: string) => s.toLowerCase().replace(/['’]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const slug = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/['’]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
 const githubIcon = SOCIAL.find((s) => s.label === 'GitHub')?.icon;
 
 // Per section: websites first, then reports on a shelf, then the GitHub organisations.
@@ -26,7 +31,14 @@ const groups = PROJECT_GROUPS.map((title) => {
   <h1>Projects</h1>
   <nav class="toc" aria-label="Sections">
     {groups.map((g, i) => (
-      <>{i > 0 && <span class="toc-sep" aria-hidden="true">·</span>}<a href={`#${g.id}`}>{g.title.replace("'", '’')}</a></>
+      <>
+        {i > 0 && (
+          <span class="toc-sep" aria-hidden="true">
+            ·
+          </span>
+        )}
+        <a href={`#${g.id}`}>{g.title.replace("'", '’')}</a>
+      </>
     ))}
   </nav>
 
@@ -44,8 +56,21 @@ const groups = PROJECT_GROUPS.map((title) => {
         <p class="github">
           <span class="github-label">More on GitHub</span>
           {g.github.map((org) => (
-            <a class="org" href={`https://github.com/${org}`} target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="currentColor"><path d={githubIcon} /></svg>
+            <a
+              class="org"
+              href={`https://github.com/${org}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="15"
+                height="15"
+                aria-hidden="true"
+                fill="currentColor"
+              >
+                <path d={githubIcon} />
+              </svg>
               {org}
             </a>
           ))}
@@ -56,7 +81,10 @@ const groups = PROJECT_GROUPS.map((title) => {
 </Base>
 
 <style>
-  h1 { font-size: var(--step-3); margin: 0 0 var(--space-3); }
+  h1 {
+    font-size: var(--step-3);
+    margin: 0 0 var(--space-3);
+  }
 
   /* Table of contents: one quiet line of section links. */
   .toc {
@@ -66,12 +94,26 @@ const groups = PROJECT_GROUPS.map((title) => {
     margin-bottom: var(--space-6);
     color: var(--color-muted);
   }
-  .toc a { color: var(--color-muted); text-decoration: none; }
-  .toc a:hover { color: var(--color-fg); text-decoration: underline; text-decoration-color: var(--color-link-line); }
-  .toc-sep { color: var(--color-faint); }
+  .toc a {
+    color: var(--color-muted);
+    text-decoration: none;
+  }
+  .toc a:hover {
+    color: var(--color-fg);
+    text-decoration: underline;
+    text-decoration-color: var(--color-link-line);
+  }
+  .toc-sep {
+    color: var(--color-faint);
+  }
 
-  section { scroll-margin-top: var(--space-4); }
-  section + section { margin-top: var(--space-6); padding-top: var(--space-3); }
+  section {
+    scroll-margin-top: var(--space-4);
+  }
+  section + section {
+    margin-top: var(--space-6);
+    padding-top: var(--space-3);
+  }
   h2 {
     font-size: var(--step-2);
     font-weight: 650;
@@ -88,7 +130,9 @@ const groups = PROJECT_GROUPS.map((title) => {
     color: var(--color-muted);
     margin: 0 0 var(--space-4);
   }
-  .reports { margin-top: var(--space-6); }
+  .reports {
+    margin-top: var(--space-6);
+  }
 
   /* GitHub organisations: quiet chips at the end of a section. */
   .github {
@@ -99,7 +143,10 @@ const groups = PROJECT_GROUPS.map((title) => {
     margin: var(--space-5) 0 0;
     font-size: 0.8125rem;
   }
-  .github-label { color: var(--color-muted); margin-right: var(--space-1); }
+  .github-label {
+    color: var(--color-muted);
+    margin-right: var(--space-1);
+  }
   .org {
     display: inline-flex;
     align-items: center;
@@ -111,5 +158,7 @@ const groups = PROJECT_GROUPS.map((title) => {
     text-decoration: none;
     transition: border-color 0.15s ease;
   }
-  .org:hover { border-color: var(--color-fg); }
+  .org:hover {
+    border-color: var(--color-fg);
+  }
 </style>

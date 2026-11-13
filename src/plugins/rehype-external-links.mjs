@@ -18,7 +18,12 @@ export default function rehypeExternalLinks() {
   return (tree) => {
     visit(tree, 'element', (node) => {
       if (node.tagName !== 'a' || !isExternal(node.properties?.href)) return;
-      const rel = new Set([].concat(node.properties.rel ?? []).flatMap((r) => String(r).split(/\s+/)).filter(Boolean));
+      const rel = new Set(
+        []
+          .concat(node.properties.rel ?? [])
+          .flatMap((r) => String(r).split(/\s+/))
+          .filter(Boolean),
+      );
       rel.add('noopener');
       rel.add('noreferrer');
       node.properties.target = '_blank';

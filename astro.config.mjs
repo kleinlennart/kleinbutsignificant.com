@@ -19,7 +19,11 @@ export default defineConfig({
   markdown: {
     processor: unified({
       remarkPlugins: [remarkObsidian],
-      rehypePlugins: [[rehypeCallouts, { theme: 'obsidian' }], rehypeSidenotes, rehypeExternalLinks],
+      rehypePlugins: [
+        [rehypeCallouts, { theme: 'obsidian' }],
+        rehypeSidenotes,
+        rehypeExternalLinks,
+      ],
     }),
     shikiConfig: {
       // Near-monochrome highlighting to match the black & white look.
@@ -29,7 +33,8 @@ export default defineConfig({
   },
   redirects: {
     // v1 (Hugo) URLs. Slugs that changed are mapped explicitly.
-    '/post/2024-01-17-using-github-codespaces-for-quarto-development': '/writing/codespaces-quarto/',
+    '/post/2024-01-17-using-github-codespaces-for-quarto-development':
+      '/writing/codespaces-quarto/',
     '/post/[slug]': '/writing/[slug]',
     '/post': '/writing/',
     '/vitae': '/cv/',
