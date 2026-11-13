@@ -49,7 +49,7 @@ export const PROJECT_GROUPS = [
   "CRAF'd",
   'Social Change Lab',
   'Misc',
-  'For Fun',
+  'Fun',
 ] as const;
 
 // GitHub organisations linked at the end of each projects section.

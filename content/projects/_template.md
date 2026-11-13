@@ -1,7 +1,7 @@
 ---
 # Copy this file to <slug>.md to add a project. Files starting with "_" are not published.
 title: Project name
-group: For Fun # United Nations | "CRAF'd" | Social Change Lab | Misc | For Fun (sections on /projects/)
+group: Fun # United Nations | "CRAF'd" | Social Change Lab | Misc | For Fun (sections on /projects/)
 summary: One sentence.
 org: Organisation or "Personal"
 role: Your role
