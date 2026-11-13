@@ -4,6 +4,7 @@ portrait: ./images/lennart_headshot.jpg
 seoTitle: "Lennart Klein"
 description: Lennart Klein is a Data & AI Analyst at the United Nations (EOSG, CRAF'd). Master's in Political Science at Sciences Po.
 interests: [AI governance, institutional decision-making, collective action problems, social movements, computational social science]
+# organizational/institutional performance
 person:
   jobTitle: Data & AI Analyst
   worksFor:

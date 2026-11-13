@@ -52,9 +52,15 @@ const art = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
-      year: z.number().optional(),
+      /** A year (2017) or a range ("2018–2022"). */
+      year: z.union([z.number(), z.string()]).optional(),
+      location: z.string().optional(),
       order: z.number().default(100),
       medium: z.array(z.string()).default([]),
+      /** Techniques, e.g. projection mapping, VJ. */
+      tags: z.array(z.string()).default([]),
+      /** Software and gear, e.g. QLab, MadMapper. */
+      tools: z.array(z.string()).default([]),
       credits: z.array(z.string()).default([]),
       link: z.url().optional(),
       cover: image().optional(),

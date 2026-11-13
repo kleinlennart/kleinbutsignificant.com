@@ -15,7 +15,7 @@ export const NAV = [
   { href: '/research/', label: 'Research' },
   { href: '/cv/', label: 'CV' },
   { href: '/writing/', label: 'Writing' },
-  { href: '/art/', label: 'Art' },
+  { href: '/art/', label: 'Visuals' },
 ];
 
 // Email, shown as the last icon after SOCIAL. Kept as [user, domain] without an "@" so scrapers

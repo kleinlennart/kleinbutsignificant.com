@@ -1,4 +1,5 @@
 ---
+import '@fontsource-variable/source-serif-4/opsz-italic.css';
 import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import { getArt } from '../../lib/content';
@@ -6,8 +7,8 @@ import { getArt } from '../../lib/content';
 const works = await getArt();
 ---
 
-<Base title="Art" description="Video, VJing, installations and film.">
-  <h1>Art</h1>
+<Base title="Visuals" description="Video, VJing, installations and film.">
+  <h1>Visuals</h1>
   <ul class="works">
     {works.map((w) => (
       <li>
@@ -16,14 +17,11 @@ const works = await getArt();
             <Image
               src={w.data.cover}
               alt=""
-              widths={[400, 800]}
-              sizes="(min-width: 40rem) 30vw, 100vw"
+              widths={[400, 800, 1200]}
+              sizes="(min-width: 40rem) 33vw, 100vw"
             />
           )}
           <span class="title">{w.data.title}</span>
-          <span class="meta">
-            {[w.data.year, w.data.medium.join(', ')].filter(Boolean).join(' · ')}
-          </span>
         </a>
       </li>
     ))}
@@ -35,38 +33,50 @@ const works = await getArt();
     font-size: var(--step-3);
     margin: 0 0 var(--space-5);
   }
+  /* Masonry: CSS columns, so each cover keeps its own aspect ratio (no crop).
+     Items flow top to bottom, column by column, in `order`. */
   .works {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
-    gap: var(--space-5) var(--space-4);
+    columns: 3 16rem;
+    column-gap: var(--space-4);
+  }
+  li {
+    break-inside: avoid;
+    margin-bottom: var(--space-5);
   }
   a {
     text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
+    display: block;
   }
   img {
+    display: block;
     width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
+    height: auto;
     filter: grayscale(0.15);
   }
   a:hover img {
     filter: none;
   }
-  a:hover .title {
-    color: var(--color-accent);
-  }
+  /* Catalogue / wall-label style: artwork titles in italic serif, set tight under the image. */
   .title {
-    font-weight: 650;
-    margin-top: var(--space-2);
+    display: block;
+    margin-top: 0.6rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: var(--step-1);
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    transition: text-decoration-color 150ms;
   }
-  .meta {
-    font-size: var(--step--1);
-    color: var(--color-muted);
+  a:hover .title,
+  a:focus-visible .title {
+    text-decoration-color: currentColor;
   }
 </style>

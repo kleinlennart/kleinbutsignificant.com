@@ -1,12 +1,8 @@
 ---
 title: Urban loops and drones
 year: 2017
+location: Filmwerkstatt Düsseldorf
 order: 10
-credits:
-- Lennart Klein
-- Malte Fischbach
-- Luis Wedekind
-- Nils Kemmerling
 cover: ./images/UrbanSounds.jpg
 ---
 

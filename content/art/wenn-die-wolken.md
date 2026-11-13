@@ -1,10 +1,18 @@
 ---
 title: Wenn die Wolken so sind wie heute
 order: 50
-credits:
-- Only ask Valery!
-- Luis Wedekind
-- Lennart Klein
+# credits:
+# - Only ask Valery!
+# - Luis Wedekind
+year: 2018
+location: FFT Düsseldorf
+tags:
+- projection mapping
+- VJ
+tools:
+- QLab
+- Modul8
+- MadMapper
 cover: ./images/wolken_monolog.jpg
 ---
 

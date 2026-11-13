@@ -17,12 +17,15 @@ const link = d.link
   : undefined;
 ---
 
-<Article title={d.title} kicker="Art" source={sourceUrl(work)}>
+<Article title={d.title} kicker="Visuals" source={sourceUrl(work)}>
   <Label
     slot="meta"
     items={[
-      ['Year', d.year ? String(d.year) : undefined],
+      [/[–-]/.test(String(d.year)) ? 'Years' : 'Year', d.year ? String(d.year) : undefined],
+      ['Location', d.location],
       ['Medium', d.medium],
+      ['Tags', d.tags],
+      ['Tools', d.tools],
       ['With', d.credits],
       ['Link', link],
     ]}

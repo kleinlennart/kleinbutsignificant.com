@@ -15,7 +15,8 @@ import GithubSlugger from 'github-slugger';
 
 const CONTENT_DIR = path.resolve('content');
 const NOTE_EXT = new Set(['.md', '.mdx']);
-const IGNORE_DIRS = new Set(['.obsidian', '.trash', 'node_modules']);
+// `originals/`: full-resolution copies of downscaled photos; same file names, never embedded.
+const IGNORE_DIRS = new Set(['.obsidian', '.trash', 'node_modules', 'originals']);
 
 /** Map a content file to its public URL, or null if it is not a page. */
 function urlFor(rel) {
