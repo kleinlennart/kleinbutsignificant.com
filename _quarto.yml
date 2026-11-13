@@ -20,6 +20,13 @@ format:
     mermaid:
       theme: neutral
 
+# Citations: [@key] from the Zotero export (Better BibTeX → Better CSL JSON, "keep updated").
+# Quarto leaves [@key] as-is in the .md (citeproc: false); Astro formats every post's citations
+# at build time (rehype-citation, APSA), so .qmd and .md posts look the same and Zotero fixes
+# apply without re-rendering. `bibliography` stays so the editors can autocomplete keys.
+bibliography: content/references.json
+citeproc: false
+
 execute:
   warning: false
   # Only re-execute a post when its source changes. Results live in _freeze/ (commit it).

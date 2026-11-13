@@ -4,7 +4,7 @@
 name = "kleinbutsignificant"
 version = "2.0.0"
 description = "Python environment for computational posts on kleinbutsignificant.com"
-requires-python = ">=3.12"
+requires-python = ">=3.14"
 dependencies = [
     "jupyter",
     "jupyter-cache",

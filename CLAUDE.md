@@ -19,7 +19,8 @@ pnpm lint          # oxlint (also lints .astro frontmatter and scripts)
 pnpm format        # Prettier on code; content/, notes/ and *.md are skipped (.prettierignore)
 air format .       # R scripts (air.toml); chunks in .qmd/.Rmd: "Quarto: Format Cell" in the editor
 uv run ruff format .   # Python scripts ([tool.ruff] in pyproject.toml)
-uv run quarto render content/writing/<slug>/<slug>.qmd   # render one computational post
+pnpm new           # new post from templates/ (md | r | python | mdx), draft, opens in VS Code
+pnpm render <slug> # render one computational post (= uv run quarto render content/writing/<slug>/<slug>.qmd)
 ./maintain.sh      # versions + dependency upgrades (pnpm, uv, rv) + check/build
 ```
 
@@ -33,7 +34,7 @@ uv run quarto render content/writing/<slug>/<slug>.qmd   # render one computatio
 
 ## Content (`content/` is also an Obsidian vault)
 
-- `writing/<slug>/<slug>.md`: one folder per post. The folder name is the URL slug (`/writing/<slug>/`) and the note's file name, so Obsidian `[[wikilinks]]` resolve. Computational posts keep `<slug>.qmd` (or `.Rmd`) next to the rendered `<slug>.md` and `<slug>_files/`. Optional flags, both default `false`: `draft: true` (dev only) and `archive: true` (listed under Writing → Archive). For computational posts, set frontmatter in the `.qmd`/`.Rmd` too, or the next render overwrites it.
+- `writing/<slug>/<slug>.md`: one folder per post. The folder name is the URL slug (`/writing/<slug>/`) and the note's file name, so Obsidian `[[wikilinks]]` resolve. Computational posts keep `<slug>.qmd` (or `.Rmd`) next to the rendered `<slug>.md` and `<slug>.markdown_strict_files/` (figures). Optional flags, both default `false`: `draft: true` (dev only) and `archive: true` (listed under Writing → Archive). For computational posts, set frontmatter in the `.qmd`/`.Rmd` too, or the next render overwrites it.
 - `projects/*.md` (files starting with `_` are templates and are not published), `art/*.md` + `art/images/`, `pages/*.md` (single pages; `pages/home.md` feeds the landing page, including the `portrait` headshot), and `attachments/` (Obsidian's paste target).
 - Schemas are in [src/content.config.ts](src/content.config.ts) and use Zod from `astro/zod`. Unknown frontmatter keys are stripped rather than rejected.
 - `.qmd`/`.Rmd` are never loaded by Astro. Only `.md`/`.mdx` are.
@@ -44,12 +45,13 @@ uv run quarto render content/writing/<slug>/<slug>.qmd   # render one computatio
 - `remark-obsidian.mjs`: `[[note]]`, `[[note|label]]` and `![[image.png]]`, resolved by file name across `content/`. Its `urlFor()` must match the routes in `src/pages/`.
 - `rehype-sidenotes.mjs`: GFM footnotes become Tufte-style margin notes on wide screens, with plain footnotes on mobile. This is CSS-only, in `src/styles/prose.css`.
 - `rehype-callouts` (Obsidian theme) handles `> [!note]` callouts.
+- `rehype-citation` formats Pandoc citations (`[@key]`, `[@key, 12]`, `@key`) for every post type, APSA style (`csl/apsa.csl`), from `content/references.json`. Better BibTeX in Zotero auto-exports that file (Better CSL JSON, "keep updated") from one collection. Quarto runs with `citeproc: false`, so `.qmd` posts keep `[@key]` in their `.md` and get the same formatting at build. The reference list goes at the end, or at `[^ref]`; unknown keys stay visible as `[@key]`.
 
-[src/integrations/content-assets.mjs](src/integrations/content-assets.mjs) serves every non-source file in a post folder at the post URL, in dev and in build. Raw HTML from Quarto (`<img src="slug_files/...">`, htmlwidget libs) and embedded standalone HTML therefore work with relative paths. Markdown-syntax images are additionally optimised by Astro.
+[src/integrations/content-assets.mjs](src/integrations/content-assets.mjs) serves every non-source file in a post folder at the post URL, in dev and in build. Raw HTML from Quarto (`<img src="slug.markdown_strict_files/...">`, htmlwidget libs) and embedded standalone HTML therefore work with relative paths. Markdown-syntax images are additionally optimised by Astro.
 
 ## Quarto / computational posts
 
-- Render locally and commit the `.md`, the `_files/` and `_freeze/`. Vercel only runs `astro build` and has no R or Python.
+- Render locally (`pnpm render <slug>`) and commit the `.md`, the `<slug>.markdown_strict_files/` and `_freeze/`. Vercel only runs `astro build` and has no R or Python.
 - [_quarto.yml](_quarto.yml) is a plain project rendering `content/**/*.qmd` to `hugo-md` (Markdown + YAML; the name is historical), with `freeze: auto`. `commit-badge` is excluded because its code reads the removed v1 theme submodule.
 - R packages: `rv` (`rproject.toml`, `rv.lock`, library in `rv/library/`, gitignored). `.Rprofile` sources rv's activation scripts.
 - Python: `uv` (`pyproject.toml`). Running `uv run quarto render` lets Quarto find the venv's Jupyter.

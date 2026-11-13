@@ -1,12 +1,15 @@
 // @ts-check
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { unified } from '@astrojs/markdown-remark';
 import rehypeCallouts from 'rehype-callouts';
+import rehypeCitation from 'rehype-citation';
 import remarkObsidian from './src/plugins/remark-obsidian.mjs';
 import rehypeSidenotes from './src/plugins/rehype-sidenotes.mjs';
 import rehypeExternalLinks from './src/plugins/rehype-external-links.mjs';
+import rehypeCiteLinks from './src/plugins/rehype-cite-links.mjs';
 import contentAssets from './src/integrations/content-assets.mjs';
 
 // https://astro.build/config
@@ -25,6 +28,19 @@ export default defineConfig({
       remarkPlugins: [remarkObsidian],
       rehypePlugins: [
         [rehypeCallouts, { theme: 'obsidian' }],
+        // Pandoc-style citations ([@key], [@key, p. 12], @key) from the Zotero export
+        // (Better BibTeX → Better CSL JSON, "keep updated"). APSA style, same file Quarto uses.
+        // The reference list goes at the end of the post, or where the post has `[^ref]`.
+        [
+          rehypeCitation,
+          {
+            path: fileURLToPath(new URL('.', import.meta.url)),
+            bibliography: 'content/references.json',
+            csl: 'csl/apsa.csl',
+            linkCitations: true,
+          },
+        ],
+        rehypeCiteLinks, // DOIs/URLs in the reference list become links
         rehypeSidenotes,
         rehypeExternalLinks,
       ],

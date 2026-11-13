@@ -2,12 +2,16 @@
 title: In Search for the Perfect Palette
 date: '2023-08-04'
 tags:
-- data science
-- R
-- data-viz
-- color
+  - data science
+  - R
+  - data-viz
+  - color
 archive: true
+fig-height: 4.5
+execute:
+  enabled: true
 ---
+
 
 Three types of palettes:
 
@@ -17,8 +21,6 @@ Three types of palettes:
 
 3.  smooth
 
-Okabe
-
 ``` r
 mpg %>%
   ggplot(aes(x = displ, y = hwy)) +
@@ -26,7 +28,7 @@ mpg %>%
   geom_smooth()
 ```
 
-![](index.markdown_strict_files/figure-markdown_strict/plot%20normal%20color-1.svg)
+![](perfect-palette.markdown_strict_files/figure-markdown_strict/plot%20normal%20color-1.svg)
 
 ``` r
 mpg %>%
@@ -36,4 +38,6 @@ mpg %>%
   paletteer::scale_color_paletteer_d("colorblindr::OkabeIto_black")
 ```
 
-![](index.markdown_strict_files/figure-markdown_strict/plot%20OkabeIto-1.svg)
+![](perfect-palette.markdown_strict_files/figure-markdown_strict/plot%20OkabeIto-1.svg)
+
+From @wong2011PointsView.

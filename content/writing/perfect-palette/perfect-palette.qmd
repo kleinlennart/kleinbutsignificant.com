@@ -1,5 +1,5 @@
 ---
-title: In Search for the Perfect Palette
+title: In Search of the Perfect Palette
 date: '2023-08-04'
 tags:
 - data science
@@ -27,7 +27,6 @@ Three types of palettes:
 
 3.  smooth
 
-Okabe
 
 ```{r plot normal color}
 mpg %>%
@@ -44,3 +43,5 @@ mpg %>%
   geom_smooth() +
   paletteer::scale_color_paletteer_d("colorblindr::OkabeIto_black")
 ```
+
+From @wong2011PointsView.
