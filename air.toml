@@ -1,0 +1,6 @@
+# Air, the R formatter: https://posit-dev.github.io/air/
+# Formats .R files. Code chunks inside .qmd/.Rmd are formatted in the editor
+# (Quarto extension: "Quarto: Format Cell"), not by `air format`.
+[format]
+line-width = 120 # matches line_length_linter in .lintr
+exclude = ["rv/"] # rv's generated activation scripts

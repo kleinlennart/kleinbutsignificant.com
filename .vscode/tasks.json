@@ -71,16 +71,16 @@
     },
     {
       "label": "format",
-      "detail": "Prettier: rewrite code files in place (content/ and Markdown are skipped)",
+      "detail": "Prettier (web), Air (.R), Ruff (.py): rewrite files in place; content/ and Markdown are skipped",
       "type": "shell",
-      "command": "pnpm format",
+      "command": "pnpm format && air format . && uv run ruff format .",
       "problemMatcher": []
     },
     {
       "label": "format:check",
-      "detail": "Prettier: list files that are not formatted, change nothing",
+      "detail": "Prettier, Air, Ruff: list files that are not formatted, change nothing",
       "type": "shell",
-      "command": "pnpm format:check",
+      "command": "pnpm format:check && air format --check . && uv run ruff format --check .",
       "presentation": { "clear": true },
       "problemMatcher": []
     },

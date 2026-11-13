@@ -12,3 +12,13 @@ dependencies = [
 
 [tool.uv]
 package = false
+
+[dependency-groups]
+dev = [
+    "ruff>=0.17.5",
+]
+
+[tool.ruff]
+# Format .py scripts only. Markdown is prose (and content/*.md is Quarto output);
+# Python chunks in .qmd are formatted in the editor ("Quarto: Format Cell").
+extend-exclude = ["*.md", "rv/"]

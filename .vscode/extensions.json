@@ -1,4 +1,11 @@
 {
-  "recommendations": ["astro-build.astro-vscode", "esbenp.prettier-vscode", "oxc.oxc-vscode"],
+  "recommendations": [
+    "astro-build.astro-vscode",
+    "esbenp.prettier-vscode",
+    "oxc.oxc-vscode",
+    "posit.air-vscode",
+    "charliermarsh.ruff",
+    "quarto.quarto"
+  ],
   "unwantedRecommendations": []
 }

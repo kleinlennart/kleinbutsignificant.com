@@ -8,6 +8,7 @@ node --version
 pnpm --version
 quarto --version
 uv --version
+air --version
 rv --version
 R --version | head -1
 
