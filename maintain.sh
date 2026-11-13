@@ -5,14 +5,15 @@ cd "$(dirname "$0")"
 
 ## Versions
 node --version
+pnpm --version
 quarto --version
 uv --version
 rv --version
 R --version | head -1
 
 ## JavaScript (Astro)
-npm outdated || true
-npm update
+pnpm outdated || true
+pnpm update
 
 ## Python (Jupyter engine for Quarto)
 uv lock --upgrade
@@ -22,5 +23,5 @@ uv sync
 rv upgrade
 
 ## Sanity check
-npm run check
-npm run build
+pnpm check
+pnpm build

@@ -9,9 +9,9 @@ v1 (2021–2024, Hugo + PaperMod + blogdown) lives on as tag [`v1`](../../tree/v
 ## Develop
 
 ```sh
-npm install
-npm run dev      # http://localhost:4321
-npm run build    # static site in dist/
+pnpm install
+pnpm dev         # http://localhost:4321
+pnpm build       # static site in dist/
 ```
 
 ## Write

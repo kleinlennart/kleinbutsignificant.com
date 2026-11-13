@@ -8,6 +8,7 @@ dist/
 .astro/
 node_modules/
 npm-debug.log*
+pnpm-debug.log*
 .vercel/
 
 ## R

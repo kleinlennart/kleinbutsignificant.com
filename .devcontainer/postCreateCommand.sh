@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # JavaScript (Astro)
-npm ci
+pnpm install --frozen-lockfile
 
 # Python (uv) for Quarto's Jupyter engine
 curl -LsSf https://astral.sh/uv/install.sh | sh

@@ -7,7 +7,7 @@
 
 	"features": {
 		// https://github.com/devcontainers/features/tree/main/src/node
-		"ghcr.io/devcontainers/features/node:1": { "version": "24" },
+		"ghcr.io/devcontainers/features/node:1": { "version": "24", "pnpmVersion": "11.25.0" },
 		// https://github.com/rocker-org/devcontainer-features/tree/main/src/quarto-cli
 		"ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": { "installTinyTex": false }
 	},

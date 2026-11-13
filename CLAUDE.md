@@ -11,11 +11,11 @@ The owner makes the design decisions. Don't change visual design, crops, colours
 ## Commands
 
 ```sh
-npm run dev        # http://localhost:4321; drafts are visible in dev only
-npm run build      # static build into dist/ (drafts excluded)
-npm run check      # astro check (TypeScript + content schemas)
+pnpm dev           # http://localhost:4321; drafts are visible in dev only
+pnpm build         # static build into dist/ (drafts excluded)
+pnpm check         # astro check (TypeScript + content schemas)
 uv run quarto render content/writing/<slug>/<slug>.qmd   # render one computational post
-./maintain.sh      # versions + dependency upgrades (npm, uv, rv) + check/build
+./maintain.sh      # versions + dependency upgrades (pnpm, uv, rv) + check/build
 ```
 
 ## Content (`content/` is also an Obsidian vault)
