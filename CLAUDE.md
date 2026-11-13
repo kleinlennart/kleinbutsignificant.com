@@ -12,6 +12,7 @@ The owner makes the design decisions. Don't change visual design, crops, colours
 
 ```sh
 pnpm dev           # http://localhost:4321; drafts are visible in dev only
+pnpm dev:public    # same port, drafts hidden like production (DRAFTS=hide); only one dev server runs at a time
 pnpm build         # static build into dist/ (drafts excluded)
 pnpm check         # astro check (TypeScript + content schemas)
 pnpm lint          # oxlint (also lints .astro frontmatter and scripts)
@@ -22,9 +23,17 @@ uv run quarto render content/writing/<slug>/<slug>.qmd   # render one computatio
 ./maintain.sh      # versions + dependency upgrades (pnpm, uv, rv) + check/build
 ```
 
+## Dev server (agents: read this before starting one)
+
+- **Find the running server first.** `pnpm astro dev status` (or read `.astro/dev.json`: url, port, pid). The owner usually has one running on http://localhost:4321; use it.
+- **Which mode:** `grep drafts .astro/dev.log` → `drafts visible (pnpm dev)` or `drafts hidden (pnpm dev:public)`. The log also holds request lines and errors, including for servers started in a normal terminal.
+- **None running and you need one:** `pnpm dev --background` (or `pnpm dev:public --background`). It then shows in `astro dev status`, `pnpm astro dev logs` works, and the owner can see it. Stop it with `pnpm astro dev stop` when done.
+- **Never** start a second server (`--ignore-lock`, other ports) and never `pkill` broadly; stop only a server you started. Port 4321 is fixed (`strictPort`).
+- For a production check without touching the dev server: `pnpm build` and inspect `dist/`.
+
 ## Content (`content/` is also an Obsidian vault)
 
-- `writing/<slug>/<slug>.md`: one folder per post. The folder name is the URL slug (`/writing/<slug>/`) and the note's file name, so Obsidian `[[wikilinks]]` resolve. Computational posts keep `<slug>.qmd` (or `.Rmd`) next to the rendered `<slug>.md` and `<slug>_files/`.
+- `writing/<slug>/<slug>.md`: one folder per post. The folder name is the URL slug (`/writing/<slug>/`) and the note's file name, so Obsidian `[[wikilinks]]` resolve. Computational posts keep `<slug>.qmd` (or `.Rmd`) next to the rendered `<slug>.md` and `<slug>_files/`. Optional flags, both default `false`: `draft: true` (dev only) and `archive: true` (listed under Writing → Archive). For computational posts, set frontmatter in the `.qmd`/`.Rmd` too, or the next render overwrites it.
 - `projects/*.md` (files starting with `_` are templates and are not published), `art/*.md` + `art/images/`, `pages/*.md` (single pages; `pages/home.md` feeds the landing page, including the `portrait` headshot), and `attachments/` (Obsidian's paste target).
 - Schemas are in [src/content.config.ts](src/content.config.ts) and use Zod from `astro/zod`. Unknown frontmatter keys are stripped rather than rejected.
 - `.qmd`/`.Rmd` are never loaded by Astro. Only `.md`/`.mdx` are.

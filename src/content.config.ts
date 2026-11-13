@@ -19,6 +19,8 @@ const writing = defineCollection({
     updated: z.coerce.date().optional(),
     description: z.string().optional(),
     tags: z.array(z.string()).default([]),
+    /** Older posts: listed under Writing → Archive, kicker "Writing · Archive". */
+    archive: z.boolean().default(false),
     draft: z.boolean().default(false),
   }),
 });

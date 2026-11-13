@@ -13,6 +13,10 @@ import contentAssets from './src/integrations/content-assets.mjs';
 export default defineConfig({
   site: 'https://www.kleinbutsignificant.com',
   trailingSlash: 'ignore',
+  // Fixed dev port for `pnpm dev` and `pnpm dev:public`: fail if it's taken instead of drifting to 4322…
+  // A stray server from a closed terminal is the usual cause: run the "dev:stop" task.
+  server: { port: 4321 },
+  vite: { server: { strictPort: true } },
   // Responsive srcset for all images, including Markdown ones (photos are camera-sized originals).
   image: { layout: 'constrained', responsiveStyles: true },
   integrations: [mdx(), sitemap(), contentAssets({ sections: ['writing'] })],

@@ -1,7 +1,8 @@
 ---
 import { render } from 'astro:content';
 import Article from '../../layouts/Article.astro';
-import { sourceUrl, fmtDate, getWriting, hasSource, isoDate, type Post } from '../../lib/content';
+import Label from '../../components/Label.astro';
+import { sourceUrl, fmtDate, getWriting, isoDate, type Post } from '../../lib/content';
 
 export async function getStaticPaths() {
   const posts = await getWriting();
@@ -10,27 +11,24 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props as { post: Post };
 const { Content } = await render(post);
-const source = hasSource(post);
+const d = post.data;
+const date = `<time datetime="${isoDate(d.date)}">${fmtDate(d.date)}</time>`;
 ---
 
 <Article
-  title={post.data.title}
-  description={post.data.description}
-  draft={post.data.draft}
+  title={d.title}
+  description={d.description}
+  kicker={d.archive ? 'Writing · Archive' : 'Writing'}
+  draft={d.draft}
   source={sourceUrl(post)}
 >
-  <p slot="meta" class="meta">
-    <time datetime={isoDate(post.data.date)}>{fmtDate(post.data.date)}</time>
-    {post.data.tags.length > 0 && <span> · {post.data.tags.join(', ')}</span>}
-    {source && <span> · rendered from {source}</span>}
-  </p>
+  <Label
+    slot="meta"
+    inline
+    items={[
+      ['Published', date],
+      ['Tags', d.tags, { muted: true }],
+    ]}
+  />
   <Content />
 </Article>
-
-<style>
-  .meta {
-    margin: var(--space-3) 0 0;
-    font-size: var(--step--1);
-    color: var(--color-muted);
-  }
-</style>

@@ -2,10 +2,11 @@
 title: In Search for the Perfect Palette
 date: '2023-08-04'
 tags:
-- Data Science
+- data science
 - R
 - data-viz
 - color
+archive: true
 ---
 
 Three types of palettes:

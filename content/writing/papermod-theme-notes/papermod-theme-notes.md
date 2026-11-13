@@ -2,11 +2,12 @@
 title: Implementing the PaperMod Theme
 date: '2021-03-15'
 tags:
-- Tech
+- tech
 - meta
 - blogdown
-- hugo
+- Hugo
 - resources
+archive: true
 draft: true
 ---
 

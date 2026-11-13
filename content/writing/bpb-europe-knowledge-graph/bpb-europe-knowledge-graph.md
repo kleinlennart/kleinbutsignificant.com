@@ -6,6 +6,7 @@ tags:
 - rstats
 - web scraping
 - rvest
+archive: true
 draft: true
 ---
 

@@ -3,8 +3,9 @@ import path from 'node:path';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { SITE } from '../consts';
 
-/** Drafts are visible in `astro dev`, hidden in production builds. */
-const visible = (draft: boolean) => !(import.meta.env.PROD && draft);
+/** Drafts are visible in `pnpm dev`, hidden in production builds and in `pnpm dev:public` (DRAFTS=hide). */
+export const hideDrafts = import.meta.env.PROD || process.env.DRAFTS === 'hide';
+const visible = (draft: boolean) => !(hideDrafts && draft);
 
 export async function getWriting() {
   const posts = await getCollection('writing', ({ data }) => visible(data.draft));

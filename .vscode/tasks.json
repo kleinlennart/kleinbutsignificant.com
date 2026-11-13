@@ -13,6 +13,30 @@
       "problemMatcher": []
     },
     {
+      "label": "dev:public",
+      "detail": "Astro dev server on http://localhost:4321 (drafts hidden, like production; stop dev first)",
+      "type": "shell",
+      "command": "pnpm dev:public",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "dev:status",
+      "detail": "Is a dev server running (yours or an agent's)? URL, pid, mode and last log lines",
+      "type": "shell",
+      "command": "pnpm --silent astro dev status; grep -h -o 'drafts [a-z]* ([a-z: ]*)' .astro/dev.log | tail -1; tail -5 .astro/dev.log",
+      "presentation": { "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "dev:stop",
+      "detail": "Kill every Astro dev/preview server of this project (also orphans left by closed task terminals)",
+      "type": "shell",
+      "command": "pkill -f '${workspaceFolder}/node_modules/.*astro\\.mjs (dev|preview)' && echo 'Stopped Astro dev/preview servers.' || echo 'No Astro dev/preview servers running.'",
+      "presentation": { "reveal": "silent", "close": true },
+      "problemMatcher": []
+    },
+    {
       "label": "build",
       "detail": "Static build into dist/ (drafts excluded)",
       "type": "shell",

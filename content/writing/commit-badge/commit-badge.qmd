@@ -2,13 +2,14 @@
 title: GitHub Commit Difference Badge
 date: '2024-01-11'
 tags:
-- Tech
+- tech
 - utils
-- git
-- github
+- Git
+- GitHub
 - R
-- markdown
+- Markdown
 - snippet
+archive: true
 code-annotations: true
 code-overflow: wrap
 ---

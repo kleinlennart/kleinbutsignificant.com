@@ -1,19 +1,26 @@
 ---
 // Museum "wall label": a compact definition list of facts about a work or project.
+// `inline`: one row; the last item takes the remaining width and wraps within itself (e.g. tags).
+// A third element { muted: true } sets that value in regular weight and the muted colour.
 interface Props {
-  items: Array<[string, string | string[] | undefined | null]>;
+  items: Array<
+    | [string, string | string[] | undefined | null]
+    | [string, string | string[] | undefined | null, { muted?: boolean }]
+  >;
+  inline?: boolean;
 }
+const { inline = false } = Astro.props;
 const rows = Astro.props.items
-  .map(([k, v]) => [k, Array.isArray(v) ? v.join(', ') : v] as const)
+  .map(([k, v, opts]) => [k, Array.isArray(v) ? v.join(', ') : v, opts?.muted ?? false] as const)
   .filter(([, v]) => v && v !== 'TODO');
 ---
 
 {rows.length > 0 && (
-  <dl class="label">
-    {rows.map(([k, v]) => (
+  <dl class:list={['label', { inline }]}>
+    {rows.map(([k, v, muted]) => (
       <div>
         <dt>{k}</dt>
-        <dd set:html={v} />
+        <dd class:list={{ muted }} set:html={v} />
       </div>
     ))}
   </dl>
@@ -29,6 +36,14 @@ const rows = Astro.props.items
     border-block: 1px solid var(--color-fg);
     font-size: var(--step--1);
   }
+  .inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+  }
+  .inline > div:last-child {
+    flex: 1 1 14rem;
+  }
   dt {
     color: var(--color-muted);
     text-transform: uppercase;
@@ -41,5 +56,9 @@ const rows = Astro.props.items
   }
   dd :global(a) {
     font-weight: 600;
+  }
+  dd.muted {
+    font-weight: 400;
+    color: var(--color-muted);
   }
 </style>

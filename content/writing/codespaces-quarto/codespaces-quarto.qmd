@@ -2,13 +2,14 @@
 title: Using GitHub Codespaces for Quarto Development
 date: '2024-01-17'
 tags:
-- Data Science
-- quarto
+- data science
+- Quarto
 - snippet
 - R
-- github
-- docker
+- GitHub
+- Docker
 - devcontainer
+archive: true
 code-annotations: true
 code-overflow: wrap
 knitr:

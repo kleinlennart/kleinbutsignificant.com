@@ -31,6 +31,18 @@ const MIME = {
 
 const skip = (name) => name.startsWith('.') || name.endsWith('_cache');
 
+/** A post folder is a draft if its .md/.mdx has `draft: true` in the frontmatter. */
+function isDraft(folder) {
+  if (!fs.existsSync(folder) || !fs.statSync(folder).isDirectory()) return false;
+  return fs
+    .readdirSync(folder)
+    .filter((f) => ['.md', '.mdx'].includes(path.extname(f)))
+    .some((f) => {
+      const fm = fs.readFileSync(path.join(folder, f), 'utf8').match(/^---\r?\n([\s\S]*?)\r?\n---/);
+      return !!fm && /^draft:\s*true\s*$/m.test(fm[1]);
+    });
+}
+
 function* walk(dir) {
   for (const d of fs.readdirSync(dir, { withFileTypes: true })) {
     if (skip(d.name)) continue;
@@ -63,6 +75,8 @@ export default function contentAssets({ sections = ['writing'] } = {}) {
                     if (!file.startsWith(base + path.sep) || SOURCE_EXT.has(path.extname(file)))
                       return next();
                     if (!fs.existsSync(file) || !fs.statSync(file).isFile()) return next();
+                    // `pnpm dev:public`: behave like production.
+                    if (process.env.DRAFTS === 'hide' && isDraft(base)) return next();
                     res.setHeader(
                       'Content-Type',
                       MIME[path.extname(file).toLowerCase()] ?? 'application/octet-stream',
@@ -75,20 +89,39 @@ export default function contentAssets({ sections = ['writing'] } = {}) {
           },
         });
       },
+      // Lands in .astro/dev.log, so agents (and you) can tell which mode the running server is in.
+      'astro:server:start': ({ logger }) => {
+        logger.info(
+          process.env.DRAFTS === 'hide'
+            ? 'drafts hidden (pnpm dev:public)'
+            : 'drafts visible (pnpm dev)',
+        );
+      },
       'astro:build:done': ({ dir, logger }) => {
         const out = fileURLToPath(dir);
         let n = 0;
+        const drafts = [];
         for (const section of sections) {
           const src = path.join(root, 'content', section);
           if (!fs.existsSync(src)) continue;
           for (const abs of walk(src)) {
-            const dest = path.join(out, section, path.relative(src, abs));
+            const rel = path.relative(src, abs);
+            const folder = rel.split(path.sep)[0];
+            // Drafts have no page in the build, so their assets must not be published either.
+            if (rel.includes(path.sep) && isDraft(path.join(src, folder))) {
+              if (!drafts.includes(folder)) drafts.push(folder);
+              continue;
+            }
+            const dest = path.join(out, section, rel);
             fs.mkdirSync(path.dirname(dest), { recursive: true });
             fs.copyFileSync(abs, dest);
             n++;
           }
         }
-        logger.info(`copied ${n} content asset(s)`);
+        logger.info(
+          `copied ${n} content asset(s)` +
+            (drafts.length ? `; skipped draft folder(s): ${drafts.join(', ')}` : ''),
+        );
       },
     },
   };

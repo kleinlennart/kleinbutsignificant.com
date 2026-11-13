@@ -3,6 +3,7 @@ title: Style guide
 date: '2026-11-07'
 description: Every element the site styles, in one place. Draft, so it only shows in dev.
 tags: [meta]
+archive: true
 draft: true
 ---
 

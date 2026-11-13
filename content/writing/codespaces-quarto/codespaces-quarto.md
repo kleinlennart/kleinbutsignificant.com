@@ -2,13 +2,16 @@
 title: Using GitHub Codespaces for Quarto Development
 date: '2024-01-17'
 tags:
-- Data Science
-- quarto
+- data science
+- Quarto
 - snippet
 - R
-- github
-- docker
+- GitHub
+- Docker
 - devcontainer
+- Codespaces
+- literate programming
+archive: true
 ---
 
 It turns out, when I am working on say a `reveal.js` slide deck and I
@@ -65,6 +68,8 @@ Project](https://rocker-project.org/ "https://rocker-project.org/").
 
 ### Learn more
 
--   <https://github.com/rocker-org/devcontainer-features/tree/main/src/r-packages>
+-   https://github.com/rocker-org/devcontainer-features/tree/main/src/r-packages
 
--   <https://rocker-project.org/images/devcontainer/images.html>
+-   https://rocker-project.org/images/devcontainer/images.html
+
+- https://rdatatoolbox.github.io/chapters/course-quarto.html
