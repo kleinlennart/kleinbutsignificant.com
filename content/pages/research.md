@@ -3,7 +3,7 @@ title: Research
 description: Publications, conference papers, and academic affiliations.
 ---
 
-Also on [Google Scholar](https://scholar.google.com/citations?hl=en&user=vK0kK7UAAAAJ), [ORCID](https://orcid.org/0000-0003-2591-2113), and [ResearchGate](https://www.researchgate.net/profile/Lennart-Klein-6).
+Also on [Google Scholar](https://scholar.google.com/citations?hl=en&user=vK0kK7UAAAAJ), [ORCID](https://orcid.org/0000-0003-2591-2113), [OSF](https://osf.io/v9pzy/), and [ResearchGate](https://www.researchgate.net/profile/Lennart-Klein-6).
 
 ## Publications
 
@@ -22,6 +22,16 @@ Borchers, C., Morina, F., **Klein, L.**, & Fischer, C. (2025). *Journal of New A
 **Timing matters: Inferring educational Twitter community switching from membership characteristics.**\
 Borchers, C., **Klein, L.**, Johnson, H., & Fischer, C. (2023). *Proceedings of the 16th International Conference on Educational Data Mining (EDM)*, 438–444.\
 [Paper](https://educationaldatamining.org/EDM2023/proceedings/2023.EDM-posters.47/index.html)
+
+### Reports
+
+**Too harsh or too lenient? Public opinion on prison sentences for Just Stop Oil supporters.**\
+Ostarek, M., **Klein, L.**, Rogers, C., & Nadel, S. (2024). *Social Change Lab.*\
+[Report](https://www.socialchangelab.org/research/tooharshortoolenient.html)
+
+**Animal Rising's Grand National protest: Public opinion impacts and beyond.**\
+Ostarek, M., Özden, J., Rogers, C., & **Klein, L.** (2023). *Social Change Lab.*\
+[Report](https://www.socialchangelab.org/research/animal-rising-grand-national-protest.html)
 
 ### Conference presentations
 

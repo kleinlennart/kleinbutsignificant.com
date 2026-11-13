@@ -44,13 +44,19 @@ export const SOCIAL = [
 ];
 
 // Sections on /projects/, in this order. Each project picks one via `group:` in its frontmatter.
-export const PROJECT_GROUPS = ['United Nations', "CRAF'd", 'Nonprofit', 'For Fun'] as const;
+export const PROJECT_GROUPS = [
+  'United Nations',
+  "CRAF'd",
+  'Social Change Lab',
+  'Misc',
+  'For Fun',
+] as const;
 
 // GitHub organisations linked at the end of each projects section.
 export const PROJECT_GITHUB: Partial<Record<(typeof PROJECT_GROUPS)[number], string[]>> = {
   'United Nations': ['united-nations', 'UN-EOSG-Analytics'],
   "CRAF'd": ['UN-CRAFd'],
-  Nonprofit: ['SocialChangeLab'],
+  'Social Change Lab': ['SocialChangeLab'],
 };
 
 // Shown in the footer.

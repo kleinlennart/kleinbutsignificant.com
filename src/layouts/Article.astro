@@ -9,8 +9,10 @@ interface Props {
   draft?: boolean;
   /** This page's source file on GitHub; surfaces only via the footer "Source" link. */
   source?: string;
+  /** A top-level page (Research, CV, ...): shared .page-title instead of the large post title. */
+  page?: boolean;
 }
-const { title, description, kicker, draft, source } = Astro.props;
+const { title, description, kicker, draft, source, page } = Astro.props;
 ---
 
 <Base title={title} description={description} source={source}>
@@ -21,7 +23,7 @@ const { title, description, kicker, draft, source } = Astro.props;
           <Fragment set:html={kicker} />
         </p>
       )}
-      <h1>
+      <h1 class={page ? 'page-title' : 'post-title'}>
         {title}
         {draft && <span class="draft">Draft</span>}
       </h1>
@@ -83,10 +85,14 @@ const { title, description, kicker, draft, source } = Astro.props;
     max-width: calc(var(--measure) + 6rem);
     margin-bottom: var(--space-5);
   }
-  h1 {
+  .post-title {
     font-size: var(--step-4);
     margin: 0;
     letter-spacing: -0.025em;
+  }
+  /* The header already spaces what follows. */
+  .page-title {
+    margin: 0;
   }
   .kicker {
     margin: 0 0 var(--space-2);

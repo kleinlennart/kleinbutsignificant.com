@@ -24,11 +24,14 @@ const groups = PROJECT_GROUPS.map((title) => {
     reports: items.filter((p) => p.data.kind === 'report'),
     github: PROJECT_GITHUB[title] ?? [],
   };
-}).filter((g) => g.websites.length || g.reports.length);
+})
+  .filter((g) => g.websites.length || g.reports.length)
+  // Subheadings only when a section has both websites and reports.
+  .map((g) => ({ ...g, labelled: g.websites.length > 0 && g.reports.length > 0 }));
 ---
 
 <Base title="Projects" description="Websites, tools and reports I've built and contributed to.">
-  <h1>Projects</h1>
+  <h1 class="page-title">Projects</h1>
   <nav class="toc" aria-label="Sections">
     {groups.map((g, i) => (
       <>
@@ -41,14 +44,39 @@ const groups = PROJECT_GROUPS.map((title) => {
       </>
     ))}
   </nav>
+  <!-- The same links in the left margin, shown once the line above scrolls away (wide screens only). -->
+  <nav class="toc-float" aria-label="Sections" inert>
+    <ul>
+      {groups.map((g) => (
+        <li data-for={g.id}>
+          <a href={`#${g.id}`}>{g.title.replace("'", '’')}</a>
+          {g.labelled && (
+            <ul class="toc-sub">
+              <li data-for={`${g.id}-websites`}>
+                <a href={`#${g.id}-websites`}>Websites, Platforms &amp; Tools</a>
+              </li>
+              <li data-for={`${g.id}-reports`}>
+                <a href={`#${g.id}-reports`}>Reports</a>
+              </li>
+            </ul>
+          )}
+        </li>
+      ))}
+    </ul>
+  </nav>
 
   {groups.map((g) => (
     <section id={g.id}>
-      <h2>{g.title.replace("'", '’')}</h2>
-      {g.websites.length > 0 && <ProjectGrid projects={g.websites} />}
+      <h2 class="section-title">{g.title.replace("'", '’')}</h2>
+      {g.websites.length > 0 && (
+        <div class="sub" id={`${g.id}-websites`}>
+          {g.labelled && <h3>Websites, Platforms &amp; Tools</h3>}
+          <ProjectGrid projects={g.websites} />
+        </div>
+      )}
       {g.reports.length > 0 && (
-        <div class="reports">
-          <h3>Reports</h3>
+        <div class="sub" id={`${g.id}-reports`}>
+          {g.labelled && <h3>Reports</h3>}
           <ReportShelf reports={g.reports} />
         </div>
       )}
@@ -80,12 +108,52 @@ const groups = PROJECT_GROUPS.map((title) => {
   ))}
 </Base>
 
-<style>
-  h1 {
-    font-size: var(--step-3);
-    margin: 0 0 var(--space-3);
-  }
+<script>
+  // Show the floating section list once the inline one has scrolled above the viewport.
+  const inline = document.querySelector<HTMLElement>('.toc');
+  const float = document.querySelector<HTMLElement>('.toc-float');
+  if (inline && float) {
+    new IntersectionObserver(([entry]) => {
+      const past = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+      float.classList.toggle('shown', past);
+      float.inert = !past;
+    }).observe(inline);
 
+    // Scroll spy: the current section (and subsection) is the last one whose top has passed
+    // the upper third of the viewport. Its entry turns bold and its subsections unfold.
+    const items = [...float.querySelectorAll<HTMLLIElement>('li[data-for]')];
+    const targets = items.map((li) => document.getElementById(li.dataset.for!));
+    const update = () => {
+      const line = window.innerHeight / 3;
+      let section: HTMLLIElement | undefined;
+      let sub: HTMLLIElement | undefined;
+      items.forEach((li, i) => {
+        const top = targets[i]?.getBoundingClientRect().top ?? Infinity;
+        if (top > line) return;
+        if (li.closest('.toc-sub')) {
+          sub = li;
+        } else {
+          section = li;
+          sub = undefined;
+        }
+      });
+      for (const li of items) li.classList.toggle('current', li === section || li === sub);
+    };
+    let frame = 0;
+    addEventListener(
+      'scroll',
+      () => {
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(update);
+      },
+      { passive: true },
+    );
+    addEventListener('resize', update);
+    update();
+  }
+</script>
+
+<style>
   /* Table of contents: one quiet line of section links. */
   .toc {
     display: flex;
@@ -107,30 +175,103 @@ const groups = PROJECT_GROUPS.map((title) => {
     color: var(--color-faint);
   }
 
-  section {
+  /* Floating copy in the left margin: only where the margin fits it, faded in after scrolling. */
+  .toc-float {
+    display: none;
+  }
+  @media (min-width: 88rem) {
+    .toc-float {
+      --toc-width: 10rem;
+      display: block;
+      position: fixed;
+      top: var(--space-6);
+      /* Well clear of the content column, but never off the screen's edge. */
+      left: max(
+        var(--space-4),
+        calc((100vw - var(--page-max)) / 2 - var(--toc-width) - var(--space-6))
+      );
+      width: var(--toc-width);
+      font-size: 0.8125rem;
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        opacity 0.2s ease,
+        visibility 0.2s;
+    }
+    .toc-float.shown {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  /* Quiet by design: faint entries on a hairline; the current one is a shade darker, semibold, with a grey marker. */
+  .toc-float ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .toc-float > ul {
+    border-left: 1px solid var(--color-rule);
+  }
+  .toc-float a {
+    display: block;
+    margin-left: -1px;
+    padding: 0.3em 0 0.3em var(--space-3);
+    border-left: 2px solid transparent;
+    color: var(--color-faint);
+    line-height: 1.3;
+    text-decoration: none;
+    transition:
+      color 0.15s ease,
+      border-color 0.15s ease;
+  }
+  .toc-float a:hover {
+    color: var(--color-fg);
+  }
+  .toc-float li.current > a {
+    color: var(--color-muted);
+    font-weight: 600;
+    border-left-color: var(--color-muted);
+  }
+  /* Subsections: indented, smaller, and only unfolded under the current section. */
+  .toc-sub {
+    display: none;
+    font-size: 0.75rem;
+    padding-bottom: var(--space-1);
+  }
+  .toc-float li.current > .toc-sub {
+    display: block;
+  }
+  .toc-sub a {
+    padding-left: calc(var(--space-3) * 2);
+  }
+  /* The section marker gives way to the subsection's while one is current. */
+  .toc-float li.current:has(.toc-sub li.current) > a {
+    border-left-color: transparent;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .toc-float {
+      transition: none;
+    }
+  }
+
+  section,
+  .sub {
     scroll-margin-top: var(--space-4);
   }
   section + section {
     margin-top: var(--space-6);
     padding-top: var(--space-3);
   }
-  h2 {
-    font-size: var(--step-2);
-    font-weight: 650;
-    letter-spacing: -0.015em;
-    margin: 0 0 var(--space-4);
-    padding-bottom: var(--space-2);
-    border-bottom: 1px solid var(--color-fg);
-  }
+  /* Subsection label (Websites, Platforms & Tools; Reports). */
   h3 {
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.875rem;
+    font-weight: 650;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--color-muted);
+    color: var(--color-fg);
     margin: 0 0 var(--space-4);
   }
-  .reports {
+  .sub + .sub {
     margin-top: var(--space-6);
   }
 

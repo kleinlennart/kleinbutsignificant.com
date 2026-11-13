@@ -10,36 +10,29 @@ const archived = posts.filter((p) => p.data.archive);
 ---
 
 <Base title="Writing" description="Essays, notes and computational posts.">
-  <h1>Writing</h1>
+  <h1 class="page-title">Writing</h1>
   {current.length > 0 && <PostList posts={current} />}
   {archived.length > 0 && (
     <section class="archive" aria-labelledby="archive">
-      <h2 id="archive">Archive</h2>
+      <h2 id="archive" class="section-title">
+        Archive
+      </h2>
       <PostList posts={archived} />
     </section>
   )}
 </Base>
 
 <style>
-  h1 {
-    font-size: var(--step-3);
-    margin: 0 0 var(--space-4);
-  }
   .archive {
     margin-top: var(--space-6);
     max-width: 44rem; /* same width as the post list */
   }
   /* The first section on the page when there are no current posts yet. */
-  h1 + .archive {
+  .page-title + .archive {
     margin-top: 0;
   }
-  /* Same as the group headings on /projects/. */
-  h2 {
-    font-size: var(--step-2);
-    font-weight: 650;
-    letter-spacing: -0.015em;
-    margin: 0 0 var(--space-2);
-    padding-bottom: var(--space-2);
-    border-bottom: 1px solid var(--color-fg);
+  /* The post list brings its own top spacing. */
+  .section-title {
+    margin-bottom: var(--space-2);
   }
 </style>

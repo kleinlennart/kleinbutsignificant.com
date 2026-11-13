@@ -1,6 +1,6 @@
 ---
 title: UN Budget Explorer
-group: Nonprofit
+group: Misc
 summary: Explore the UN programme budget, with the 2026 revised estimates compared to earlier budgets.
 years: "2025"
 url: https://programmebudget.info/

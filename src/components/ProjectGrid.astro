@@ -10,7 +10,13 @@ interface Props {
 const { projects } = Astro.props;
 
 const real = (v?: string) => (v && !v.startsWith('TODO') ? v : undefined);
-const domain = (url?: string) => (url ? new URL(url).host.replace(/^www\./, '') : undefined);
+// Host only, except GitHub Pages project sites (user.github.io/repo/), where the path names the site.
+const domain = (url?: string) => {
+  if (!url) return undefined;
+  const { host, pathname } = new URL(url);
+  const path = host.endsWith('.github.io') ? pathname.replace(/\/$/, '') : '';
+  return host.replace(/^www\./, '') + path;
+};
 const hasBody = (p: CollectionEntry<'projects'>) =>
   Boolean(p.body?.replace(/<!--[\s\S]*?-->/g, '').trim());
 ---

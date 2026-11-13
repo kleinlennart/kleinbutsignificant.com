@@ -61,6 +61,21 @@ h4 {
   letter-spacing: -0.01em;
 }
 
+/* Title of a top-level page (Writing, Projects, Visuals, Research, CV, ...). Posts use their own, larger title. */
+.page-title {
+  font-size: var(--step-3);
+  margin: 0 0 var(--space-4);
+}
+
+/* Section heading on a top-level page (Projects groups, Writing archive): ruled underneath. */
+.section-title {
+  font-size: var(--step-2);
+  letter-spacing: -0.015em;
+  margin: 0 0 var(--space-4);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-fg);
+}
+
 code,
 pre,
 kbd {

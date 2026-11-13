@@ -13,6 +13,6 @@ const { page } = Astro.props as { page: CollectionEntry<'pages'> };
 const { Content } = await render(page);
 ---
 
-<Article title={page.data.title} description={page.data.description} source={sourceUrl(page)}>
+<Article page title={page.data.title} description={page.data.description} source={sourceUrl(page)}>
   <Content />
 </Article>

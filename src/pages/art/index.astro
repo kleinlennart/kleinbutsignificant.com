@@ -8,7 +8,7 @@ const works = await getArt();
 ---
 
 <Base title="Visuals" description="Video, VJing, installations and film.">
-  <h1>Visuals</h1>
+  <h1 class="page-title">Visuals</h1>
   <ul class="works">
     {works.map((w) => (
       <li>
@@ -29,10 +29,6 @@ const works = await getArt();
 </Base>
 
 <style>
-  h1 {
-    font-size: var(--step-3);
-    margin: 0 0 var(--space-5);
-  }
   /* Masonry: CSS columns, so each cover keeps its own aspect ratio (no crop).
      Items flow top to bottom, column by column, in `order`. */
   .works {

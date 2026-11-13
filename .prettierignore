@@ -4,6 +4,8 @@
 content/
 notes/
 *.md
+# Post templates: {{placeholders}} and MDX comment blocks break under Prettier.
+templates/
 
 # Static files served as-is (including standalone HTML).
 public/
