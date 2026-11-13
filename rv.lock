@@ -11,6 +11,15 @@ force_source = false
 dependencies = []
 
 [[packages]]
+name = "Matrix"
+version = "1.7-5"
+source = { builtin = true }
+force_source = false
+dependencies = [
+    "lattice",
+]
+
+[[packages]]
 name = "R6"
 version = "2.6.1"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -23,6 +32,22 @@ version = "1.1-3"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
 force_source = false
 dependencies = []
+
+[[packages]]
+name = "Rcpp"
+version = "1.1.2"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = []
+
+[[packages]]
+name = "RcppTOML"
+version = "0.2.3"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "Rcpp", requirement = "(>= 1.0.8)" },
+]
 
 [[packages]]
 name = "S7"
@@ -447,6 +472,15 @@ dependencies = [
 ]
 
 [[packages]]
+name = "here"
+version = "1.0.2"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    { name = "rprojroot", requirement = "(>= 2.1.0)" },
+]
+
+[[packages]]
 name = "highr"
 version = "0.12"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -546,6 +580,13 @@ dependencies = [
 name = "labeling"
 version = "0.4.3"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = []
+
+[[packages]]
+name = "lattice"
+version = "0.22-9"
+source = { builtin = true }
 force_source = false
 dependencies = []
 
@@ -655,6 +696,13 @@ dependencies = [
 [[packages]]
 name = "pkgconfig"
 version = "2.0.3"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = []
+
+[[packages]]
+name = "png"
+version = "0.1-9"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
 force_source = false
 dependencies = []
@@ -805,6 +853,23 @@ dependencies = [
 ]
 
 [[packages]]
+name = "reticulate"
+version = "1.47.0"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = [
+    "Matrix",
+    { name = "Rcpp", requirement = "(>= 1.0.7)" },
+    "RcppTOML",
+    "here",
+    "jsonlite",
+    "png",
+    "rappdirs",
+    "rlang",
+    "withr",
+]
+
+[[packages]]
 name = "rlang"
 version = "1.3.0"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -828,6 +893,13 @@ dependencies = [
     { name = "xfun", requirement = "(>= 0.36)" },
     { name = "yaml", requirement = "(>= 2.1.19)" },
 ]
+
+[[packages]]
+name = "rprojroot"
+version = "2.1.1"
+source = { repository = "https://packagemanager.posit.co/cran/latest" }
+force_source = false
+dependencies = []
 
 [[packages]]
 name = "rstudioapi"

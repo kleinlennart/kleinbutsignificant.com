@@ -22,4 +22,5 @@ dependencies = [
     "paletteer",
     "knitr",
     "rmarkdown",
+    "reticulate",
 ]

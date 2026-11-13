@@ -19,6 +19,7 @@
     "lint": "oxlint",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "format:qmd": "node scripts/format-qmd.mjs",
     "astro": "astro"
   },
   "dependencies": {

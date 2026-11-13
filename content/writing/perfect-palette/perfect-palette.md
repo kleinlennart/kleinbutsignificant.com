@@ -47,3 +47,28 @@ ggplot(mpg, aes(displ, hwy)) +
 ![](perfect-palette.markdown_strict_files/figure-markdown_strict/plot-okabe-ito-1.svg)
 
 The Nature standard in academic publishing. See @wong2011PointsView.
+
+### The same in Python
+
+``` python
+import matplotlib.pyplot as plt
+
+# Okabe-Ito as the default colour cycle (built into matplotlib 3.11+)
+okabe_ito = plt.colormaps["okabe_ito"].colors
+plt.rcParams["axes.prop_cycle"] = plt.cycler(color=okabe_ito)
+```
+
+``` python
+import pandas as pd
+
+mpg = pd.read_csv(
+    "https://raw.githubusercontent.com/tidyverse/ggplot2/main/data-raw/mpg.csv"
+)
+
+for cls, d in mpg.groupby("class"):
+    plt.scatter(d.displ, d.hwy, label=cls)
+plt.legend()
+plt.show()
+```
+
+![](perfect-palette.markdown_strict_files/figure-markdown_strict/plot-okabe-ito-python-1.svg)

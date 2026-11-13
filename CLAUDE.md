@@ -17,7 +17,8 @@ pnpm build         # static build into dist/ (drafts excluded)
 pnpm check         # astro check (TypeScript + content schemas)
 pnpm lint          # oxlint (also lints .astro frontmatter and scripts)
 pnpm format        # Prettier on code; content/, notes/ and *.md are skipped (.prettierignore)
-air format .       # R scripts (air.toml); chunks in .qmd/.Rmd: "Quarto: Format Cell" in the editor
+air format .       # R scripts (air.toml)
+pnpm format:qmd    # code chunks in .qmd/.Rmd: {r} via Air, {python} via Ruff; prose untouched (--check to list)
 uv run ruff format .   # Python scripts ([tool.ruff] in pyproject.toml)
 pnpm new           # new post from templates/ (md | r | python | mdx), draft, opens in VS Code
 pnpm render <slug> # render one computational post (= uv run quarto render content/writing/<slug>/<slug>.qmd)
