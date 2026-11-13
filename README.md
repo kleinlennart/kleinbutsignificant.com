@@ -19,8 +19,9 @@ pnpm format      # Prettier
 
 ## Write
 
-- **Plain post:** create `content/writing/<slug>/<slug>.md` with `title`, `date`, `tags`, and `draft: true` while you work on it.
-- **Computational post:** create `<slug>.qmd` in the same kind of folder, then run `uv sync && rv sync` once, then `uv run quarto render content/writing/<slug>/<slug>.qmd`. Commit the generated `.md`, the `_files/` and `_freeze/`.
+- **New post:** `pnpm new` (or the VS Code task "new post") asks for a title and a type: plain Markdown, Quarto + R, Quarto + Python or MDX. It creates `content/writing/<slug>/<slug>.<ext>` from `templates/`, dated today with `draft: true`, and opens it in VS Code. Shortcut: `pnpm new --type r "My post"`.
+- **Computational post:** run `uv sync && rv sync` once, then `pnpm render <slug>` (or the task "render post" with the `.qmd` open). Commit the generated `.md`, `<slug>.markdown_strict_files/` and `_freeze/`.
+- **Publish:** delete `draft: true`. Add `archive: true` to file a post under Writing → Archive.
 - **Project:** copy `content/projects/_template.md`.
 - **Headshot / intro:** edit `content/pages/home.md`.
 

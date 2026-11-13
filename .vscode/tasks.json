@@ -114,6 +114,48 @@
       "dependsOn": ["typecheck", "lint", "format:check"],
       "group": { "kind": "test", "isDefault": true },
       "problemMatcher": []
+    },
+    {
+      "label": "new post",
+      "detail": "Create content/writing/<slug>/ from templates/ (draft, dated today) and open it",
+      "type": "shell",
+      "command": "pnpm",
+      "args": [
+        "new",
+        "--type",
+        "${input:postType}",
+        { "value": "${input:postTitle}", "quoting": "weak" }
+      ],
+      "presentation": { "reveal": "always", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "render post",
+      "detail": "Quarto-render the open .qmd/.Rmd (then commit the .md, _files/ and _freeze/)",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["render", { "value": "${file}", "quoting": "weak" }],
+      "presentation": { "reveal": "always", "clear": true },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "postTitle",
+      "type": "promptString",
+      "description": "Post title (the URL slug is made from it)"
+    },
+    {
+      "id": "postType",
+      "type": "pickString",
+      "description": "Post type",
+      "options": [
+        { "label": "Plain Markdown (.md)", "value": "md" },
+        { "label": "Quarto + R (.qmd)", "value": "r" },
+        { "label": "Quarto + Python (.qmd)", "value": "python" },
+        { "label": "MDX: Markdown + components (.mdx)", "value": "mdx" }
+      ],
+      "default": "md"
     }
   ]
 }

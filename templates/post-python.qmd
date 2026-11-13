@@ -1,0 +1,29 @@
+---
+title: {{title}}
+date: '{{date}}'
+# description: One sentence, shown under the title.
+tags: [Python] # lowercase; names as spelled: R, Python, Quarto, GitHub
+draft: true # remove to publish (drafts only show in `pnpm dev`)
+# archive: true   # file under Writing → Archive
+jupyter: python3
+---
+
+<!--
+Hints (delete this block):
+- Render:    pnpm render {{slug}}   (or the "render post" task with this file open)
+             then commit {{slug}}.md, {{slug}}.markdown_strict_files/ and _freeze/. Vercel never runs Python.
+- Packages:  uv add <package>   (e.g. uv add pandas matplotlib)
+- Frontmatter lives HERE; the .md is overwritten on every render.
+- Cite:      [@citekey], [@citekey, 12], [@a; @b] or @citekey (keys from Zotero via Better BibTeX).
+             References are listed at the end, or where you put [^ref].
+- Sidenote:  text[^1] … [^1]: The note.     Callout: > [!note] Title
+- Figure:    #| fig-cap: "Caption"  inside a cell.
+-->
+
+```{python}
+#| label: setup
+#| include: false
+# imports go here
+```
+
+Start writing here.

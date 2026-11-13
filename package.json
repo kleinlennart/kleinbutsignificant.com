@@ -10,6 +10,8 @@
   "scripts": {
     "dev": "astro dev",
     "dev:public": "DRAFTS=hide astro dev",
+    "new": "node scripts/new-post.mjs",
+    "render": "node scripts/render-post.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
@@ -30,6 +32,7 @@
     "hastscript": "^9.0.3",
     "mdast-util-find-and-replace": "^3.0.4",
     "rehype-callouts": "^2.2.0",
+    "rehype-citation": "^2.3.2",
     "unist-util-visit": "^5.2.0"
   },
   "devDependencies": {
