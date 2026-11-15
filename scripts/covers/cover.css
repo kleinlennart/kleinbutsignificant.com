@@ -1,0 +1,88 @@
+/*
+ * Shared style for project covers (content/projects/images/<slug>.png).
+ * Each cover is scripts/covers/<slug>.html linking this file; render with `pnpm cover <slug>`.
+ * Canvas: 2880×1800 (16:10, the project card ratio, at 2× of 1440×900).
+ * Keep covers on these tokens so they stay consistent with each other.
+ */
+
+@font-face {
+  font-family: 'Source Sans 3 Variable';
+  src: url('../../node_modules/@fontsource-variable/source-sans-3/files/source-sans-3-latin-wght-normal.woff2')
+    format('woff2-variations');
+  font-weight: 200 900;
+}
+
+:root {
+  /* Background of the Fun covers (cuisine-court, polihole): warm off-white. */
+  --cover-bg: #f5f4f2;
+  /* Surfaces (app icon tiles, cards, device frames) sit on the background with this shadow. */
+  --cover-surface: #ffffff;
+  --cover-shadow: 0 60px 120px rgb(0 0 0 / 0.1), 0 12px 32px rgb(0 0 0 / 0.06);
+  --cover-radius: 96px;
+  /* Ink and placeholder lines (abstract "text"). */
+  --cover-ink: #1a1a1a;
+  --cover-muted: #8c8781;
+  --cover-line: #dedbd6;
+  --cover-font: 'Source Sans 3 Variable', system-ui, sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  width: 2880px;
+  height: 1800px;
+  overflow: hidden;
+  background: var(--cover-bg);
+  color: var(--cover-ink);
+  font-family: var(--cover-font);
+  display: grid;
+  place-items: center;
+}
+
+/* App-icon style tile. Set --size to scale it. */
+.tile {
+  --size: 480px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: calc(var(--size) * 0.225);
+  background: var(--cover-surface);
+  box-shadow: var(--cover-shadow);
+  display: grid;
+  place-items: center;
+}
+
+/* Project name, with an optional muted suffix: <h1 class="title">Name <span>for X</span></h1> */
+.title {
+  margin: 0;
+  font-size: 136px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.title span {
+  color: var(--cover-muted);
+  font-weight: 400;
+}
+/* Package/plugin version after the name: <h1 class="title">Name <span class="version">0.1.0</span></h1> */
+.title .version {
+  margin-left: 0.25em;
+  font-size: 0.36em;
+  letter-spacing: 0;
+}
+
+/* A line of abstract words: <div class="line"><i style="--w:180"></i>…</div> */
+.line {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+.line i {
+  display: block;
+  width: calc(var(--w) * 1px);
+  height: 40px;
+  border-radius: 20px;
+  background: var(--cover-line);
+}

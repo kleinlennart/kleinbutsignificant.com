@@ -23,6 +23,7 @@ uv run ruff format .   # Python scripts ([tool.ruff] in pyproject.toml)
 pnpm new           # new post from templates/ (md | r | python | mdx), draft, opens in VS Code
 pnpm render <slug> # render one computational post (= uv run quarto render content/writing/<slug>/<slug>.qmd)
 pnpm watch <slug>  # re-render it on every save (quarto preview --no-serve); with pnpm dev the page updates live
+pnpm cover <slug>  # render a made project cover: scripts/covers/<slug>.html → content/projects/images/<slug>.png (style: docs/STYLE.md)
 ./maintain.sh      # versions + dependency upgrades (pnpm, uv, rv) + check/build
 ```
 

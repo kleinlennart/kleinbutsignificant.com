@@ -3,6 +3,7 @@
 // A card opens the live site in a new tab; projects with a written-up body open their detail page instead.
 import type { CollectionEntry } from 'astro:content';
 import { Image } from 'astro:assets';
+import { SOCIAL } from '../consts';
 
 interface Props {
   projects: CollectionEntry<'projects'>[];
@@ -10,13 +11,17 @@ interface Props {
 const { projects } = Astro.props;
 
 const real = (v?: string) => (v && !v.startsWith('TODO') ? v : undefined);
-// Host only, except GitHub Pages project sites (user.github.io/repo/), where the path names the site.
+// Host only, except GitHub Pages project sites (user.github.io/repo/), where the path names the site,
+// and GitHub repos, shown as owner/repo.
 const domain = (url?: string) => {
   if (!url) return undefined;
   const { host, pathname } = new URL(url);
+  if (host === 'github.com') return pathname.replace(/^\/|\/$/g, '');
   const path = host.endsWith('.github.io') ? pathname.replace(/\/$/, '') : '';
   return host.replace(/^www\./, '') + path;
 };
+const isGitHub = (url?: string) => Boolean(url) && new URL(url!).host === 'github.com';
+const githubIcon = SOCIAL.find((s) => s.label === 'GitHub')?.icon;
 const hasBody = (p: CollectionEntry<'projects'>) =>
   Boolean(p.body?.replace(/<!--[\s\S]*?-->/g, '').trim());
 ---
@@ -50,6 +55,11 @@ const hasBody = (p: CollectionEntry<'projects'>) =>
             <span class="meta">
               {host && (
                 <span class="domain">
+                  {isGitHub(p.data.url) && githubIcon && (
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d={githubIcon} fill="currentColor" />
+                    </svg>
+                  )}
                   {host}
                   {external && (
                     <span class="arrow" aria-hidden="true">
@@ -142,6 +152,12 @@ const hasBody = (p: CollectionEntry<'projects'>) =>
     font-weight: 600;
     color: var(--color-fg);
     letter-spacing: 0.005em;
+  }
+  .icon {
+    width: 1em;
+    height: 1em;
+    margin-right: 0.35em;
+    vertical-align: -0.125em;
   }
   .arrow {
     margin-left: 0.2em;

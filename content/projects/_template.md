@@ -11,7 +11,7 @@ repo: https://github.com/kleinlennart/<repo>
 kind: website # website | report (reports show as covers on a shelf)
 order: 100
 status: active # active | past
-# cover: ./images/cover.jpg   (website: screenshot 16:10; report: title page)
+# cover: ./images/cover.jpg   (website: screenshot 16:10, or a made cover via `pnpm cover <slug>`, see docs/STYLE.md; report: title page)
 ---
 
 Context, what you did, stack, outcome.

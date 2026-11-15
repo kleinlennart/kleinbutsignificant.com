@@ -1,0 +1,56 @@
+<!doctype html>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="cover.css" />
+<style>
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 180px;
+  }
+  .tile .z {
+    height: 56%;
+  }
+  .text {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+  .title {
+    margin-bottom: 36px;
+  }
+  /* Zotero's yellow highlight, snapped to whole words */
+  .hl {
+    display: flex;
+    gap: 30px;
+    padding: 24px 20px;
+    margin: -24px -20px;
+    border-radius: 10px;
+    background: #ffd400;
+    mix-blend-mode: multiply;
+  }
+</style>
+<div class="row">
+  <div class="tile">
+    <!-- Zotero "Z" (from the Zotero app, chrome/skin/default/zotero/z.svg) -->
+    <svg class="z" viewBox="1.289 1 12.574 14" xmlns="http://www.w3.org/2000/svg">
+      <polygon
+        fill="#db2c3a"
+        points="13.863 2.73 13.027 1 2.137 1 2.137 3.8 2.137 3.921 8.822 3.921 1.289 13.233 2.137 15 13.863 15 13.863 12.142 13.863 12.021 6.448 12.021 13.863 2.73"
+      />
+    </svg>
+  </div>
+  <div class="text">
+    <h1 class="title">Quick Highlight <span class="version">0.1.0</span></h1>
+    <div class="line">
+      <i style="--w: 150"></i><i style="--w: 230"></i><i style="--w: 120"></i
+      ><i style="--w: 260"></i><i style="--w: 170"></i>
+    </div>
+    <div class="line">
+      <i style="--w: 120"></i
+      ><span class="hl"
+        ><i style="--w: 190"></i><i style="--w: 260"></i><i style="--w: 150"></i></span
+      ><i style="--w: 180"></i>
+    </div>
+    <div class="line"><i style="--w: 240"></i><i style="--w: 160"></i><i style="--w: 200"></i></div>
+  </div>
+</div>

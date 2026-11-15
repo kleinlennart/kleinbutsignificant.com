@@ -13,6 +13,7 @@
     "new": "node scripts/new-post.mjs",
     "render": "node scripts/render-post.mjs",
     "watch": "node scripts/render-post.mjs --watch",
+    "cover": "node scripts/cover.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",

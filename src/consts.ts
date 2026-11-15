@@ -57,6 +57,7 @@ export const PROJECT_GITHUB: Partial<Record<(typeof PROJECT_GROUPS)[number], str
   'United Nations': ['united-nations', 'UN-EOSG-Analytics'],
   "CRAF'd": ['UN-CRAFd'],
   'Social Change Lab': ['SocialChangeLab'],
+  Fun: ['kleinlennart'], // last section, so this closes the page
 };
 
 // Shown in the footer.
